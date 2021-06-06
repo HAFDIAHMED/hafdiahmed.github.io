@@ -1,0 +1,33 @@
+Soit le document journal.xml:
+
+ Donner pour chaque programme XSLT qui suit le résultat de sa transformation appliquée au fichier journal.xml:
+1.
+
+
+
+ <?xml version="1.0" encoding="ISO-8859-1"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<xsl:template match="/">
+<xsl:for-each select="journal/editeur">
+<xsl:value-of select="journal/editeur[nomDePlume='Hub'"/>
+</xsl:for-each >
+</xsl:template>
+
+</xsl:stylesheet>
+
+2. 
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
+
+<xsl:template match="journal">
+
+<xsl:if test="dossier[auteur = 'Auteur1' and titre = 'Tempete Fabien']">aa</xsl:if>
+
+<xsl:if test="dossier/auteur = 'Auteur1' and dossier/titre = 'Tempete Fabien'">bb</xsl:if>
+
+</xsl:template>
+
+</xsl:stylesheet>

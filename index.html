@@ -1,1499 +1,615 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-   
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <!-- <script type="text/javascript">
-    var host ="muhammad-saad.me";
-    if ((host==window.location.host) && (window.location.protocol != "https:"))
-        window.location.protocol="https:";
-    </script> -->
-    <link rel="canonical" href="https://ahmedhafdi.com">
-    <title>HAFDI AHMED</title>
-    <meta name="description" content="I'm AHMED HAFDI ,I'm a Software Engineer and a tech enthusiast passionate about creating technology to elevate people,
-    aiming to write clean, maintainable, and reliable softwares. Learn more About me!">
-    <meta name="keywords"
-        content="HAFDI AHMED, Portfolio Website, Ahmed HAFDI website, Portfolio, CV, Resume">
-    <meta property="og:url" content="https://ahmedhafdi.com" />
-    <!-- Google Tag Manager    
-    <script>(function (w, d, s, l, i) {    
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-TZLRMRZ');</script>
-    <!-- End Google Tag Manager -->
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175882291-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Polyfdos — The Galaxy of Ideas</title>
+  <meta name="description" content="Polyfdos — the personal galaxy: polymath + Hafdi + OS. Projects across mathematics, CS, embedded, robotics, space tech." />
 
-        gtag('config', 'UA-175882291-1');
-    </script>
-    <!-- End Global site tag -->
+  <!-- Inter font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <!-- Favicons -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon/profile.jpg">
+    html {
+      scroll-behavior: smooth;
+    }
 
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: #ffffff;
+      color: #000000;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
-    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-    <link href="assets/vendor/font-awesome/css/fontawesome.min.css" rel="stylesheet">
-    <link href="assets/vendor/font-awesome/css/brands.css" rel="stylesheet">
-    <link href="assets/vendor/font-awesome/css/solid.css" rel="stylesheet">
+    /* Header */
+    header {
+      padding: 40px 0;
+      border-bottom: 1px solid #e5e5e5;
+    }
 
-    <!--Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <style>
-    article { display: flex; margin: 0 2em; flex-wrap: wrap; max-width: none; max-width: calc(38em + 500px); }
-    #cover { flex-basis: 480px; max-width: 35em; flex-grow: 1; margin-right: 3em; }
-    #contents { flex-basis: 500px; flex-grow: 1; max-width: 35em;  }
-    #links { flex-basis: 100%; max-width: 35em; }
-    li.contents-intro:before { display: none; }
-    .toc h3 { float: right; font-family: inherit; margin: 0; font-weight: normal; font-size: 90%; }
-    @media screen and (max-width: 585px) { .toc h3 { display: none }}
-    @media screen and (max-width: 500px) { #cover { margin-right: 0 } article { margin: 0 } }
-    ul.links { list-style-type: circle; }
-    img.logo { vertical-align: text-top; padding: 0px 4px; border: 0; }
+    .header-content {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand-info h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-info p {
+      font-size: 14px;
+      color: #666666;
+      font-weight: 400;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .hero-headline {
+      font-size: clamp(48px, 8vw, 80px);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      margin-bottom: 24px;
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+      color: #666666;
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+
+    .hero-description {
+      font-size: 16px;
+      color: #888888;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border: 1px solid #e5e5e5;
+      background: transparent;
+      color: #000000;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      border-color: #000000;
+    }
+
+    .btn.primary {
+      background: #000000;
+      color: #ffffff;
+      border-color: #000000;
+    }
+
+    .btn.primary:hover {
+      background: #333333;
+    }
+
+    /* Philosophy Section */
+    .philosophy {
+      padding: 80px 0;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    .philosophy-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-text {
+      font-size: 18px;
+      color: #666666;
+      line-height: 1.6;
+      margin-bottom: 60px;
+    }
+
+    .explanation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .explanation-item {
+      text-align: center;
+    }
+
+    .explanation-item h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .explanation-item p {
+      font-size: 14px;
+      color: #666666;
+      line-height: 1.5;
+    }
+
+    /* Symbolism Section */
+    .symbolism {
+      padding: 80px 0;
+      text-align: center;
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .symbolism .section-title {
+      color: #ffffff;
+    }
+
+    .symbolism .section-text {
+      color: #cccccc;
+    }
+
+    .crow-display {
+      margin: 40px 0;
+    }
+
+    .crow-display img {
+      width: 120px;
+      height: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    /* Projects Section */
+    .projects {
+      padding: 80px 0;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1px;
+      background: #e5e5e5;
+      margin-top: 40px;
+    }
+
+    .project-card {
+      background: #ffffff;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      min-height: 160px;
+    }
+
+    .project-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .project-card p {
+      font-size: 14px;
+      color: #666666;
+      line-height: 1.5;
+      flex-grow: 1;
+    }
+
+    .project-meta {
+      font-size: 12px;
+      color: #888888;
+      margin-top: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Coming Soon */
+    .coming-soon {
+      padding: 80px 0;
+      text-align: center;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    .countdown-display {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .email-input {
+      padding: 12px 16px;
+      border: 1px solid #e5e5e5;
+      background: #ffffff;
+      font-size: 14px;
+      min-width: 260px;
+      outline: none;
+    }
+
+    .email-input:focus {
+      border-color: #000000;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      text-align: center;
+      border-top: 1px solid #e5e5e5;
+      color: #666666;
+      font-size: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin-top: 16px;
+    }
+
+    .footer-links a {
+      color: #666666;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: #000000;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero,
+      .philosophy,
+      .symbolism,
+      .projects,
+      .coming-soon {
+        padding: 60px 0;
+      }
+
+      .hero-headline {
+        font-size: 48px;
+      }
+
+      .explanation-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .email-input {
+        min-width: auto;
+      }
+
+      .hero-actions,
+      .footer-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 200px;
+        text-align: center;
+      }
+    }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in:nth-child(1) { animation-delay: 0.1s; }
+    .fade-in:nth-child(2) { animation-delay: 0.2s; }
+    .fade-in:nth-child(3) { animation-delay: 0.3s; }
+    .fade-in:nth-child(4) { animation-delay: 0.4s; }
+    .fade-in:nth-child(5) { animation-delay: 0.5s; }
+    .fade-in:nth-child(6) { animation-delay: 0.6s; }
+
+    /* Selection */
+    ::selection {
+      background: #000000;
+      color: #ffffff;
+    }
   </style>
-
-
 </head>
-
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TZLRMRZ" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <div id="particles-js"></div>
-    <script src="assets/js/particles.js"></script>
-    <script src="assets/js/app.js"></script>
-
-    <!-- ======= Header ======= -->
-    <header id="header" class="header-tops">
-
-
-        <div class="container">
-                    <h2 id="greeting" style="font-size: 20px; color: #fab402;"> Visitors count :<a href="https://www.hitwebcounter.com" target="_blank">
-<img src="https://hitwebcounter.com/counter/counter.php?page=7825237&style=0001&nbdigits=4&type=page&initCount=0" title="Free Counter" Alt="web counter"   border="0" /></a> </h2>
-   
-            <h2 id="greeting" style="font-size: 20px; color: #fab402;"> Hi, my name is</h2>
-            <h1><a href="index.html">HAFDI AHMED</a></h1>
-
-
-            <h2>I am
-                <span class="txt-rotate" data-period="1000"
-                    data-rotate='[ " a Software Engineer."," a Full Stack Developer.", ""," an AI and Data Engineer Enthusiast.", " a UI/UX Designer.","Mathematician" ,"Writer"]'>
-                </span>
-            </h2>
-
-            <nav class="nav-menu d-none d-lg-block">
-                <ul>
-                    <li class="active"><a href="#header">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                   
-                    <li><a href="#awards">Awards</a></li>
-                 <li><a href="#portfolio">Projects</a></li> 
-            
-                  <li><a href="#book">Books</a></li> 
-                
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-            <!-- .nav-menu -->
-
-            <div class="social-links">
-                <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-medium"></i></a>
-                <a href="#"><i class="fab fa-dev"></i></a>
-
-            </div>
-<a href="#"
-                        class="button4" style="background-color:#fab402; color: #000;" target="_blank">Hire Me
-                         </a>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <img src="crow.jpg" alt="Polyfdos" />
         </div>
-
-    </header>
-    <!-- End Header -->
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-
-        <!-- ======= About Me ======= -->
-        <div class="about-me container">
-
-            <div class="section-title">
-                <h2>About</h2>
-                <p>Learn more about me</p>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-4" data-aos="fade-right">
-                    <img id="pic" src="assets/img/profile.jpg" class="mx-auto d-block" alt="Responsive image">
-                </div>
-                <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-                    <h3>Profile</h3>
-                    <p class="font-italic">
-                        Hello! I am AHMED HAFDI <br>a Fresh Graduate Computer Science Student.
-                        <br>
-                        <br> I am a tech enthusiast
-                        who loves creating things that live on the internet, whether that be
-                        websites, applications, agents or anything in between. passionate about creating technology to
-                        elevate people,
-                        aiming to write clean, maintainable, and reliable softwares.
-                        <br> <br> I have a strong interest in Full stack development, Data Science, Machine Learning and
-                        competitive programming and I am looking for opportunities that would help me grow
-                        professionally while being resourceful for the
-                        organization.
-                        <br><br> Here are a few technologies I have been working with recently:
-                    </p>
-                    <div class="row" id="list">
-                        <div class="col-lg-6">
-                            <ul>
-                                <!-- <li><i class="icofont-rounded-right"></i> <strong>Birthday:</strong> 1 May 1995</li> -->
-                                <li><i class="icofont-rounded-right"></i> Python</li>
-                                  <li><i class="icofont-rounded-right"></i> R</li>
-                                <li><i class="icofont-rounded-right"></i> Javascript </li>
-                                <li><i class="icofont-rounded-right"></i> Java</li>
-                                <li><i class="icofont-rounded-right"></i> Matlab</li>
-                                <li><i class="icofont-rounded-right"></i> Flutter /dart</li>
-                                <li><i class="icofont-rounded-right"></i> JAVA,JEE, Spring boot</li>
-<li><i class="icofont-rounded-right"></i>Oracle,DataWareHouse</li>
-<li><i class="icofont-rounded-right"></i>Clouding : AZURE </li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <ul>
-                                <li><i class="icofont-rounded-right"></i> Computer Vision</li>
-                                <li><i class="icofont-rounded-right"></i> React js</li>
-                                <li><i class="icofont-rounded-right"></i>C/ C++</li>
-                                <li><i class="icofont-rounded-right"></i>Kotlin</li>
-                                <li><i class="icofont-rounded-right"></i>Laravel/php</li>
-                                <li><i class="icofont-rounded-right"></i>HTML/CSS/SCSS/JS/BOOTSTRAP</li>
-                                <li><i class="icofont-rounded-right"></i>MySQL,PLSQL</li>
-                                <li><i class="icofont-rounded-right"></i>Rust,Assembleur MC6800</li>
-                             
-                                <!-- <li><i class="icofont-rounded-right"></i> <strong>Freelance:</strong> Available</li> -->
-                                <br>
-                            </ul>
-                        </div>
-                    </div>
-                    <a href="CV_HAFDI.pdf"
-                        class="button4" style="background-color:#fab402; color: #000;" target="_blank">Download
-                        Resume </a>
-
-                </div>
-            </div>
+        <div class="brand-info">
+          <h1>Polyfdos</h1>
+          <p>The galaxy of ideas</p>
         </div>
-
-        <!-- </div> -->
-        <!-- End About Me -->
-
-
-        <!--Education starts-->
-        <div class="education container">
-            <h3 class="education-title">Education</h3>
-            <div class="row">
-
-                <div class="col-lg-6">
-                    <!-- <h3 class="education-title">Education</h3> -->
-                    <div class="education-item pb-0">
-                        <h4>GRADUTED AS SOFTWARE ENGINEER </h4>
-
-                        <h5>2018 - 2021</h5>
-                        <p><em> ENSIAS</em> <br> THE NATIONAL SCHOOL FOR COMPUTER SCIENCE
-
-                        </p>
-
-                        <p>
-                        <ul>
-
-                            <li>Winning two years, respectively in The Moroccoan Colligate Porgramming Contest <em>"MCPC"</em> <br>Through the Locals and Regionals Contests.
-                            </li>
-                            <li>Awarded for Outstanding Creative Performance. </li>
-
-                        </ul>
-                        </p>
-                    </div>
-
- <div class="education-item pb-0">
-                        <h4>Classes Préparatoires Centre Mohammed V (MP/MPSI) </h4>
-
-                        <h5>2016 - 2018</h5>
-                        <p><em> CPGE </em> <br> Centre Mohammed V de Kénitra 
-
-                        </p>
-
-                           
-                    </div>
-
-<div class="education-item pb-0">
-                        <h4>Baccalauréat Sciences Mathematiques Option B (SMB) </h4>
-
-                        <h5>2015 - 2016</h5>
-                        <p><em> Baccalauréat SMB </em> <br> Lyceé Abd El Malek El Saadi de Kénitra
- 
-
-                        </p>
-
-                        
-                    </div>
-
-
-                </div>
-
-
-            </div>
-        </div>
-        <!--Education ends-->
-
-
-
-        <!-- ======= Skills  ======= -->
-        <div class="skills container">
-
-            <div class="section-title">
-                <h2>Skills</h2><br>
-            </div>
-
-            <div class="row skills-content">
-
-                <div class="col-lg-6">
-
-                    <div class="progress">
-                        <span class="skill">Backend Development <i class="val">90%</i></span>
-                        <div class="progress-bar-wrap">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                        </div>
-                    </div>
-
-                    <div class="progress">
-                        <span class="skill">Machine Learning <i class="val">75%</i></span>
-                        <div class="progress-bar-wrap">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                        </div>
-                    </div>
-
-                    <div class="progress">
-                        <span class="skill">Computer Vision <i class="val">70%</i></span>
-                        <div class="progress-bar-wrap">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-lg-6">
-
-
-
-                    <div class="progress">
-                        <span class="skill">Graphic Designing <i class="val">40%</i></span>
-                        <div class="progress-bar-wrap">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                        </div>
-                    </div>
-
-                    <div class="progress">
-                        <span class="skill">Mathematics<i class="val">90%</i></span>
-                        <div class="progress-bar-wrap">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                        </div>
-                    </div>
-
-
-
-                    <div class="progress">
-                        <span class="skill">Competitive Programming <i class="val">70%</i></span>
-                        <div class="progress-bar-wrap">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-        <!-- End Skills -->
-        <!-- ======= Counts ======= -->
-        <div class="counts container">
-
-            <div class="row">
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="count-box">
-                        <i class="fas fa-award"></i>
-                        <span data-toggle="counter-up">8</span>
-                        <p>Certifications</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-                    <div class="count-box">
-                        <i class="icofont-document-folder"></i>
-                        <span data-toggle="counter-up">100</span>
-                        <p>Projects</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-                    <div class="count-box">
-                        <i class="fas fa-project-diagram"></i>
-                        <span data-toggle="counter-up">1998</span>
-                        <p>Commits</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-                    <div class="count-box">
-                        <i class="fas fa-certificate"></i>
-                        <span data-toggle="counter-up">3</span>
-                        <p>Awards</p>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-        <!-- End Counts -->
-
-
-
-
-    </section>
-    <!-- End About Section -->
-
-
-
-    <!-- ======= experience Section ======= -->
-    <section id="experience" class="experience">
-        <div class="container">
-
-            <div class="section-title">
-                <h2>Experience</h2>
-                <p>I have worked with many organizations as a part of technical team as well as a part of Corporate and
-                    Non-Technical Domains.
-                    <br> I have also worked as Freelancer Software Engineer.
-                    <br> I love organizing events and conducting workshops that is why I am also involved with many
-                    communities, organizations and Student Activities Clubs.</p>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <!--Professional Experience-->
-                  <div class="col-lg-12">
-                        <h3 class="experience-title"></h3>
-                        <h3 class="experience-title"></h3>
-                    </div>
-                    <div class="col-lg-12">
-                     
-                        <h3 class="experience-title2 ">Professional Experience</h3>
-
-      <div class="experience-item">
-
-                            <h4>SOFTWARE ENGINEER
-</h4>
-
-                            <img src="assets/img/experience/gohi.png" class="rounded float-right expimg"
-                                alt="ICPCSHAC">
-                            <h5>March, 2021 - Augest 2021</h5>
-                            <a href="http://sehachain.com/">
-                                <p><em>GO HI acronyme de GO towards Healthcare Innovation</em>
-                                </p>
-                            </a>
-                            <p>
-                            <ul>
-                                 <li><i class="icofont-rounded-right"></i>
-Une application web pour les médecins et les pharmaciens pour gérer la e-ordonnance
-dès la préscription jusqu’à l’achat des médicaments .
-Une application mobile des médecins et pharmaciens ayant le même but que la
-version web.
-
-                                </li>
-                                 <li><i class="icofont-rounded-right"></i>
-Une application mobile pour le patient pour la récéption de la préscription et
-l’achat des médicaments .
-
-                                </li>
-                                  <li><i class="icofont-rounded-right"></i>
-Partie pour les laboratoires , les centres de radiologies et les mutuelles pour l’automatisation
-des différents documents passant par ces établissements .
-
-
-                                </li>
-                                 
-                                
-
-                              
-                            </ul>
-                            </p>
-                             
-                          
-                   
-                        </div>
-
-
-
-
-
-
-                        <div class="experience-item">
-
-                            <h4>SOFTWARE ENGINEER
-</h4>
-
-                            <img src="assets/img/experience/sos.jpg" class="rounded float-right expimg"
-                                alt="ICPCSHAC">
-                            <h5>Jun, 2020 - Sep 2020</h5>
-                            <a href="https://sosfunnels.com/">
-                                <p><em>SOS FUNNELS</em>
-                                </p>
-                            </a>
-                            <p>
-                            <ul>
-                                 <li><i class="icofont-rounded-right"></i>
-Realization of 5 Mobile applications.
-
-                                </li>
-                                 <li><i class="icofont-rounded-right"></i>
-Mobile Application 1: Screen Lock .
-
-                                </li>
-                                  <li><i class="icofont-rounded-right"></i>
-Mobile Application 2: Device Data information .
-
-                                </li>
-                                  <li><i class="icofont-rounded-right"></i>
-Mobile Application 3: Geolocator of family .
-
-                                </li>
-                                  <li><i class="icofont-rounded-right"></i>
-Mobile Application 4: Wall Paper Maker .
-
-                                </li>
-
-                              
-                            </ul>
-                            </p>
-                             
-                          
-                   
-                        </div>
-
-             <div class="experience-item">
-
-                            <h4>SOFTWARE ENGINEER
-</h4>
-
-                            <img src="assets/img/experience/events.jpg" class="rounded float-right expimg"
-                                alt="ICPCSHAC">
-                            <h5>Jun, 2020 - Sep 2020</h5>
-                            <a href="https://sosfunnels.com/">
-                                <p><em>Summit Events</em>
-                                </p>
-                            </a>
-                            <p>
-                            <ul>
-                                 <li><i class="icofont-rounded-right"></i>
-Realization of 3  applications.
-
-                                </li>
-                                 <li><i class="icofont-rounded-right"></i>
-Mobile Application 1: easylift website for sell and buy lifts online.
-
-                                </li>
-                                  <li><i class="icofont-rounded-right"></i>
-Mobile Application 2: RedHope : mobile application for blood donation .
-
-                                </li>
-                                  <li><i class="icofont-rounded-right"></i>
-Mobile Application 3: E-shopping mobile application .
-
-                                </li>
-
-
-                              
-                            </ul>
-                            </p>
-                             
-                          
-                   
-                        </div>
-
-
-
-
-                        <div class="experience-item">
-
-                            <h4>Software Engineer</h4>
-                            <img src="assets/img/experience/evead.jpeg" class="rounded float-right expimg" alt="IEEE SHA">
-                            <h5>July, 2020 - Oct, 2020</h5>
-                            <a href="https://www.evead.com/">
-                                <p><em>EVEAD GROUP</em></p>
-                            </a>
-                            <p>
-                            <ul>
-                                <li><i class="icofont-rounded-right"></i>Cnception and developpement of system of E-Shopping </li>
-                               
-                                
-                              <li><i class="icofont-rounded-right"></i>Web and mobile system for EMILAC  and SEMILAC</li>
-                               
-                            </ul>
-                            </p>
-
-                        </div>
-
-                        <div class="experience-item ">
-
-                            <h4>Trainer Software Engineer</h4>
-                            <img src="assets/img/experience/STAGE.jpg" id="INaNutshell"
-                                class="rounded float-right expimg" alt="IN a Nutshell">
-                            <h5>Jun, 2019 - Avril , 2020</h5>
-                            <a href="https://www.finances.gov.ma/fr/Pages/index.aspx">
-                                <p><em>Department of Public Enterprises and Privatization
-</em></p>
-                            </a>
-
-                            <p>
-                            <ul>
-                                <li><i class="icofont-rounded-right"></i>Realization of a Mobile application for the analysis of dashboards. </li>
-
-                            </ul>
-                            </p>
-                        </div>
-
-
-
-                    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-                    <!--Professional Experience Ends-->
-                    <div class="col-lg-12">
-                        <h3 class="experience-title"></h3>
-                        <h3 class="experience-title"></h3>
-                    </div>
-                    <div class="col-lg-12">
-                        <!--Volunteer Experience-->
-                        <h3 class="experience-title2 ">Volunteer Experience</h3>
-
-                        <div class="experience-item">
-
-                            <h4>Chair  of IEEE Student Bransh ENSIAS
-</h4>
-
-                            <img src="assets/img/experience/IEEESBENSIAS.jpg" class="rounded float-right expimg"
-                                alt="ICPCSHAC">
-                            <h5>Jun, 2019 - Avril 2020</h5>
-                            <a href="https://www.ieee.org/">
-                                <p><em>The Institute of Electrical and Electronics Engineers is a professional association for electronic engineering and electrical engineering with its corporate office in New York City and its operations center in Piscataway, New Jersey</em>
-                                </p>
-                            </a>
-                            <p>
-                            <ul>
-                                 <li><i class="icofont-rounded-right"></i>
-Managing cells and more than 60 member of the student branch ENSIAS , Rabat about : 9 cells
-
-                                </li>
-                                <li><i class="icofont-rounded-right"></i>
-
-                                    Mentoring junior students in various algorithms, problem-solving techniques and
-                                    preparing them for competitive programming contests.
-
-                                </li>
-                                <li><i class="icofont-rounded-right"></i> Preparing and presenting technical Sessions
-                                    and
-                                    workshops.</li>
-
-                                <li><i class="icofont-rounded-right"></i> Preparing International Events like : IEEEDAY2019, and the BIG VISIT TO IBM . </li>
-                                <li><i class="icofont-rounded-right"></i> Manage and oversee social media content. </li>
-                            </ul>
-                            </p>
-                             <h5>Sep, 2018 - Jun 2019</h5>
-                            <a href="https://www.ieee.org/">
-                                <p><em>The Institute of Electrical and Electronics Engineers is a professional association for electronic engineering and electrical engineering with its corporate office in New York City and its operations center in Piscataway, New Jersey</em>
-                                </p>
-                            </a>
-                            <p>
-                                 <ul>
-                                 <li><i class="icofont-rounded-right"></i>
-Sponsoring cell member.
-
-                                </li>
-                            </ul>
-                        </div>
-
-
-                        <div class="experience-item">
-
-                            <h4>Head Of The Contact Cell</h4>
-                            <img src="assets/img/experience/BRIDGE.png" class="rounded float-right expimg" alt="IEEE SHA">
-                            <h5>Sep, 2018 - Avril, 2020</h5>
-                            <a href="https://au.linkedin.com/company/ensias-bridge">
-                                <p><em>ENSIAS BRIDGE</em></p>
-                            </a>
-                            <p>
-                            <ul>
-                                <li><i class="icofont-rounded-right"></i>Preparing and presenting technical courses and
-                                    workshops.</li>
-                               
-                                <li><i class="icofont-rounded-right"></i>Responsible for developing contacting Guests.
-                                </li>
-                                 <li><i class="icofont-rounded-right"></i>Responsible for preparing events.
-                                </li>
-                               
-                            </ul>
-                            </p>
-
-                        </div>
-
-                        <div class="experience-item ">
-
-                            <h4>Member of the extracurricular committee/Parascolaire comité</h4>
-                            <img src="assets/img/experience/ADEI.jpg" id="INaNutshell"
-                                class="rounded float-right expimg" alt="IN a Nutshell">
-                            <h5>Jun, 2019 - Avril , 2020</h5>
-                            <a href="https://ma.linkedin.com/company/adei-ensiaslll">
-                                <p><em>ADEI ENSIAS</em></p>
-                            </a>
-
-                            <p>
-                            <ul>
-                                <li><i class="icofont-rounded-right"></i> Member of the extracurricular committee. </li>
-
-                            </ul>
-                            </p>
-                        </div>
-
-
-
-                    </div>
-                    <!--Volunteer ends-->
-
-                </div>
-
-            </div>
-    </section>
-    <!-- End experience Section -->
-
- <!-- ======= Awards Section ======= --> 
-
-<section id="awards" class="portfolio">
-        <div class="container">
-
-            <div class="section-title">
-                <h2 >Awards</h2>
-                <p>Awards and certifs.</p>
-            </div>
-         
-
-
-            <div class="row portfolio-container">
-
-
- <div class="col-lg-6 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/contest_lcpc.jpg" class="img-fluid" alt="braillo">
-                        <div class="portfolio-info">
-                            <h4>Certificate of Achievement</h4>
-                            <p>école nationale supérieure d'informatique et d'analyse des systèmes rabat
-                            </p>
-                            <div class="portfolio-links">
-
-                                <a href="#" title="GitHub Repository" target="blank"><i
-                                        class='fas fa-certificate'></i></a>
-                                <a href="#" title="braillo Website" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                                <!-- <a href="https://merssal.herokuapp.com/" title="PlayStore" target="blank"><i
-                                        class="bx bxl-play-store"></i></a> -->
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-
-
-   <div class="col-lg-6 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/x2.jpg" class="img-fluid" alt="braillo">
-                        <div class="portfolio-info">
-                            <h4>IEEE XTREME 2018</h4>
-                            <p>IEEEXtreme is a global challenge in which teams of IEEE Student members – advised and proctored by an IEEE member, and often supported by an IEEE Student Branch – compete in a 24-hour time span against each other to solve a set of programming problems.
-                            i have been ranked as the leader of the team the 4th in Morocco.
-                            </p>
-                            <div class="portfolio-links">
-
-                                <a href="#" title="GitHub Repository" target="blank"><i
-                                        class='fas fa-certificate'></i></a>
-                                <a href="#" title="braillo Website" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                                <!-- <a href="https://merssal.herokuapp.com/" title="PlayStore" target="blank"><i
-                                        class="bx bxl-play-store"></i></a> -->
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-
-<div class="col-lg-6 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/x3.jpg" class="img-fluid" alt="braillo">
-                        <div class="portfolio-info">
-                            <h4>IEEE XTREME 2019</h4>
-                            <p>IEEEXtreme is a global challenge in which teams of IEEE Student members – advised and proctored by an IEEE member, and often supported by an IEEE Student Branch – compete in a 24-hour time span against each other to solve a set of programming problems.
-                            i have been ranked as the leader of the team the 4th in Morocco.
-                            </p>
-                            <div class="portfolio-links">
-
-                                <a href="#" title="GitHub Repository" target="blank"><i
-                                        class='fas fa-certificate'></i></a>
-                                <a href="#" title="braillo Website" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                                <!-- <a href="https://merssal.herokuapp.com/" title="PlayStore" target="blank"><i
-                                        class="bx bxl-play-store"></i></a> -->
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="col-lg-6 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/Xtreme2019.jpeg" class="img-fluid" alt="braillo">
-                        <div class="portfolio-info">
-                            <h4>IEEE XTREME 2019</h4>
-                            <p>IEEEXtreme is a global challenge in which teams of IEEE Student members – advised and proctored by an IEEE member, and often supported by an IEEE Student Branch – compete in a 24-hour time span against each other to solve a set of programming problems.
-                            i have been ranked as the leader of the team the 4th in Morocco.
-                            </p>
-                            <div class="portfolio-links">
-
-                                <a href="#" title="GitHub Repository" target="blank"><i
-                                        class='fas fa-certificate'></i></a>
-                                <a href="#" title="braillo Website" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                                <!-- <a href="https://merssal.herokuapp.com/" title="PlayStore" target="blank"><i
-                                        class="bx bxl-play-store"></i></a> -->
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-                 <div class="col-lg-6 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/comsoc2019.jpeg" class="img-fluid" alt="braillo">
-                        <div class="portfolio-info">
-                            <h4>IEEE COMSOC 2019</h4>
-                            <p>• Réalisation d’une application Mobile Compétition internationale organisée par IEEEComsoc ,3 eme place internatioanle . 1er en Afrique et Europe #the leader of the team
-                            </p>
-                            <div class="portfolio-links">
-
-                                <a href="#" title="GitHub Repository" target="blank"><i
-                                        class='fas fa-certificate'></i></a>
-                                <a href="#" title="braillo Website" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                                <!-- <a href="https://merssal.herokuapp.com/" title="PlayStore" target="blank"><i
-                                        class="bx bxl-play-store"></i></a> -->
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-                 <div class="col-lg-6 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/fikra.jpg" class="img-fluid" alt="braillo">
-                        <div class="portfolio-info">
-                            <h4>Fikra Challenge Morocco</h4>
-                            <p>une plateforme intelligente sous forme d'une exposition virtuelle 360° et un service basé sur la réalité augmentée afin de bien présenter votre produit à vos clients dans les salons.
-                            </p>
-                            <div class="portfolio-links">
-
-                                <a href="#" title="GitHub Repository" target="blank"><i
-                                        class='fas fa-certificate'></i></a>
-                                <a href="#" title="braillo Website" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                                <!-- <a href="https://merssal.herokuapp.com/" title="PlayStore" target="blank"><i
-                                        class="bx bxl-play-store"></i></a> -->
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-
-
-<div class="col-lg-6 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/comsoc.jpg" class="img-fluid" alt="braillo">
-                        <div class="portfolio-info">
-                            <h4>IEEE COMSOC 2019 certif</h4>
-                            <p>• Réalisation d’une application Mobile Compétition internationale organisée par IEEEComsoc ,3 eme place internatioanle . 1er en Afrique et Europe #the leader of the team
-                            </p>
-                            <div class="portfolio-links">
-
-                                <a href="#" title="GitHub Repository" target="blank"><i
-                                        class='fas fa-certificate'></i></a>
-                                <a href="#" title="braillo Website" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                                <!-- <a href="https://merssal.herokuapp.com/" title="PlayStore" target="blank"><i
-                                        class="bx bxl-play-store"></i></a> -->
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-                
-                <div class="col-lg-6 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/ICMA.jpg" class="img-fluid" alt="braillo">
-                        <div class="portfolio-info">
-                            <h4>ICMA</h4>
-                            <p>International Conference on Mathematics and Its Applications.
-                            </p>
-                            <div class="portfolio-links">
-
-                                <a href="#" title="GitHub Repository" target="blank"><i
-                                        class='fas fa-certificate'></i></a>
-                                <a href="#" title="braillo Website" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                                <!-- <a href="https://merssal.herokuapp.com/" title="PlayStore" target="blank"><i
-                                        class="bx bxl-play-store"></i></a> -->
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-
-
-  
-                <div class="col-lg-6 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/certif.jpg" class="img-fluid" alt="braillo">
-                        <div class="portfolio-info">
-                            <h4>IBM WORK SHOP</h4>
-                            <p>un workshop organisé par IBM Morocco .
-                            </p>
-                            <div class="portfolio-links">
-
-                                <a href="#" title="GitHub Repository" target="blank"><i
-                                        class='fas fa-certificate'></i></a>
-                                <a href="#" title="braillo Website" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                                <!-- <a href="https://merssal.herokuapp.com/" title="PlayStore" target="blank"><i
-                                        class="bx bxl-play-store"></i></a> -->
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-6 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/IBM.jpg" class="img-fluid" alt="braillo">
-                        <div class="portfolio-info">
-                            <h4>BIG DATA</h4>
-                            <p>Big Data Engineer 2021 Mastery Award certificate .
-                            </p>
-                            <div class="portfolio-links">
-
-                                <a href="#" title="GitHub Repository" target="blank"><i
-                                        class='fas fa-certificate'></i></a>
-                                <a href="#" title="braillo Website" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                                <!-- <a href="https://merssal.herokuapp.com/" title="PlayStore" target="blank"><i
-                                        class="bx bxl-play-store"></i></a> -->
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                </div>
-
-
-                  <div class="col-lg-6 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/paper.jpeg" class="img-fluid" alt="braillo">
-                        <div class="portfolio-info">
-                            <h4>Paper Acceptance</h4>
-                            <p>International Journal of Scientific & Engineering Research(IJSER)
-                            </p>
-                            <div class="portfolio-links">
-
-                                <a href="#" title="GitHub Repository" target="blank"><i
-                                        class='fas fa-certificate'></i></a>
-                                <a href="#" title="braillo Website" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                                <!-- <a href="https://merssal.herokuapp.com/" title="PlayStore" target="blank"><i
-                                        class="bx bxl-play-store"></i></a> -->
-                            </div>
-
-                        </div>
-                    </div>
-                    
-
-                </div>    
-
-      <div class="col-lg-6 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/diplome.jpeg" class="img-fluid" alt="braillo">
-                        <div class="portfolio-info">
-                            <h4>Ingénieur d’État en Informatiqe - Génie logiciel</h4>
-                            <p>l’Obtention du Titre D’Ingénieur d’État en Informatiqe - Génie logiciel
-                            </p>
-                            <div class="portfolio-links">
-
-                                <a href="#" title="GitHub Repository" target="blank"><i
-                                        class='fas fa-certificate'></i></a>
-                                <a href="#" title="braillo Website" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                                <!-- <a href="https://merssal.herokuapp.com/" title="PlayStore" target="blank"><i
-                                        class="bx bxl-play-store"></i></a> -->
-                            </div>
-
-                        </div>
-                    </div>
-                    
-
-                </div>
-
-
-               
-
-            </div>
-
-<div class="col-lg-6 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/python.png" class="img-fluid" alt="braillo">
-                        <div class="portfolio-info">
-                            <h4>Pyton Certification</h4>
-                            <p>Pyton Certification from HackerRank
-                            </p>
-                            <div class="portfolio-links">
-
-                                <a href="#" title="GitHub Repository" target="blank"><i
-                                        class='fas fa-certificate'></i></a>
-                                <a href="#" title="braillo Website" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                                <!-- <a href="https://merssal.herokuapp.com/" title="PlayStore" target="blank"><i
-                                        class="bx bxl-play-store"></i></a> -->
-                            </div>
-
-                        </div>
-                    </div>
-                    
-
-                </div>
-                <div class="col-lg-6 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/sql.png" class="img-fluid" alt="braillo">
-                        <div class="portfolio-info">
-                            <h4>SQL Certification</h4>
-                            <p>SQL Certification from HackerRank
-                            </p>
-                            <div class="portfolio-links">
-
-                                <a href="#" title="GitHub Repository" target="blank"><i
-                                        class='fas fa-certificate'></i></a>
-                                <a href="#" title="braillo Website" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                                <!-- <a href="https://merssal.herokuapp.com/" title="PlayStore" target="blank"><i
-                                        class="bx bxl-play-store"></i></a> -->
-                            </div>
-
-                        </div>
-                    </div>
-                    
-
-                </div>
-                 <div class="col-lg-6 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/java.png" class="img-fluid" alt="braillo">
-                        <div class="portfolio-info">
-                            <h4>JAVA Certification</h4>
-                            <p>JAVA Certification from HackerRank
-                            </p>
-                            <div class="portfolio-links">
-
-                                <a href="#" title="GitHub Repository" target="blank"><i
-                                        class='fas fa-certificate'></i></a>
-                                <a href="#" title="braillo Website" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                                <!-- <a href="https://merssal.herokuapp.com/" title="PlayStore" target="blank"><i
-                                        class="bx bxl-play-store"></i></a> -->
-                            </div>
-
-                        </div>
-                    </div>
-                    
-
-                </div>
-
-
-
- <div class="col-lg-6 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/intermediate.png" class="img-fluid" alt="braillo">
-                        <div class="portfolio-info">
-                            <h4>Problem Solving Certification</h4>
-                            <p>Problem Solving intermediate Certification from HackerRank
-                            </p>
-                            <div class="portfolio-links">
-
-                                <a href="#" title="GitHub Repository" target="blank"><i
-                                        class='fas fa-certificate'></i></a>
-                                <a href="#" title="braillo Website" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                                <!-- <a href="https://merssal.herokuapp.com/" title="PlayStore" target="blank"><i
-                                        class="bx bxl-play-store"></i></a> -->
-                            </div>
-
-                        </div>
-                    </div>
-                    
-
-                </div>
-
-               
-
-            </div>
-             <div class="col-lg-6 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/Javascript.png" class="img-fluid" alt="braillo">
-                        <div class="portfolio-info">
-                            <h4>Javascript Certification</h4>
-                            <p>Javascript Certification from HackerRank
-                            </p>
-                            <div class="portfolio-links">
-
-                                <a href="#" title="GitHub Repository" target="blank"><i
-                                        class='fas fa-certificate'></i></a>
-                                <a href="#" title="braillo Website" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                                <!-- <a href="https://merssal.herokuapp.com/" title="PlayStore" target="blank"><i
-                                        class="bx bxl-play-store"></i></a> -->
-                            </div>
-
-                        </div>
-                    </div>
-                    
-
-                </div>
-
-               
-
-            </div>
-
-        </div>
-    </section>
-
-
- <!-- ======= End Awards Section ======= -->
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-
-            <div class="section-title">
-                <h2>Projects</h2>
-                <p>I make use of vast variety of latest technology tools to create Machine Learning and Full Stack
-                    projects
-                    and deploy them to web applications using cloud infrastructure.</p>
-            </div>
-            <!--
-            <div class="row">
-                <div class="col-lg-12 d-flex justify-content-center">
-                    <ul id="portfolio-flters">
-                        <li data-filter="*" class="filter-active">All</li>
-                        <li data-filter=".filter-desktop">Desktop</li>
-
-                        <li data-filter=".filter-web">Web</li>
-                        <li data-filter=".filter-mobile">Ml and Dl</li>
-                    </ul>
-                </div>
-            </div>
-
-            -->
-
-
-
-            <div class="row portfolio-container">
-                <div class="col-lg-6 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/easylift.jpg" class="img-fluid" alt="easy-lift">
-                        <div class="portfolio-info">
-                            <h4>EasyLift</h4>
-                            <p>Application of sell and buy lift around the world.
-                            </p>
-                            <div class="portfolio-links">
-
-                                <a href="https://github.com/HAFDIAHMED/LIFT_PROJECT/tree/master" title="GitHub Repository" target="blank"><i
-                                        class='bx bxl-github'></i></a>
-                                <a href="https://easy-lift.com/en/" title="braillo Website" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                                <!-- <a href="https://merssal.herokuapp.com/" title="PlayStore" target="blank"><i
-                                        class="bx bxl-play-store"></i></a> -->
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-6 portfolio-item filter-web">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/wiki.png" class="img-fluid" alt="Merssal">
-                        <div class="portfolio-info">
-                            <h4>ENSIAS WIKI</h4>
-                            <p>simulation of stackoverflow for ensias students.
-                            </p>
-                            <div class="portfolio-links">
-
-                                <a href="https://github.com/HAFDIAHMED/STACK_OVERFLOW" title="GitHub Repository"
-                                    target="blank"><i class='bx bxl-github'></i></a>
-                                <a href="https://github.com/HAFDIAHMED/STACK_OVERFLOW" title="Live Demo" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-6 portfolio-item filter-mobile">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/QRCode Generator.png" class="img-fluid" alt="QRCode Generator">
-                        <div class="portfolio-info">
-                            <h4>QRCode Generator</h4>
-                            <p>Generate QR Codes (WI-FI, URL, Contact, Email, Phone Number, Geo Location, Calendar
-                                Event) using Java and ZXING library.
-                            </p>
-
-                            <div class="portfolio-links">
-
-                                <a href="https://github.com/HAFDIAHMED/qr_code"
-                                    title="GitHub Repository" target="blank"><i class='bx bxl-github'></i></a>
-                                <a href="https://github.com/Muhammad-Saad-01/QR-Code-Generator/releases/download/v1.0.0/QRCode.zip"
-                                    title="Download" target="blank"><i class="bx bx-download"></i></a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 portfolio-item filter-mobile">
-                    <div class="portfolio-wrap">
-                        <img src="assets/img/portfolio/Blockchain1.jpg" class="img-fluid" alt="Disk Analyzer">
-                        <div class="portfolio-info">
-                            <h4>blockchain</h4>
-                            <p>Simple blockchain in RUST.
-                            </p>
-
-                            <div class="portfolio-links">
-
-                                <a href="https://github.com/HAFDIAHMED/SIMPLE_BLOCK_CHAIN_RUST" title="GitHub Repository"
-                                    target="blank"><i class='bx bxl-github'></i></a>
-                                <a href="https://github.com/HAFDIAHMED/SIMPLE_BLOCK_CHAIN_RUST" title="braillo Website" target="blank"><i
-                                        class="bx bx-link-external"></i></a>
-                                
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-    <!-- End Portfolio Section -->
-
-
-    <!-- ======= blog Section ======= -->
-    <section id="blog" class="blog">
-        <div class="container">
-
-            <div class="section-title">
-                <h2>My Blog</h2>
-                <p>Snapshot from my medium articles
-                </p>
-
-            </div>
-            <br>
-
-
-
-
-            <div id="retainable-rss-embed" data-rss="https://medium.com./feed/@muhammadsaad01" data-maxcols="2"
-                data-layout="grid" data-poststyle="inline" data-readmore="Read the rest"
-                data-buttonclass="btn btn-primary btn-dark" data-offset="-100"></div>
-
-
-
-
-
-
-
-            <!-- </div> -->
-
-        </div>
-    </section>
-    <!-- End blog Section -->
-
-
-
-
- <!-- ======= book Section ======= -->
-    <section id="book" class="blog">
-        <div class="container">
-
-            <div class="section-title">
-                <h2>My book</h2>
-                <p>The primes can talk
-                </p>
-            </div>
-
-            <br>
-
-<article>
-<div id="cover">
-
-  <p style="margin: 1em 0">
-    <a href="#">
-      <img src="assets/img/books/cover.jpg" alt="Cover image" style="border: 1px solid black; max-width: 100%; box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.4)">
-    </a>
-  </p>
-
-  <h1>The Primes Can Talk<div style="font-size: 70%">1 st edition (2021)</div></h1>
-
-
-
-</div>
-
-<div id="contents">
-
-  <h2>Contents</h2>
-
-  <ol class="toc">
-    <li class="contents-intro"><a href="#">INTRODUCTION</a>
-    </li>
-    <br>
-    <li>
-      <a href="#">COPYRIGHT</a>
-    </li>
-    <br>
-    <li>
-      <a href="#">DEDICATION</a>
-    </li>
-    <br>
-    <li>
-      <a href="#">CHAPTER 1</a>
-    </li>
-    <br>
-    <li>
-      <a href="#">CHAPTER 2</a>
-    </li>
-    <br>
-     <li>
-      <a href="#">CHAPTER 3</a>
-    </li>
-    <br>
-     <li>
-      <a href="#">CHAPTER 4</a>
-    </li>
-    <br>
-     <li>
-      <a href="#">CHAPTER 5</a>
-    </li>
-    <br>
-     <li>
-      <a href="#">CHAPTER 6</a>
-    </li>
-    <br>
-     <li>
-      <a href="#">CHAPTER 7</a>
-    </li>
-    <br>
-     <li>
-      <a href="#">NOTES</a>
-    </li>
-    <br>
-    <li>
-      <a href="#">REFERENCES</a>
-    </li>
-
-    </ol>
-
-</div>
-
-
-</article>
-
-
-            <div id="retainable-rss-embed" data-rss="https://medium.com./feed/@muhammadsaad01" data-maxcols="2"
-                data-layout="grid" data-poststyle="inline" data-readmore="Read the rest"
-                data-buttonclass="btn btn-primary btn-dark" data-offset="-100"></div>
-
-
-
-
-
-
-
-            <!-- </div> -->
-
-        </div>
-    </section>
-    <!-- End book Section -->
-
-
-
-
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-        <div class="container">
-
-            <div class="section-title">
-                <h2>Contact</h2>
-                <p>Contact Me</p>
-            </div>
-
-            <div class="row mt-2">
-
-                <div class="col-md-6 d-flex align-items-stretch">
-                    <div class="info-box">
-                        <i class="bx bx-map"></i>
-                        <h3>My Address</h3>
-                        <p>Rabat, Morocco</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
-                    <div class="info-box">
-                        <i class="bx bx-share-alt"></i>
-                        <h3>Social Profiles</h3>
-                        <div class="social-links">
-                            <a href="https://www.linkedin.com/in/muhammad-saad-01"><i
-                                    class="fab fa-linkedin-in"></i></a>
-                            <a href="https://github.com/HAFDIAHMED"><i class="fab fa-github"></i></a>
-                            <a href="https://twitter.com/AHMEDHAFDI1"><i class="fab fa-twitter"></i></a>
-                            <a href="https://www.instagram.com/hafdi.ahmed/"><i class="fab fa-instagram"></i></a>
-                            <a href="https://www.facebook.com/profile.php?id=100010864039117"><i class="fab fa-facebook"></i></a>
-
-                        </div>
-                    </div>
-                </div>
-
-               
-                <div class="col-md-6 mt-4 d-flex align-items-stretch">
-                    <div class="info-box">
-                        <i class="bx bx-phone-call"></i>
-                        <h3>Call Me</h3>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <form action="#" method="post" role="form" class="php-email-form mt-4">
-                <div class="form-row">
-                    <div class="col-md-6 form-group">
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
-                            data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                        <div class="validate"></div>
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
-                            data-rule="email" data-msg="Please enter a valid email" />
-                        <div class="validate"></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
-                        data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                    <div class="validate"></div>
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" name="message" rows="5" data-rule="required"
-                        data-msg="Please write something for me" placeholder="Message"></textarea>
-                    <div class="validate"></div>
-                </div>
-                <div class="mb-3">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
-                </div>
-                <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
-
-        </div>
-    </section>
-    <!-- End Contact Section -->
-
-    <div class="credits">
-
-        <i class="fas fa-chevron-left"></i> <i class="fas fa-chevron-right"></i> with <i class="fas fa-heart"></i> by <a
-            href="https://www.linkedin.com/in/muhammad-saad-01">HAFDI AHMED</a>
+      </div>
     </div>
+  </header>
 
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/jquery/jquery.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-    <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-    <script src="assets/vendor/counterup/counterup.min.js"></script>
-    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/venobox/venobox.min.js"></script>
-    <script src="https://www.retainable.io/assets/retainable/rss-embed/retainable-rss-embed.js"></script>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero-headline fade-in">A galaxy of projects.<br>A single guardian.</h1>
+        <p class="hero-subtitle fade-in">The Galaxy of Ideas</p>
+        <p class="hero-description fade-in">An ecosystem of projects spanning mathematics, computer science, embedded systems, robotics and space technology. Each project has its own identity, but together they form one universe.</p>
+        
+        <div class="hero-actions fade-in">
+          <button class="btn primary" id="enterBtn">Enter the Galaxy</button>
+          <button class="btn" id="teaserBtn">Watch Teaser</button>
+        </div>
+      </div>
+    </section>
 
-    <!-- Main JS File -->
-    <script src="assets/js/txt-rotate.js"></script>
-    <script src="assets/js/main.js"></script>
+    <section class="philosophy">
+      <div class="container">
+        <div class="philosophy-content">
+          <h2 class="section-title">What is Polyfdos?</h2>
+          <p class="section-text">Polyfdos is not just one project. It is a galaxy — every star a project with its own identity and branding. From Daftyon to Matyos, each idea lives within Polyfdos, but together they orbit a greater system.</p>
+          
+          <div class="explanation-grid">
+            <div class="explanation-item fade-in">
+              <h3>Poly</h3>
+              <p>Polymath — many fields, many skills, interconnected knowledge systems across disciplines.</p>
+            </div>
+            <div class="explanation-item fade-in">
+              <h3>fd</h3>
+              <p>Hafdi — the personal core and identity behind every project in the expanding system.</p>
+            </div>
+            <div class="explanation-item fade-in">
+              <h3>OS</h3>
+              <p>Operating System — the ecosystem that connects and orchestrates everything together.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <section class="symbolism">
+      <div class="container">
+        <div class="crow-display">
+          <img src="crow.jpg" alt="Crow symbol" />
+        </div>
+        <h2 class="section-title">The Guardian of Ideas</h2>
+        <p class="section-text">The crow was chosen as the symbol of Polyfdos. Intelligent. Mysterious. Eternal. A guardian of ideas that transcends disciplines and connects all projects within the galaxy.</p>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="container">
+        <h2 class="section-title">The Constellation</h2>
+        
+        <div class="projects-grid">
+          <div class="project-card fade-in">
+            <h3>Daftyon</h3>
+            <p>Revolutionary mathematics framework pushing the boundaries of computational theory and abstract mathematical concepts.</p>
+            <div class="project-meta">Mathematics • Theory</div>
+          </div>
+          
+          <div class="project-card fade-in">
+            <h3>Matyos</h3>
+            <p>Advanced computer science platform integrating machine learning, distributed systems, and quantum computing principles.</p>
+            <div class="project-meta">AI • Quantum Computing</div>
+          </div>
+          
+          <div class="project-card fade-in">
+            <h3>Slofdio</h3>
+            <p>Next-generation earbuds with standalone music capabilities and revolutionary Auracast sharing technology.</p>
+            <div class="project-meta">Hardware • Audio</div>
+          </div>
+          
+          <div class="project-card fade-in">
+            <h3>Easier-language</h3>
+            <p>Accessible programming language designed for performance, elegance, and intuitive code expression.</p>
+            <div class="project-meta">Programming • Language</div>
+          </div>
+          
+          <div class="project-card fade-in">
+            <h3>Robotics Lab</h3>
+            <p>Advanced robotics research combining embedded systems, artificial intelligence, and biomechanical engineering.</p>
+            <div class="project-meta">Robotics • AI</div>
+          </div>
+          
+          <div class="project-card fade-in">
+            <h3>Bring</h3>
+            <p>Cutting-edge logistics and automation system leveraging artificial intelligence and robotic coordination.</p>
+            <div class="project-meta">Logistics • Automation</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="coming-soon">
+      <div class="container">
+        <div class="countdown-display" id="countdown">Loading...</div>
+        
+        <form class="newsletter-form" id="newsletter">
+          <input type="email" class="email-input" placeholder="your@email.com" id="email" required />
+          <button type="submit" class="btn primary">Notify Me</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Polyfdos — The galaxy of ideas. Built quietly. Revealing in October.</p>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">GitHub</a>
+        <a href="#">Contact</a>
+      </div>
+      <p style="margin-top: 20px; font-size: 12px; color: #888888;">© 2025 Polyfdos. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Countdown functionality
+      function updateCountdown() {
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        let revealDate = new Date(currentYear, 9, 1, 10, 0, 0); // Oct 1
+        
+        if (now > revealDate) {
+          revealDate.setFullYear(currentYear + 1);
+        }
+        
+        const timeDiff = revealDate - now;
+        const days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+        
+        const countdownEl = document.getElementById('countdown');
+        if (days > 0) {
+          countdownEl.textContent = `${days} days until the Polyfdor appears`;
+        } else {
+          countdownEl.textContent = 'The Polyfdor has arrived.';
+        }
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000 * 60 * 60); // Update every hour
+
+      // Smooth scroll to projects
+      document.getElementById('enterBtn').addEventListener('click', function() {
+        document.querySelector('#projects').scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+
+      // Teaser button
+      document.getElementById('teaserBtn').addEventListener('click', function() {
+        alert('Teaser coming soon. Follow @polyfdos for updates.');
+      });
+
+      // Newsletter form
+      document.getElementById('newsletter').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value.trim();
+        
+        if (!email || !email.includes('@')) {
+          alert('Please enter a valid email address.');
+          return;
+        }
+
+        // Success feedback
+        const btn = this.querySelector('button');
+        const originalText = btn.textContent;
+        btn.textContent = 'Added ✓';
+        btn.style.background = '#22c55e';
+        
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.background = '';
+          document.getElementById('email').value = '';
+        }, 2000);
+      });
+
+      // Logo click to scroll to top
+      document.querySelector('.logo').addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Intersection Observer for fade-in animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = entry.target.style.animation || 'fadeIn 0.6s ease forwards';
+          }
+        });
+      }, observerOptions);
+
+      // Observe all fade-in elements
+      document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
 </body>
-
 </html>

@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Polyfdos & Slofdio — Two Galaxies of Innovation</title>
+  <meta name="description" content="Polyfdos — the personal galaxy: polymath + Hafdi + OS. Projects across mathematics, CS, embedded, robotics, space tech." />
+
+  <!-- Inter font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: #ffffff;
+      color: #000000;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      padding: 40px 0;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand-info h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-info p {
+      font-size: 14px;
+      color: #666666;
+      font-weight: 400;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .hero-headline {
+      font-size: clamp(48px, 8vw, 80px);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      margin-bottom: 24px;
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+      color: #666666;
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+
+    .hero-description {
+      font-size: 16px;
+      color: #888888;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border: 1px solid #e5e5e5;
+      background: transparent;
+      color: #000000;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      border-color: #000000;
+    }
+
+    .btn.primary {
+      background: #000000;
+      color: #ffffff;
+      border-color: #000000;
+    }
+
+    .btn.primary:hover {
+      background: #333333;
+    }
+
+    /* Philosophy Section */
+    .philosophy {
+      padding: 80px 0;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    .philosophy-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-text {
+      font-size: 18px;
+      color: #666666;
+      line-height: 1.6;
+      margin-bottom: 60px;
+    }
+
+    .explanation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .explanation-item {
+      text-align: center;
+    }
+
+    .explanation-item h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .explanation-item p {
+      font-size: 14px;
+      color: #666666;
+      line-height: 1.5;
+    }
+
+    /* Symbolism Section */
+    .symbolism {
+      padding: 80px 0;
+      text-align: center;
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .symbolism .section-title {
+      color: #ffffff;
+    }
+
+    .symbolism .section-text {
+      color: #cccccc;
+    }
+
+    .crow-display {
+      margin: 40px 0;
+    }
+
+    .crow-display img {
+      width: 120px;
+      height: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    /* Projects Section */
+    .projects {
+      padding: 80px 0;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1px;
+      background: #e5e5e5;
+      margin-top: 40px;
+    }
+
+    .project-card {
+      background: #ffffff;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      min-height: 160px;
+    }
+
+    .project-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .project-card p {
+      font-size: 14px;
+      color: #666666;
+      line-height: 1.5;
+      flex-grow: 1;
+    }
+
+    .project-meta {
+      font-size: 12px;
+      color: #888888;
+      margin-top: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Coming Soon */
+    .coming-soon {
+      padding: 80px 0;
+      text-align: center;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    .countdown-display {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .email-input {
+      padding: 12px 16px;
+      border: 1px solid #e5e5e5;
+      background: #ffffff;
+      font-size: 14px;
+      min-width: 260px;
+      outline: none;
+    }
+
+    .email-input:focus {
+      border-color: #000000;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      text-align: center;
+      border-top: 1px solid #e5e5e5;
+      color: #666666;
+      font-size: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin-top: 16px;
+    }
+
+    .footer-links a {
+      color: #666666;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: #000000;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero,
+      .philosophy,
+      .symbolism,
+      .projects,
+      .coming-soon {
+        padding: 60px 0;
+      }
+
+      .hero-headline {
+        font-size: 48px;
+      }
+
+      .explanation-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .email-input {
+        min-width: auto;
+      }
+
+      .hero-actions,
+      .footer-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 200px;
+        text-align: center;
+      }
+    }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in:nth-child(1) { animation-delay: 0.1s; }
+    .fade-in:nth-child(2) { animation-delay: 0.2s; }
+    .fade-in:nth-child(3) { animation-delay: 0.3s; }
+    .fade-in:nth-child(4) { animation-delay: 0.4s; }
+    .fade-in:nth-child(5) { animation-delay: 0.5s; }
+    .fade-in:nth-child(6) { animation-delay: 0.6s; }
+
+    /* Selection */
+    ::selection {
+      background: #000000;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <img src="crow.jpg" alt="Polyfdos" />
+        </div>
+        <div class="brand-info">
+          <h1>Polyfdos</h1>
+          <p>The galaxy of ideas</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero-headline fade-in">A galaxy of projects.<br>A single guardian.</h1>
+        <p class="hero-subtitle fade-in">The Galaxy of Ideas</p>
+        <p class="hero-description fade-in">An ecosystem of projects spanning mathematics, computer science, embedded systems, robotics and space technology. Each project has its own identity, but together they form one universe.</p>
+        
+        <div class="hero-actions fade-in">
+          <button class="btn primary" id="enterBtn">Enter the Galaxy</button>
+          <button class="btn" id="teaserBtn">Watch Teaser</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="philosophy">
+      <div class="container">
+        <div class="philosophy-content">
+          <h2 class="section-title">What is Polyfdos?</h2>
+          <p class="section-text">Polyfdos is not just one project. It is a galaxy — every star a project with its own identity and branding. From Daftyon to Matyos, each idea lives within Polyfdos, but together they orbit a greater system.</p>
+          
+          <div class="explanation-grid">
+            <div class="explanation-item fade-in">
+              <h3>Poly</h3>
+              <p>Polymath — many fields, many skills, interconnected knowledge systems across disciplines.</p>
+            </div>
+            <div class="explanation-item fade-in">
+              <h3>fd</h3>
+              <p>Hafdi — the personal core and identity behind every project in the expanding system.</p>
+            </div>
+            <div class="explanation-item fade-in">
+              <h3>OS</h3>
+              <p>Operating System — the ecosystem that connects and orchestrates everything together.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="symbolism">
+      <div class="container">
+        <div class="crow-display">
+          <img src="crow.jpg" alt="Crow symbol" />
+        </div>
+        <h2 class="section-title">The Guardian of Ideas</h2>
+        <p class="section-text">The crow was chosen as the symbol of Polyfdos. Intelligent. Mysterious. Eternal. A guardian of ideas that transcends disciplines and connects all projects within the galaxy.</p>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="container">
+        <h2 class="section-title">The Constellation</h2>
+        
+        <div class="projects-grid">
+          <div class="project-card fade-in">
+            <h3>Daftyon</h3>
+            <p>Revolutionary mathematics framework pushing the boundaries of computational theory and abstract mathematical concepts.</p>
+            <div class="project-meta">Mathematics • Theory</div>
+          </div>
+          
+          <div class="project-card fade-in">
+            <h3>Matyos</h3>
+            <p>Advanced computer science platform integrating machine learning, distributed systems, and quantum computing principles.</p>
+            <div class="project-meta">AI • Quantum Computing</div>
+          </div>
+          
+          <div class="project-card fade-in">
+            <h3>Slofdio</h3>
+            <p>Next-generation earbuds with standalone music capabilities and revolutionary Auracast sharing technology.</p>
+            <div class="project-meta">Hardware • Audio</div>
+          </div>
+          
+          <div class="project-card fade-in">
+            <h3>Easier-language</h3>
+            <p>Accessible programming language designed for performance, elegance, and intuitive code expression.</p>
+            <div class="project-meta">Programming • Language</div>
+          </div>
+          
+          <div class="project-card fade-in">
+            <h3>Robotics Lab</h3>
+            <p>Advanced robotics research combining embedded systems, artificial intelligence, and biomechanical engineering.</p>
+            <div class="project-meta">Robotics • AI</div>
+          </div>
+          
+          <div class="project-card fade-in">
+            <h3>Bring</h3>
+            <p>Cutting-edge logistics and automation system leveraging artificial intelligence and robotic coordination.</p>
+            <div class="project-meta">Logistics • Automation</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="coming-soon">
+      <div class="container">
+        <div class="countdown-display" id="countdown">Loading...</div>
+        
+        <form class="newsletter-form" id="newsletter">
+          <input type="email" class="email-input" placeholder="your@email.com" id="email" required />
+          <button type="submit" class="btn primary">Notify Me</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Polyfdos — The galaxy of ideas. Built quietly. Revealing in October.</p>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">GitHub</a>
+        <a href="#">Contact</a>
+      </div>
+      <p style="margin-top: 20px; font-size: 12px; color: #888888;">© 2025 Polyfdos. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Countdown functionality
+      function updateCountdown() {
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        let revealDate = new Date(currentYear, 9, 1, 10, 0, 0); // Oct 1
+        
+        if (now > revealDate) {
+          revealDate.setFullYear(currentYear + 1);
+        }
+        
+        const timeDiff = revealDate - now;
+        const days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+        
+        const countdownEl = document.getElementById('countdown');
+        if (days > 0) {
+          countdownEl.textContent = `${days} days until the Polyfdor appears`;
+        } else {
+          countdownEl.textContent = 'The Polyfdor has arrived.';
+        }
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000 * 60 * 60); // Update every hour
+
+      // Smooth scroll to projects
+      document.getElementById('enterBtn').addEventListener('click', function() {
+        document.querySelector('#projects').scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+
+      // Teaser button
+      document.getElementById('teaserBtn').addEventListener('click', function() {
+        alert('Teaser coming soon. Follow @polyfdos for updates.');
+      });
+
+      // Newsletter form
+      document.getElementById('newsletter').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value.trim();
+        
+        if (!email || !email.includes('@')) {
+          alert('Please enter a valid email address.');
+          return;
+        }
+
+        // Success feedback
+        const btn = this.querySelector('button');
+        const originalText = btn.textContent;
+        btn.textContent = 'You\'re marked ✓';
+        btn.style.background = '#22c55e';
+        
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.background = '';
+          document.getElementById('email').value = '';
+        }, 2000);
+      });
+
+      // Logo click to scroll to top
+      document.querySelector('.logo').addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Intersection Observer for fade-in animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = entry.target.style.animation || 'fadeIn 0.6s ease forwards';
+          }
+        });
+      }, observerOptions);
+
+      // Observe all fade-in elements
+      document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -122,7 +122,7 @@
 </head>
 <body>
 
-<div id="file-banner">polyfdor.txt detected — Man's data loaded. Woman can proceed directly.</div>
+<div id="file-banner">man.txt detected — Man's data loaded. Woman can proceed directly.</div>
 
 <div class="wrap" id="app">
 
@@ -134,7 +134,7 @@
       <div class="avatar av-f" style="width:50px;height:50px;font-size:18px;border:2px solid var(--bg)">F</div>
     </div>
     <h1>Compatibility Assessment</h1>
-    <p style="max-width:380px;margin:0.5rem auto 0;font-size:13px">30 questions per person across 8 dimensions. The man completes first — his answers are saved to <code>polyfdor.txt</code>. The woman can complete later on the same device.</p>
+    <p style="max-width:380px;margin:0.5rem auto 0;font-size:13px">30 questions per person across 8 dimensions. The man completes first — his answers are saved to <code>man.txt</code>. The woman can complete later on the same device.</p>
   </div>
 
   <div class="card">
@@ -142,7 +142,7 @@
     <div style="display:flex;flex-direction:column;gap:12px;margin-top:0.5rem">
       <div style="display:flex;gap:10px;align-items:flex-start">
         <div style="width:22px;height:22px;border-radius:50%;background:var(--purple-light);color:var(--purple);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">1</div>
-        <div><p style="color:var(--txt);font-size:13px;font-weight:600;margin-bottom:1px">Man answers 30 questions</p><p style="font-size:12px">His responses are saved to <code>polyfdor.txt</code> next to this HTML file.</p></div>
+        <div><p style="color:var(--txt);font-size:13px;font-weight:600;margin-bottom:1px">Man answers 30 questions</p><p style="font-size:12px">His responses are saved to <code>man.txt</code> next to this HTML file.</p></div>
       </div>
       <div style="display:flex;gap:10px;align-items:flex-start">
         <div style="width:22px;height:22px;border-radius:50%;background:var(--pink-light);color:var(--pink-dark);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">2</div>
@@ -160,7 +160,7 @@
   <div style="display:flex;flex-direction:column;gap:10px;align-items:center;margin-top:0.5rem">
     <button class="btn btn-m" id="btn-man-start" onclick="startMan()">Man starts survey</button>
     <button class="btn btn-f" id="btn-woman-start" style="display:none" onclick="startWoman()">Woman completes survey</button>
-    <button class="btn" id="btn-load-file" onclick="loadExistingFile()">Load polyfdor.txt (already exists)</button>
+    <button class="btn" id="btn-load-file" onclick="loadExistingFile()">Load man.txt (already exists)</button>
   </div>
 </div>
 
@@ -168,7 +168,7 @@
 <div class="screen" id="s-profile-m">
   <div class="person-head">
     <div class="avatar av-m" id="avm">M</div>
-    <div><h2>The Man — Profile</h2><p style="font-size:13px">Saved to polyfdor.txt with your answers</p></div>
+    <div><h2>The Man — Profile</h2><p style="font-size:13px">Saved to man.txt with your answers</p></div>
   </div>
   <div class="card">
     <div class="row2">
@@ -224,7 +224,7 @@
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
     <h2 style="margin-bottom:0.5rem">Man's answers saved</h2>
-    <p style="max-width:320px;margin:0 auto 1.5rem;font-size:13px">Responses written to <code>polyfdor.txt</code>. Hand the device to the woman, or open this page again — it will detect the file automatically.</p>
+    <p style="max-width:320px;margin:0 auto 1.5rem;font-size:13px">Responses written to <code>man.txt</code>. Hand the device to the woman, or open this page again — it will detect the file automatically.</p>
     <div id="save-status" class="notice notice-info" style="max-width:380px;margin:0 auto 1.5rem"></div>
     <button class="btn btn-f" onclick="show('s-profile-f')">Woman continues now</button>
   </div>
@@ -380,7 +380,7 @@ let mProfile = {name:'',age:0,job:'',sec:'',edu:0};
 let fProfile = {name:'',age:0,job:'',sec:'',edu:0};
 let cM = 0, cF = 0;
 let fileHandle = null;
-const FILE_NAME = 'polyfdor.txt';
+const FILE_NAME = 'man.txt';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 function show(id) {
@@ -424,7 +424,7 @@ async function saveToFile(content) {
     a.href = URL.createObjectURL(blob);
     a.download = FILE_NAME;
     a.click();
-    document.getElementById('save-status').textContent = 'File downloaded as polyfdor.txt — place it in the same folder as this HTML file.';
+    document.getElementById('save-status').textContent = 'File downloaded as man.txt — place it in the same folder as this HTML file.';
     document.getElementById('save-status').className = 'notice notice-warn';
     return false;
   }
@@ -438,7 +438,7 @@ async function saveToFile(content) {
     const writable = await fileHandle.createWritable();
     await writable.write(content);
     await writable.close();
-    document.getElementById('save-status').textContent = 'Saved to polyfdor.txt successfully. The woman can now open this page and load the file.';
+    document.getElementById('save-status').textContent = 'Saved to man.txt successfully. The woman can now open this page and load the file.';
     document.getElementById('save-status').className = 'notice notice-success';
     return true;
   } catch (e) {
@@ -464,7 +464,7 @@ async function loadExistingFile() {
   }
   try {
     const [handle] = await window.showOpenFilePicker({
-      types: [{description: 'polyfdor.txt', accept: {'text/plain': ['.txt']}}]
+      types: [{description: 'man.txt', accept: {'text/plain': ['.txt']}}]
     });
     fileHandle = handle;
     const file = await handle.getFile();
@@ -472,7 +472,7 @@ async function loadExistingFile() {
     handleLoadedFileText(text);
   } catch (e) {
     if (e.name !== 'AbortError') {
-      alert('Could not read file. Make sure you select polyfdor.txt.');
+      alert('Could not read file. Make sure you select man.txt.');
     }
   }
 }
@@ -491,7 +491,7 @@ function handleLoadedFileText(text) {
     `<div class="notice notice-success">File loaded. ${data.profile.name || 'The man'}'s answers are ready (saved ${new Date(data.savedAt).toLocaleDateString()}). The woman can begin her session.</div>`;
   document.getElementById('btn-man-start').style.display = 'none';
   document.getElementById('btn-woman-start').style.display = 'block';
-  document.getElementById('btn-load-file').textContent = 'Reload polyfdor.txt';
+  document.getElementById('btn-load-file').textContent = 'Reload man.txt';
 }
 
 // ─── Start man ────────────────────────────────────────────────────────────────
@@ -745,7 +745,7 @@ function renderResult(df, overall, flags, mods) {
       <button class="btn" onclick="window.print()">Print report</button>
       <button class="btn" onclick="location.reload()">Start over</button>
     </div>
-    <p style="text-align:center;font-size:11px;color:var(--txt3);margin-top:1rem">polyfdor.txt can be deleted after both sessions are complete.</p>`;
+    <p style="text-align:center;font-size:11px;color:var(--txt3);margin-top:1rem">man.txt can be deleted after both sessions are complete.</p>`;
 
   show('s-result');
 }

@@ -1,118 +1,182 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compatibility Assessment</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-.app{max-width:680px;padding:1rem 0}
-.screen{display:none}.screen.active{display:block}
-.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.25rem 1.5rem;margin-bottom:1rem}
-.pb{height:4px;background:var(--color-border-tertiary);border-radius:2px;margin-bottom:1.5rem;overflow:hidden}
-.pf{height:100%;border-radius:2px;transition:width 0.4s}
-.pf-m{background:#534AB7}
-.pf-f{background:#D4537E}
-.ql{font-size:11px;font-weight:500;color:var(--color-text-tertiary);margin-bottom:4px;letter-spacing:0.05em;text-transform:uppercase}
-.qt{font-size:15px;color:var(--color-text-primary);line-height:1.55;margin-bottom:5px}
-.qs{font-size:12px;color:var(--color-text-tertiary);margin-bottom:1rem;font-style:italic;line-height:1.5}
-.opts{display:flex;flex-direction:column;gap:7px}
-.opt{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);cursor:pointer;transition:border-color 0.15s,background 0.15s}
-.opt:hover{background:var(--color-background-secondary);border-color:var(--color-border-secondary)}
-.opt.sm{border-color:#534AB7;background:#EEEDFE}
-.opt.sf{border-color:#D4537E;background:#FBEAF0}
-.radio{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--color-border-secondary);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all 0.15s}
-.opt.sm .radio{border-color:#534AB7;background:#534AB7}
-.opt.sf .radio{border-color:#D4537E;background:#D4537E}
-.opt.sm .radio::after,.opt.sf .radio::after{content:'';width:6px;height:6px;border-radius:50%;background:#fff}
-.ot{font-size:14px;color:var(--color-text-primary);line-height:1.4}
-.od{font-size:12px;color:var(--color-text-secondary);margin-top:2px;line-height:1.35}
-.nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.25rem}
-.btn{padding:8px 20px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:transparent;color:var(--color-text-primary);font-size:14px;cursor:pointer;transition:background 0.15s}
-.btn:hover{background:var(--color-background-secondary)}
-.btn.pm{background:#534AB7;border-color:#534AB7;color:#fff}
-.btn.pm:hover{background:#3C3489}
-.btn.pf{background:#D4537E;border-color:#D4537E;color:#fff}
-.btn.pf:hover{background:#993556}
-.btn:disabled{opacity:0.3;cursor:not-allowed}
-.stag{display:inline-block;font-size:11px;font-weight:500;padding:3px 9px;border-radius:4px;margin-bottom:10px}
-.ph{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem}
-.av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:16px;flex-shrink:0}
-.avm{background:#E6F1FB;color:#185FA5}
-.avf{background:#FBEAF0;color:#993556}
-.si{font-size:12px;color:var(--color-text-tertiary)}
-h1{font-size:22px;font-weight:500;color:var(--color-text-primary);margin-bottom:.4rem}
-h2{font-size:18px;font-weight:500;color:var(--color-text-primary);margin-bottom:.2rem}
-h3{font-size:16px;font-weight:500;color:var(--color-text-primary);margin-bottom:.75rem}
-p{color:var(--color-text-secondary);font-size:14px;line-height:1.6}
-.inp{width:100%;padding:8px 12px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);font-size:14px;background:var(--color-background-primary);color:var(--color-text-primary);margin-top:6px}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.fl{font-size:13px;color:var(--color-text-secondary);margin-bottom:3px}
-.dr{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.dl{font-size:12px;color:var(--color-text-secondary);width:130px;flex-shrink:0}
-.dbg{flex:1;height:7px;background:var(--color-border-tertiary);border-radius:4px;overflow:hidden}
-.dfi{height:100%;border-radius:4px;transition:width .7s ease}
-.dsc{font-size:13px;font-weight:500;color:var(--color-text-primary);width:36px;text-align:right;flex-shrink:0}
-.flag{display:flex;gap:10px;padding:10px 12px;background:var(--color-background-danger);border:0.5px solid var(--color-border-danger);border-radius:var(--border-radius-md);margin-bottom:8px}
-.fdot{width:8px;height:8px;border-radius:50%;background:#E24B4A;flex-shrink:0;margin-top:5px}
-.ii{padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
-.ii:last-child{border-bottom:none}
-.it{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:2px}
-.id{font-size:12px;color:var(--color-text-secondary);line-height:1.55}
-.sring{width:96px;height:96px;position:relative;margin:0 auto 1rem}
-.sring svg{width:100%;height:100%}
-.snum{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:22px;font-weight:500;color:var(--color-text-primary)}
-.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
-.pc{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.75rem 1rem}
-.pn{font-size:13px;font-weight:500;margin-bottom:6px}
-.pr{font-size:12px;color:var(--color-text-secondary);margin-bottom:3px}
-.pv{color:var(--color-text-primary)}
-.section-divider{font-size:11px;font-weight:500;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:0.06em;margin:1.5rem 0 0.75rem;padding-bottom:6px;border-bottom:0.5px solid var(--color-border-tertiary)}
-.radar-wrap{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1rem}
-.radar-item{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.6rem .75rem}
-.radar-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
-.radar-label{font-size:12px;color:var(--color-text-secondary)}
-.radar-score{font-size:13px;font-weight:500;color:var(--color-text-primary)}
-.radar-bar{height:4px;background:var(--color-border-tertiary);border-radius:2px;overflow:hidden}
-.radar-fill{height:100%;border-radius:2px}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #ffffff; --bg2: #f5f4f0; --bg3: #eeedea;
+    --txt: #1a1a18; --txt2: #5a5a56; --txt3: #9a9a94;
+    --border: rgba(0,0,0,0.12); --border2: rgba(0,0,0,0.22);
+    --purple: #534AB7; --purple-light: #EEEDFE; --purple-dark: #3C3489;
+    --pink: #D4537E; --pink-light: #FBEAF0; --pink-dark: #993556;
+    --green: #1D9E75; --amber: #BA7517; --red: #E24B4A;
+    --blue: #185FA5; --blue-light: #E6F1FB;
+    --radius: 10px; --radius-sm: 6px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1c1a; --bg2: #252523; --bg3: #2e2e2b;
+      --txt: #e8e8e2; --txt2: #a8a8a0; --txt3: #6a6a62;
+      --border: rgba(255,255,255,0.1); --border2: rgba(255,255,255,0.18);
+      --purple-light: #2a2660; --pink-light: #3d1f2e;
+      --blue-light: #0d2340;
+    }
+  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--txt); min-height: 100vh; }
+  .wrap { max-width: 620px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* Cards */
+  .card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+
+  /* Progress */
+  .progress { height: 3px; background: var(--border); border-radius: 2px; margin-bottom: 1.5rem; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 2px; transition: width 0.4s ease; }
+  .fill-m { background: var(--purple); }
+  .fill-f { background: var(--pink); }
+
+  /* Question */
+  .q-tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 4px; margin-bottom: 10px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .q-num { font-size: 11px; color: var(--txt3); margin-bottom: 4px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .q-text { font-size: 15px; color: var(--txt); line-height: 1.55; margin-bottom: 5px; }
+  .q-sub { font-size: 12px; color: var(--txt3); margin-bottom: 1rem; font-style: italic; line-height: 1.5; }
+  .opts { display: flex; flex-direction: column; gap: 7px; }
+  .opt { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border: 0.5px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+  .opt:hover { background: var(--bg2); border-color: var(--border2); }
+  .opt.sel-m { border-color: var(--purple); background: var(--purple-light); }
+  .opt.sel-f { border-color: var(--pink); background: var(--pink-light); }
+  .radio { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--border2); flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+  .opt.sel-m .radio { border-color: var(--purple); background: var(--purple); }
+  .opt.sel-f .radio { border-color: var(--pink); background: var(--pink); }
+  .opt.sel-m .radio::after, .opt.sel-f .radio::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #fff; }
+  .opt-title { font-size: 14px; color: var(--txt); line-height: 1.4; }
+  .opt-desc { font-size: 12px; color: var(--txt2); margin-top: 2px; line-height: 1.35; }
+
+  /* Nav */
+  .nav { display: flex; justify-content: space-between; align-items: center; margin-top: 1.25rem; }
+  .btn { padding: 8px 20px; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); background: transparent; color: var(--txt); font-size: 14px; cursor: pointer; transition: background 0.15s; }
+  .btn:hover { background: var(--bg2); }
+  .btn-m { background: var(--purple); border-color: var(--purple); color: #fff; }
+  .btn-m:hover { background: var(--purple-dark); }
+  .btn-f { background: var(--pink); border-color: var(--pink); color: #fff; }
+  .btn-f:hover { background: var(--pink-dark); }
+  .btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .step-info { font-size: 12px; color: var(--txt3); }
+
+  /* Person header */
+  .person-head { display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem; }
+  .avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; flex-shrink: 0; }
+  .av-m { background: var(--blue-light); color: var(--blue); }
+  .av-f { background: var(--pink-light); color: var(--pink-dark); }
+
+  /* Typography */
+  h1 { font-size: 22px; font-weight: 600; color: var(--txt); margin-bottom: 0.4rem; }
+  h2 { font-size: 18px; font-weight: 600; color: var(--txt); margin-bottom: 0.2rem; }
+  h3 { font-size: 15px; font-weight: 600; color: var(--txt); margin-bottom: 0.75rem; }
+  p { color: var(--txt2); font-size: 14px; line-height: 1.6; }
+
+  /* Form inputs */
+  .inp { width: 100%; padding: 8px 12px; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); font-size: 14px; background: var(--bg); color: var(--txt); margin-top: 6px; outline: none; }
+  .inp:focus { border-color: var(--purple); }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .field-label { font-size: 13px; color: var(--txt2); margin-bottom: 2px; }
+
+  /* Result */
+  .score-ring { width: 96px; height: 96px; position: relative; margin: 0 auto 1rem; }
+  .score-ring svg { width: 100%; height: 100%; }
+  .score-num { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 22px; font-weight: 700; color: var(--txt); }
+  .dim-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .dim-label { font-size: 12px; color: var(--txt2); width: 130px; flex-shrink: 0; }
+  .dim-bg { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .dim-fill { height: 100%; border-radius: 3px; transition: width 0.7s ease; }
+  .dim-score { font-size: 13px; font-weight: 600; color: var(--txt); width: 34px; text-align: right; flex-shrink: 0; }
+  .flag { display: flex; gap: 10px; padding: 10px 12px; background: rgba(226,75,74,0.08); border: 0.5px solid rgba(226,75,74,0.3); border-radius: var(--radius-sm); margin-bottom: 8px; }
+  .flag-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); flex-shrink: 0; margin-top: 5px; }
+  .insight { padding: 10px 0; border-bottom: 0.5px solid var(--border); }
+  .insight:last-child { border-bottom: none; }
+  .insight-title { font-size: 13px; font-weight: 600; color: var(--txt); margin-bottom: 2px; }
+  .insight-desc { font-size: 12px; color: var(--txt2); line-height: 1.55; }
+  .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem; }
+  .profile-card { background: var(--bg2); border-radius: var(--radius-sm); padding: 0.75rem 1rem; }
+  .profile-name { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+  .profile-row { font-size: 12px; color: var(--txt2); margin-bottom: 3px; }
+  .profile-val { color: var(--txt); }
+  .mod-item { padding: 8px 0; border-bottom: 0.5px solid var(--border); }
+  .mod-item:last-child { border-bottom: none; }
+  .mod-title { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+  .mod-desc { font-size: 12px; color: var(--txt2); }
+  .section-label { font-size: 11px; font-weight: 600; color: var(--txt3); text-transform: uppercase; letter-spacing: 0.06em; margin: 1.5rem 0 0.75rem; padding-bottom: 6px; border-bottom: 0.5px solid var(--border); }
+  .notice { padding: 12px 16px; border-radius: var(--radius-sm); font-size: 13px; margin-bottom: 1rem; }
+  .notice-info { background: var(--blue-light); color: var(--blue); border: 0.5px solid rgba(24,95,165,0.3); }
+  .notice-success { background: rgba(29,158,117,0.1); color: #0F6E56; border: 0.5px solid rgba(29,158,117,0.3); }
+  .notice-warn { background: rgba(186,117,23,0.1); color: var(--amber); border: 0.5px solid rgba(186,117,23,0.3); }
+  .two-btn { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 1.5rem; }
+
+  /* File status banner */
+  #file-banner { display: none; padding: 10px 16px; background: rgba(29,158,117,0.1); border-bottom: 1px solid rgba(29,158,117,0.2); font-size: 13px; color: #0F6E56; text-align: center; }
 </style>
+</head>
+<body>
 
-<div class="app" id="app">
+<div id="file-banner">polyfdor.txt detected — Man's data loaded. Woman can proceed directly.</div>
 
+<div class="wrap" id="app">
+
+<!-- INTRO -->
 <div class="screen active" id="s-intro">
-  <div style="padding:1.5rem 0 1rem;text-align:center">
+  <div style="text-align:center;padding:2rem 0 1rem">
     <div style="display:flex;justify-content:center;margin-bottom:1rem">
-      <div class="av avm" style="width:50px;height:50px;font-size:18px;margin-right:-8px;border:2px solid var(--color-background-primary);z-index:1">M</div>
-      <div class="av avf" style="width:50px;height:50px;font-size:18px;border:2px solid var(--color-background-primary)">F</div>
+      <div class="avatar av-m" style="width:50px;height:50px;font-size:18px;margin-right:-8px;z-index:1;border:2px solid var(--bg)">M</div>
+      <div class="avatar av-f" style="width:50px;height:50px;font-size:18px;border:2px solid var(--bg)">F</div>
     </div>
-    <h1>Deep Compatibility Assessment</h1>
-    <p style="max-width:400px;margin:.5rem auto 0;font-size:13px">30 questions per person across 8 dimensions including sexual compatibility. This is a serious tool for a serious decision — answer with full honesty.</p>
+    <h1>Compatibility Assessment</h1>
+    <p style="max-width:380px;margin:0.5rem auto 0;font-size:13px">30 questions per person across 8 dimensions. The man completes first — his answers are saved to <code>polyfdor.txt</code>. The woman can complete later on the same device.</p>
   </div>
+
   <div class="card">
-    <div class="section-divider">8 dimensions assessed</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:.5rem">
-      <div style="display:flex;gap:8px;align-items:center"><div style="width:8px;height:8px;border-radius:50%;background:#534AB7;flex-shrink:0"></div><p style="font-size:13px;color:var(--color-text-primary)">Core values</p></div>
-      <div style="display:flex;gap:8px;align-items:center"><div style="width:8px;height:8px;border-radius:50%;background:#0F6E56;flex-shrink:0"></div><p style="font-size:13px;color:var(--color-text-primary)">Personality</p></div>
-      <div style="display:flex;gap:8px;align-items:center"><div style="width:8px;height:8px;border-radius:50%;background:#854F0B;flex-shrink:0"></div><p style="font-size:13px;color:var(--color-text-primary)">Lifestyle & career</p></div>
-      <div style="display:flex;gap:8px;align-items:center"><div style="width:8px;height:8px;border-radius:50%;background:#D4537E;flex-shrink:0"></div><p style="font-size:13px;color:var(--color-text-primary)">Relational style</p></div>
-      <div style="display:flex;gap:8px;align-items:center"><div style="width:8px;height:8px;border-radius:50%;background:#A32D2D;flex-shrink:0"></div><p style="font-size:13px;color:var(--color-text-primary)">Life goals</p></div>
-      <div style="display:flex;gap:8px;align-items:center"><div style="width:8px;height:8px;border-radius:50%;background:#185FA5;flex-shrink:0"></div><p style="font-size:13px;color:var(--color-text-primary)">Sexual compatibility</p></div>
-      <div style="display:flex;gap:8px;align-items:center"><div style="width:8px;height:8px;border-radius:50%;background:#639922;flex-shrink:0"></div><p style="font-size:13px;color:var(--color-text-primary)">Emotional intelligence</p></div>
-      <div style="display:flex;gap:8px;align-items:center"><div style="width:8px;height:8px;border-radius:50%;background:#BA7517;flex-shrink:0"></div><p style="font-size:13px;color:var(--color-text-primary)">Gender role fit</p></div>
-    </div>
-    <div style="margin-top:1rem;padding:10px 12px;background:var(--color-background-secondary);border-radius:var(--border-radius-md)">
-      <p style="font-size:12px;color:var(--color-text-secondary)">Answers are private — each person completes their session separately. No answers are shown to the other person. Only the final compatibility report is shared.</p>
+    <div class="section-label">How it works</div>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-top:0.5rem">
+      <div style="display:flex;gap:10px;align-items:flex-start">
+        <div style="width:22px;height:22px;border-radius:50%;background:var(--purple-light);color:var(--purple);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">1</div>
+        <div><p style="color:var(--txt);font-size:13px;font-weight:600;margin-bottom:1px">Man answers 30 questions</p><p style="font-size:12px">His responses are saved to <code>polyfdor.txt</code> next to this HTML file.</p></div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start">
+        <div style="width:22px;height:22px;border-radius:50%;background:var(--pink-light);color:var(--pink-dark);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">2</div>
+        <div><p style="color:var(--txt);font-size:13px;font-weight:600;margin-bottom:1px">Woman answers 30 questions</p><p style="font-size:12px">If the file already exists, she can start immediately. His answers are never shown to her.</p></div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start">
+        <div style="width:22px;height:22px;border-radius:50%;background:rgba(29,158,117,0.15);color:#0F6E56;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">3</div>
+        <div><p style="color:var(--txt);font-size:13px;font-weight:600;margin-bottom:1px">Full compatibility report</p><p style="font-size:12px">8 dimensions, hard constraints, score modifiers, psychological insights.</p></div>
+      </div>
     </div>
   </div>
-  <div style="display:flex;justify-content:center;margin-top:.5rem">
-    <button class="btn pm" onclick="show('s-profile-m')">Begin — Man first</button>
+
+  <div id="intro-file-notice"></div>
+
+  <div style="display:flex;flex-direction:column;gap:10px;align-items:center;margin-top:0.5rem">
+    <button class="btn btn-m" id="btn-man-start" onclick="startMan()">Man starts survey</button>
+    <button class="btn btn-f" id="btn-woman-start" style="display:none" onclick="startWoman()">Woman completes survey</button>
+    <button class="btn" id="btn-load-file" onclick="loadExistingFile()">Load polyfdor.txt (already exists)</button>
   </div>
 </div>
 
+<!-- MAN PROFILE -->
 <div class="screen" id="s-profile-m">
-  <div class="ph"><div class="av avm" id="avm">M</div><div><h2>The Man — Profile</h2><p style="font-size:13px">Used in age gap, career, and biological scoring</p></div></div>
+  <div class="person-head">
+    <div class="avatar av-m" id="avm">M</div>
+    <div><h2>The Man — Profile</h2><p style="font-size:13px">Saved to polyfdor.txt with your answers</p></div>
+  </div>
   <div class="card">
     <div class="row2">
-      <div><div class="fl">First name</div><input class="inp" id="m-name" type="text" placeholder="e.g. Adam"></div>
-      <div><div class="fl">Age</div><input class="inp" id="m-age" type="number" placeholder="e.g. 29" min="18" max="80"></div>
+      <div><div class="field-label">First name</div><input class="inp" id="m-name" type="text" placeholder="e.g. Adam"></div>
+      <div><div class="field-label">Age</div><input class="inp" id="m-age" type="number" placeholder="28" min="18" max="80"></div>
     </div>
-    <div style="margin-top:12px"><div class="fl">Occupation</div><input class="inp" id="m-job" type="text" placeholder="e.g. Software engineer"></div>
-    <div style="margin-top:12px"><div class="fl">Career sector</div>
+    <div style="margin-top:12px"><div class="field-label">Occupation</div><input class="inp" id="m-job" type="text" placeholder="e.g. Engineer"></div>
+    <div style="margin-top:12px"><div class="field-label">Career sector</div>
       <select class="inp" id="m-sec">
         <option value="">Select</option>
         <option value="stem">STEM / Technology</option>
@@ -124,40 +188,61 @@ p{color:var(--color-text-secondary);font-size:14px;line-height:1.6}
         <option value="other">Other / Self-employed</option>
       </select>
     </div>
-    <div style="margin-top:12px"><div class="fl">Education level</div>
+    <div style="margin-top:12px"><div class="field-label">Education</div>
       <select class="inp" id="m-edu">
         <option value="">Select</option>
         <option value="0">High school</option>
-        <option value="0.33">Trade / Vocational</option>
+        <option value="0.33">Vocational / Trade</option>
         <option value="0.66">Bachelor's degree</option>
         <option value="0.85">Master's degree</option>
         <option value="1">Doctorate / Professional</option>
       </select>
     </div>
   </div>
-  <div class="nav"><span></span><button class="btn pm" onclick="saveM()">Continue</button></div>
+  <div class="nav"><span></span><button class="btn btn-m" onclick="saveProfileM()">Continue</button></div>
 </div>
 
+<!-- MAN QUESTIONS -->
 <div class="screen" id="s-q-m">
-  <div class="ph"><div class="av avm" id="avm-q">M</div><div><h2 id="m-qhdr">The Man</h2><p style="font-size:13px">Answer privately — 30 questions</p></div></div>
-  <div class="pb"><div class="pf pf-m" id="pfm" style="width:0%"></div></div>
+  <div class="person-head">
+    <div class="avatar av-m" id="avm-q">M</div>
+    <div><h2 id="m-qhdr">The Man</h2><p style="font-size:13px">Answer privately and honestly — 30 questions</p></div>
+  </div>
+  <div class="progress"><div class="progress-fill fill-m" id="pfm" style="width:0%"></div></div>
   <div id="qcm"></div>
   <div class="nav">
     <button class="btn" id="bpm" onclick="prevQ('m')" disabled>Back</button>
-    <span class="si" id="stm">1 / 30</span>
-    <button class="btn pm" id="bnm" onclick="nextQ('m')" disabled>Next</button>
+    <span class="step-info" id="stm">1 / 30</span>
+    <button class="btn btn-m" id="bnm" onclick="nextQ('m')" disabled>Next</button>
   </div>
 </div>
 
+<!-- SAVING SCREEN -->
+<div class="screen" id="s-saving">
+  <div style="text-align:center;padding:3rem 0">
+    <div style="width:56px;height:56px;border-radius:50%;background:var(--purple-light);margin:0 auto 1rem;display:flex;align-items:center;justify-content:center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h2 style="margin-bottom:0.5rem">Man's answers saved</h2>
+    <p style="max-width:320px;margin:0 auto 1.5rem;font-size:13px">Responses written to <code>polyfdor.txt</code>. Hand the device to the woman, or open this page again — it will detect the file automatically.</p>
+    <div id="save-status" class="notice notice-info" style="max-width:380px;margin:0 auto 1.5rem"></div>
+    <button class="btn btn-f" onclick="show('s-profile-f')">Woman continues now</button>
+  </div>
+</div>
+
+<!-- WOMAN PROFILE -->
 <div class="screen" id="s-profile-f">
-  <div class="ph"><div class="av avf" id="avf">F</div><div><h2>The Woman — Profile</h2><p style="font-size:13px">Used in age gap, career, and biological scoring</p></div></div>
+  <div class="person-head">
+    <div class="avatar av-f" id="avf">F</div>
+    <div><h2>The Woman — Profile</h2><p style="font-size:13px">Your answers stay private until the final report</p></div>
+  </div>
   <div class="card">
     <div class="row2">
-      <div><div class="fl">First name</div><input class="inp" id="f-name" type="text" placeholder="e.g. Sara"></div>
-      <div><div class="fl">Age</div><input class="inp" id="f-age" type="number" placeholder="e.g. 25" min="18" max="80"></div>
+      <div><div class="field-label">First name</div><input class="inp" id="f-name" type="text" placeholder="e.g. Sara"></div>
+      <div><div class="field-label">Age</div><input class="inp" id="f-age" type="number" placeholder="25" min="18" max="80"></div>
     </div>
-    <div style="margin-top:12px"><div class="fl">Occupation</div><input class="inp" id="f-job" type="text" placeholder="e.g. Designer"></div>
-    <div style="margin-top:12px"><div class="fl">Career sector</div>
+    <div style="margin-top:12px"><div class="field-label">Occupation</div><input class="inp" id="f-job" type="text" placeholder="e.g. Designer"></div>
+    <div style="margin-top:12px"><div class="field-label">Career sector</div>
       <select class="inp" id="f-sec">
         <option value="">Select</option>
         <option value="stem">STEM / Technology</option>
@@ -169,327 +254,342 @@ p{color:var(--color-text-secondary);font-size:14px;line-height:1.6}
         <option value="other">Other / Self-employed</option>
       </select>
     </div>
-    <div style="margin-top:12px"><div class="fl">Education level</div>
+    <div style="margin-top:12px"><div class="field-label">Education</div>
       <select class="inp" id="f-edu">
         <option value="">Select</option>
         <option value="0">High school</option>
-        <option value="0.33">Trade / Vocational</option>
+        <option value="0.33">Vocational / Trade</option>
         <option value="0.66">Bachelor's degree</option>
         <option value="0.85">Master's degree</option>
         <option value="1">Doctorate / Professional</option>
       </select>
     </div>
   </div>
-  <div class="nav"><span></span><button class="btn pf" onclick="saveF()">Continue</button></div>
+  <div class="nav"><span></span><button class="btn btn-f" onclick="saveProfileF()">Continue</button></div>
 </div>
 
+<!-- WOMAN QUESTIONS -->
 <div class="screen" id="s-q-f">
-  <div class="ph"><div class="av avf" id="avf-q">F</div><div><h2 id="f-qhdr">The Woman</h2><p style="font-size:13px">Answer privately — 30 questions</p></div></div>
-  <div class="pb"><div class="pf pf-f" id="pff" style="width:0%"></div></div>
+  <div class="person-head">
+    <div class="avatar av-f" id="avf-q">F</div>
+    <div><h2 id="f-qhdr">The Woman</h2><p style="font-size:13px">Answer privately and honestly — 30 questions</p></div>
+  </div>
+  <div class="progress"><div class="progress-fill fill-f" id="pff" style="width:0%"></div></div>
   <div id="qcf"></div>
   <div class="nav">
     <button class="btn" id="bpf" onclick="prevQ('f')" disabled>Back</button>
-    <span class="si" id="stf">1 / 30</span>
-    <button class="btn pf" id="bnf" onclick="nextQ('f')" disabled>Next</button>
+    <span class="step-info" id="stf">1 / 30</span>
+    <button class="btn btn-f" id="bnf" onclick="nextQ('f')" disabled>Next</button>
   </div>
 </div>
 
+<!-- RESULT -->
 <div class="screen" id="s-result"><div id="rout"></div></div>
+
 </div>
 
 <script>
-const QM=[
-  // VALUES (4)
-  {id:'mv1',dim:'values',type:'sim',w:1.0,tag:'Values',tc:'#3C3489',bc:'#EEEDFE',
-   text:'How do you feel about having children?',sub:'Hard constraint — be fully honest.',
-   opts:[{t:'Definitely no children',d:'Certain I do not want them',v:0},{t:'Probably not',d:'Leaning against',v:0.25},{t:'Open either way',d:'Depends on the relationship',v:0.5},{t:'Want children',d:'An important life goal',v:0.85},{t:'Children are essential',d:'A non-negotiable life goal',v:1}]},
-  {id:'mv2',dim:'values',type:'sim',w:0.9,tag:'Values',tc:'#3C3489',bc:'#EEEDFE',
-   text:'How central is religion or spirituality to your actual daily life?',sub:'Practice, not just belief.',
-   opts:[{t:'None',d:'No role whatsoever',v:0},{t:'Cultural only',d:'Heritage but not practice',v:0.25},{t:'Personal guide',d:'Shapes some values and choices',v:0.6},{t:'Active and central',d:'Structures my life and decisions',v:1}]},
-  {id:'mv3',dim:'values',type:'sim',w:0.8,tag:'Values',tc:'#3C3489',bc:'#EEEDFE',
-   text:'Where do you genuinely stand politically and socially?',sub:'Lived values, not party label.',
-   opts:[{t:'Strongly progressive',d:'Systemic change is urgent',v:0},{t:'Moderately progressive',d:'Lean liberal',v:0.3},{t:'Moderate',d:'Mixed or disengaged',v:0.5},{t:'Moderately conservative',d:'Lean toward tradition',v:0.75},{t:'Strongly conservative',d:'Traditional values are core',v:1}]},
-  {id:'mv4',dim:'values',type:'sim',w:0.85,tag:'Values',tc:'#3C3489',bc:'#EEEDFE',
-   text:'What matters most to you at the end of a life?',sub:'The deepest values question.',
-   opts:[{t:'Family and love',d:'The people I loved and who loved me',v:0},{t:'Faith and virtue',d:'Living according to my principles',v:0.33},{t:'Achievement and impact',d:'What I built or changed',v:0.66},{t:'Freedom and experience',d:'How fully I lived',v:1}]},
-  // PERSONALITY (4)
-  {id:'mp1',dim:'personality',type:'sim',w:0.85,tag:'Personality',tc:'#085041',bc:'#E1F5EE',
-   text:'When the woman you are with is upset or in pain, what is your instinct?',sub:'Men default to fix-it mode — this detects emotional attunement vs problem-solving.',
-   opts:[{t:'Fix the problem',d:'I want to solve what is causing the distress',v:0},{t:'Offer perspective',d:'Give advice, then check how she feels',v:0.33},{t:'Listen and validate',d:'Understand fully before offering anything',v:0.66},{t:'Just hold the space',d:'Present, no agenda, no advice',v:1}]},
-  {id:'mp2',dim:'personality',type:'comp',w:0.8,tag:'Personality',tc:'#085041',bc:'#E1F5EE',
-   text:'How introverted or extroverted are you honestly?',sub:'Moderate opposites often complement; extremes clash.',
-   opts:[{t:'Deeply introverted',d:'Need significant solitude to function',v:0},{t:'Mild introvert',d:'Prefer quiet, recharge alone',v:0.33},{t:'Mild extrovert',d:'Enjoy social energy, tolerate solitude',v:0.66},{t:'Strongly extroverted',d:'Come alive around people',v:1}]},
-  {id:'mp3',dim:'personality',type:'sim',w:0.75,tag:'Personality',tc:'#085041',bc:'#E1F5EE',
-   text:'How do you process emotional pain — grief, failure, rejection?',sub:'Suppression vs expression is a key gendered mismatch.',
-   opts:[{t:'Fully internalize',d:'Process alone, rarely show it',v:0},{t:'Distract and move on',d:'Activity pulls me through',v:0.33},{t:'Talk to someone close',d:'Need to articulate it to process',v:0.66},{t:'Sit with it consciously',d:'Work through feelings deliberately',v:1}]},
-  {id:'mp4',dim:'personality',type:'sim',w:0.8,tag:'Personality',tc:'#085041',bc:'#E1F5EE',
-   text:'After a serious argument, what do you need?',sub:'Repair style mismatch is a top cause of escalating conflict.',
-   opts:[{t:'Space alone',d:'Withdraw and cool down before reconnecting',v:0},{t:'Brief pause then resolve',d:'Short break then settle it',v:0.33},{t:'Reconnect through action',d:'Doing something together works better than talking',v:0.66},{t:'Talk it through fully',d:'Need the conversation to feel complete',v:1}]},
-  // LIFESTYLE (3)
-  {id:'ml1',dim:'lifestyle',type:'sim',w:0.9,tag:'Lifestyle',tc:'#633806',bc:'#FAEEDA',
-   text:'How do you handle money and financial security?',sub:'Top predictor of long-term relationship strain.',
-   opts:[{t:'Live freely now',d:'Spend on experience; saving is secondary',v:0},{t:'Loosely responsible',d:'Save something but do not stress',v:0.33},{t:'Security focused',d:'Building financial stability matters',v:0.66},{t:'Strongly security-driven',d:'Financial safety is a core priority',v:1}]},
-  {id:'ml2',dim:'lifestyle',type:'sim',w:0.85,tag:'Lifestyle',tc:'#633806',bc:'#FAEEDA',
-   text:'Could you relocate for a relationship?',sub:'Hard constraint for many couples.',
-   opts:[{t:'Not willing at all',d:'I am rooted and will not move',v:0},{t:'Within my country',d:'Another city or region, yes',v:0.33},{t:'Internationally open',d:'Could move abroad for the right person',v:0.66},{t:'Fully mobile',d:'Wherever life and love lead',v:1}]},
-  {id:'ml3',dim:'lifestyle',type:'sim',w:0.8,tag:'Lifestyle',tc:'#633806',bc:'#FAEEDA',
-   text:'How driven are you professionally — the real version?',sub:'Ambition asymmetry quietly erodes relationships.',
-   opts:[{t:'Work funds life',d:'Not my identity at all',v:0},{t:'One part of life',d:'It matters but does not define me',v:0.33},{t:'Major priority',d:'Growth and impact matter a lot',v:0.66},{t:'Central drive',d:'Ambition is fundamental to who I am',v:1}]},
-  // RELATIONAL (4)
-  {id:'mr1',dim:'relational',type:'sim',w:0.95,tag:'Relational',tc:'#72243E',bc:'#FBEAF0',
-   text:'What makes you feel most loved and valued by a woman?',sub:'Male love language — often understated due to social pressure.',
-   opts:[{t:'Respect and admiration',d:'Feeling genuinely valued and looked up to',v:0},{t:'Physical affection',d:'Touch, closeness, physical presence',v:0.25},{t:'Quality time',d:'Her full, undivided attention',v:0.5},{t:'Acts of care',d:'Her doing things that show she thinks of me',v:0.75},{t:'Words of affirmation',d:'Being told directly that she loves me',v:1}]},
-  {id:'mr2',dim:'relational',type:'comp',w:0.9,tag:'Relational',tc:'#72243E',bc:'#FBEAF0',
-   text:'When she becomes emotionally distant, what happens in you?',sub:'Attachment under threat — core predictor of relationship dynamics.',
-   opts:[{t:'I pull back equally',d:'Match distance, wait it out',v:0},{t:'Notice but suppress',d:'Bothered but resist reaching out',v:0.33},{t:'Reach out once',d:'Check in once, then give space',v:0.66},{t:'Pursue and need answers',d:'Feel anxious; push for reconnection',v:1}]},
-  {id:'mr3',dim:'relational',type:'sim',w:0.8,tag:'Relational',tc:'#72243E',bc:'#FBEAF0',
-   text:'How much independence do you need inside a relationship?',sub:'Not about trust — about psychological restoration needs.',
-   opts:[{t:'Very intertwined',d:'Share most things closely',v:0},{t:'Mostly together',d:'Close with some personal space',v:0.33},{t:'Balanced',d:'Equal solo and together time',v:0.5},{t:'Primarily independent',d:'Need significant solo space to feel myself',v:1}]},
-  {id:'mr4',dim:'relational',type:'sim',w:0.8,tag:'Relational',tc:'#72243E',bc:'#FBEAF0',
-   text:'How do you view financial responsibility in a committed relationship?',sub:'Provider expectations are deeply gendered — critical to surface early.',
-   opts:[{t:'Full equality always',d:'50/50 regardless of income',v:0},{t:'Proportional sharing',d:'Each contributes relative to income',v:0.33},{t:'I contribute more',d:'Comfortable carrying the larger share',v:0.66},{t:'I provide fully',d:'The man should be primary provider',v:1}]},
-  // LIFE GOALS (3)
-  {id:'mg1',dim:'goals',type:'sim',w:1.0,tag:'Goals',tc:'#791F1F',bc:'#FCEBEB',
-   text:'When do you see yourself in a serious committed relationship?',sub:'Timeline hard constraint.',
-   opts:[{t:'Not now',d:'Not actively seeking commitment',v:0},{t:'1–3 years',d:'Open but not rushing',v:0.33},{t:'Within a year',d:'Actively looking for something serious',v:0.66},{t:'Ready now',d:'Ready for the right person immediately',v:1}]},
-  {id:'mg2',dim:'goals',type:'sim',w:0.85,tag:'Goals',tc:'#791F1F',bc:'#FCEBEB',
-   text:'What life structure do you want in a long-term relationship?',sub:'Daily architecture — overlooked until it causes friction.',
-   opts:[{t:'Fully merged',d:'Shared home, finances, social circles',v:0},{t:'Mostly shared',d:'Together with some personal space',v:0.33},{t:'Parallel but close',d:'Together but distinct identities',v:0.66},{t:'Living apart',d:'Separate homes even while committed',v:1}]},
-  {id:'mg3',dim:'goals',type:'sim',w:0.8,tag:'Goals',tc:'#791F1F',bc:'#FCEBEB',
-   text:'How important is shared cultural or ethnic background?',sub:'Sets realistic expectations.',
-   opts:[{t:'Not important',d:'Background plays no role',v:0},{t:'Mildly preferred',d:'Nice but not required',v:0.33},{t:'Somewhat important',d:'Shared ground matters',v:0.66},{t:'Very important',d:'A significant factor for me',v:1}]},
-  // GENDER ROLE (3)
-  {id:'mgr1',dim:'genderrole',type:'sim',w:1.0,tag:'Gender role',tc:'#3B6D11',bc:'#EAF3DE',
-   text:'What model of relationship roles feels most natural to you?',sub:'Your actual wiring, not the socially acceptable answer.',
-   opts:[{t:'Full equality',d:'No distinct roles at all',v:0},{t:'Mostly equal',d:'Equal but she brings emotional warmth',v:0.33},{t:'Complementary',d:'She leads home; I lead externally',v:0.66},{t:'Traditional',d:'She manages home and family; I provide',v:1}]},
-  {id:'mgr2',dim:'genderrole',type:'sim',w:0.9,tag:'Gender role',tc:'#3B6D11',bc:'#EAF3DE',
-   text:'How important is it that she respects and trusts your judgment as the man?',sub:'Directional — a core dimension of masculine relational need.',
-   opts:[{t:'Not important',d:'Equal say in all things',v:0},{t:'Somewhat',d:'Would be appreciated but not expected',v:0.33},{t:'Important',d:'I expect to lead in key decisions',v:0.66},{t:'Very important',d:'Male leadership is central to how I relate',v:1}]},
-  {id:'mgr3',dim:'genderrole',type:'sim',w:0.8,tag:'Gender role',tc:'#3B6D11',bc:'#EAF3DE',
-   text:'How do you feel about a woman who earns significantly more than you?',sub:'A practical measure of ego-independence and role flexibility.',
-   opts:[{t:'Completely fine',d:'No issue whatsoever; I respect it',v:0},{t:'Mostly fine',d:'Minor discomfort but nothing meaningful',v:0.33},{t:'Somewhat uncomfortable',d:'Would need to process it over time',v:0.66},{t:'Not comfortable',d:'Would undermine the dynamic for me',v:1}]},
-  // EMOTIONAL INTELLIGENCE (3)
-  {id:'mei1',dim:'emotional',type:'sim',w:0.9,tag:'Emotional',tc:'#27500A',bc:'#EAF3DE',
-   text:'How aware are you of your own emotional states in real time?',sub:'Self-awareness is the foundation of emotional intelligence.',
-   opts:[{t:'Rarely aware',d:'I notice I was upset only after the fact',v:0},{t:'Sometimes aware',d:'I catch it during, not always in the moment',v:0.33},{t:'Usually aware',d:'I can identify what I am feeling as it happens',v:0.66},{t:'Consistently aware',d:'I track my emotional state in real time',v:1}]},
-  {id:'mei2',dim:'emotional',type:'sim',w:0.85,tag:'Emotional',tc:'#27500A',bc:'#EAF3DE',
-   text:'When you hurt someone you love unintentionally, what happens?',sub:'Repair capacity — a critical predictor of long-term relationship health.',
-   opts:[{t:'I get defensive',d:'My instinct is to explain or justify myself',v:0},{t:'I apologize eventually',d:'I come around but it takes time',v:0.33},{t:'I apologize fairly quickly',d:'I acknowledge it without too much ego',v:0.66},{t:'I own it immediately',d:'I repair fast and without defensiveness',v:1}]},
-  {id:'mei3',dim:'emotional',type:'sim',w:0.8,tag:'Emotional',tc:'#27500A',bc:'#EAF3DE',
-   text:'How do you respond when your partner has needs that feel inconvenient or excessive to you?',sub:'Empathy under pressure — the real test of emotional availability.',
-   opts:[{t:'I pull back',d:'I find it draining and create distance',v:0},{t:'I comply but resent it',d:'I show up but feel burdened',v:0.33},{t:'I try to understand',d:'I make effort to see it from her perspective',v:0.66},{t:'I lean in',d:'Her needs genuinely engage my care',v:1}]},
-  // SEXUAL COMPATIBILITY (6)
-  {id:'ms1',dim:'sexual',type:'sim',w:1.0,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',
-   text:'How important is physical intimacy to your sense of connection in a relationship?',sub:'Sexual need level — the biggest source of silent resentment when mismatched.',
-   opts:[{t:'Low importance',d:'Emotional closeness matters far more',v:0},{t:'Moderate',d:'Nice but not a primary driver',v:0.33},{t:'High importance',d:'A very significant part of connection for me',v:0.66},{t:'Essential',d:'Physical intimacy is core to how I bond',v:1}]},
-  {id:'ms2',dim:'sexual',type:'sim',w:0.95,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',
-   text:'How frequently do you genuinely want physical intimacy in a relationship?',sub:'Frequency mismatch is a leading cause of long-term resentment.',
-   opts:[{t:'Rarely',d:'A few times a month or less',v:0},{t:'Moderate',d:'Once or twice a week',v:0.33},{t:'High',d:'Several times a week',v:0.66},{t:'Very high',d:'Daily or near-daily feels right to me',v:1}]},
-  {id:'ms3',dim:'sexual',type:'sim',w:0.85,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',
-   text:'How do you relate to physical affection outside of sex — touch, closeness, holding?',sub:'Affection style is often more important than sex frequency.',
-   opts:[{t:'I need little',d:'Not naturally tactile outside of intimacy',v:0},{t:'Some is nice',d:'I enjoy it but do not need much',v:0.33},{t:'I need quite a bit',d:'Physical closeness is important to my wellbeing',v:0.66},{t:'Constant closeness',d:'Touch and physical presence are how I feel loved',v:1}]},
-  {id:'ms4',dim:'sexual',type:'comp',w:0.8,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',
-   text:'In physical intimacy, what role feels most natural to you?',sub:'Directional complementarity — opposites typically work best here.',
-   opts:[{t:'Strongly receptive',d:'I prefer to receive and respond',v:0},{t:'Mostly receptive',d:'Lean receptive with active moments',v:0.33},{t:'Mostly initiating',d:'I naturally lead and initiate more',v:0.66},{t:'Strongly initiating',d:'I am most fulfilled leading the dynamic',v:1}]},
-  {id:'ms5',dim:'sexual',type:'sim',w:0.85,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',
-   text:'How openly can you communicate about physical needs and preferences?',sub:'Sexual communication quality predicts satisfaction more than technique.',
-   opts:[{t:'Very difficult',d:'I struggle to say what I want or feel',v:0},{t:'Somewhat uncomfortable',d:'I can manage but it does not come easily',v:0.33},{t:'Fairly open',d:'I can express needs with some vulnerability',v:0.66},{t:'Very open',d:'I communicate clearly and without shame',v:1}]},
-  {id:'ms6',dim:'sexual',type:'sim',w:0.75,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',
-   text:'How important is exclusivity — emotional and physical — in a committed relationship?',sub:'Fidelity orientation and what constitutes a violation.',
-   opts:[{t:'Strict and absolute',d:'Complete exclusivity in all forms is non-negotiable',v:0},{t:'Physical only',d:'Physical exclusivity is essential; emotional closeness elsewhere is fine',v:0.33},{t:'Flexible',d:'I have nuanced views on exclusivity',v:0.66},{t:'Non-traditional',d:'I am open to alternative relationship structures',v:1}]}
+// ─── Question banks ───────────────────────────────────────────────────────────
+const QM = [
+  {id:'mv1',dim:'values',type:'sim',w:1.0,tag:'Values',tc:'#3C3489',bc:'#EEEDFE',text:'How do you feel about having children?',sub:'Hard constraint — be fully honest.',opts:[{t:'Definitely no children',d:'Certain I do not want them',v:0},{t:'Probably not',d:'Leaning against',v:0.25},{t:'Open either way',d:'Depends on the relationship',v:0.5},{t:'Want children',d:'An important life goal',v:0.85},{t:'Children are essential',d:'A non-negotiable life goal',v:1}]},
+  {id:'mv2',dim:'values',type:'sim',w:0.9,tag:'Values',tc:'#3C3489',bc:'#EEEDFE',text:'How central is religion or spirituality to your actual daily life?',sub:'Practice, not just belief.',opts:[{t:'None',d:'No role whatsoever',v:0},{t:'Cultural only',d:'Heritage but not active practice',v:0.25},{t:'Personal guide',d:'Shapes some values and choices',v:0.6},{t:'Active and central',d:'Structures my life and decisions',v:1}]},
+  {id:'mv3',dim:'values',type:'sim',w:0.8,tag:'Values',tc:'#3C3489',bc:'#EEEDFE',text:'Where do you genuinely stand politically and socially?',sub:'Lived values, not party label.',opts:[{t:'Strongly progressive',d:'Systemic change is urgent',v:0},{t:'Moderately progressive',d:'Lean liberal',v:0.3},{t:'Moderate',d:'Mixed or disengaged',v:0.5},{t:'Moderately conservative',d:'Lean toward tradition',v:0.75},{t:'Strongly conservative',d:'Traditional values are core',v:1}]},
+  {id:'mv4',dim:'values',type:'sim',w:0.85,tag:'Values',tc:'#3C3489',bc:'#EEEDFE',text:'What matters most to you at the end of a life?',sub:'The deepest values question.',opts:[{t:'Family and love',d:'The people I loved and who loved me',v:0},{t:'Faith and virtue',d:'Living according to my principles',v:0.33},{t:'Achievement and impact',d:'What I built or changed',v:0.66},{t:'Freedom and experience',d:'How fully I lived',v:1}]},
+  {id:'mp1',dim:'personality',type:'sim',w:0.85,tag:'Personality',tc:'#085041',bc:'#E1F5EE',text:'When the woman you are with is upset, what is your instinct?',sub:'Men default to fix-it mode — this detects emotional attunement.',opts:[{t:'Fix the problem',d:'Solve what is causing the distress',v:0},{t:'Offer perspective',d:'Give advice then check how she feels',v:0.33},{t:'Listen and validate',d:'Understand fully before offering anything',v:0.66},{t:'Just hold the space',d:'Present, no agenda, no advice',v:1}]},
+  {id:'mp2',dim:'personality',type:'comp',w:0.8,tag:'Personality',tc:'#085041',bc:'#E1F5EE',text:'How introverted or extroverted are you honestly?',sub:'Moderate opposites often complement; extremes clash.',opts:[{t:'Deeply introverted',d:'Need significant solitude to function',v:0},{t:'Mild introvert',d:'Prefer quiet, recharge alone',v:0.33},{t:'Mild extrovert',d:'Enjoy social energy, tolerate solitude',v:0.66},{t:'Strongly extroverted',d:'Come alive around people',v:1}]},
+  {id:'mp3',dim:'personality',type:'sim',w:0.75,tag:'Personality',tc:'#085041',bc:'#E1F5EE',text:'How do you process emotional pain — grief, failure, rejection?',sub:'Suppression vs expression is a key gendered mismatch.',opts:[{t:'Fully internalize',d:'Process alone, rarely show it',v:0},{t:'Distract and move on',d:'Activity pulls me through',v:0.33},{t:'Talk to someone close',d:'Need to articulate it to process',v:0.66},{t:'Sit with it consciously',d:'Work through feelings deliberately',v:1}]},
+  {id:'mp4',dim:'personality',type:'sim',w:0.8,tag:'Personality',tc:'#085041',bc:'#E1F5EE',text:'After a serious argument, what do you need?',sub:'Repair style mismatch is a top cause of escalating conflict.',opts:[{t:'Space alone',d:'Withdraw and cool down first',v:0},{t:'Brief pause then resolve',d:'Short break then settle it',v:0.33},{t:'Reconnect through action',d:'Doing something together works better than talking',v:0.66},{t:'Talk it through fully',d:'Need the conversation to feel complete',v:1}]},
+  {id:'ml1',dim:'lifestyle',type:'sim',w:0.9,tag:'Lifestyle',tc:'#633806',bc:'#FAEEDA',text:'How do you handle money and financial security?',sub:'Top predictor of long-term relationship strain.',opts:[{t:'Live freely now',d:'Spend on experience; saving is secondary',v:0},{t:'Loosely responsible',d:'Save something but do not stress',v:0.33},{t:'Security focused',d:'Building financial stability matters',v:0.66},{t:'Strongly security-driven',d:'Financial safety is a core priority',v:1}]},
+  {id:'ml2',dim:'lifestyle',type:'sim',w:0.85,tag:'Lifestyle',tc:'#633806',bc:'#FAEEDA',text:'Could you relocate for a relationship?',sub:'Hard constraint for many couples.',opts:[{t:'Not willing at all',d:'Rooted and will not move',v:0},{t:'Within my country',d:'Another city or region, yes',v:0.33},{t:'Internationally open',d:'Could move abroad for the right person',v:0.66},{t:'Fully mobile',d:'Wherever life and love lead',v:1}]},
+  {id:'ml3',dim:'lifestyle',type:'sim',w:0.8,tag:'Lifestyle',tc:'#633806',bc:'#FAEEDA',text:'How driven are you professionally — the real version?',sub:'Ambition asymmetry quietly erodes relationships.',opts:[{t:'Work funds life',d:'Not my identity at all',v:0},{t:'One part of life',d:'It matters but does not define me',v:0.33},{t:'Major priority',d:'Growth and impact matter a lot',v:0.66},{t:'Central drive',d:'Ambition is fundamental to who I am',v:1}]},
+  {id:'mr1',dim:'relational',type:'sim',w:0.95,tag:'Relational',tc:'#72243E',bc:'#FBEAF0',text:'What makes you feel most loved by a woman?',sub:'Male love language — often understated due to social pressure.',opts:[{t:'Respect and admiration',d:'Feeling genuinely valued and looked up to',v:0},{t:'Physical affection',d:'Touch, closeness, physical presence',v:0.25},{t:'Quality time',d:'Her full, undivided attention',v:0.5},{t:'Acts of care',d:'Her doing things that show she thinks of me',v:0.75},{t:'Words of affirmation',d:'Being told directly that she loves me',v:1}]},
+  {id:'mr2',dim:'relational',type:'comp',w:0.9,tag:'Relational',tc:'#72243E',bc:'#FBEAF0',text:'When she becomes emotionally distant, what happens in you?',sub:'Attachment under threat — core predictor of relationship dynamics.',opts:[{t:'I pull back equally',d:'Match distance, wait it out',v:0},{t:'Notice but suppress',d:'Bothered but resist reaching out',v:0.33},{t:'Reach out once',d:'Check in once, then give space',v:0.66},{t:'Pursue and need answers',d:'Feel anxious; push for reconnection',v:1}]},
+  {id:'mr3',dim:'relational',type:'sim',w:0.8,tag:'Relational',tc:'#72243E',bc:'#FBEAF0',text:'How much independence do you need inside a relationship?',sub:'Not about trust — about psychological restoration needs.',opts:[{t:'Very intertwined',d:'Share most things closely',v:0},{t:'Mostly together',d:'Close with some personal space',v:0.33},{t:'Balanced',d:'Equal solo and together time',v:0.5},{t:'Primarily independent',d:'Need significant solo space',v:1}]},
+  {id:'mr4',dim:'relational',type:'sim',w:0.8,tag:'Relational',tc:'#72243E',bc:'#FBEAF0',text:'How do you view financial responsibility in a committed relationship?',sub:'Provider expectations are deeply gendered — surface them early.',opts:[{t:'Full equality always',d:'50/50 regardless of income',v:0},{t:'Proportional sharing',d:'Each contributes relative to income',v:0.33},{t:'I contribute more',d:'Comfortable carrying the larger share',v:0.66},{t:'I provide fully',d:'The man should be primary provider',v:1}]},
+  {id:'mg1',dim:'goals',type:'sim',w:1.0,tag:'Goals',tc:'#791F1F',bc:'#FCEBEB',text:'When do you see yourself in a serious committed relationship?',sub:'Timeline hard constraint.',opts:[{t:'Not now',d:'Not actively seeking commitment',v:0},{t:'1–3 years',d:'Open but not rushing',v:0.33},{t:'Within a year',d:'Actively looking for something serious',v:0.66},{t:'Ready now',d:'Ready for the right person immediately',v:1}]},
+  {id:'mg2',dim:'goals',type:'sim',w:0.85,tag:'Goals',tc:'#791F1F',bc:'#FCEBEB',text:'What life structure do you want in a long-term relationship?',sub:'Daily architecture is overlooked until it causes friction.',opts:[{t:'Fully merged',d:'Shared home, finances, social circles',v:0},{t:'Mostly shared',d:'Together with some personal space',v:0.33},{t:'Parallel but close',d:'Together but distinct identities',v:0.66},{t:'Living apart',d:'Separate homes even while committed',v:1}]},
+  {id:'mg3',dim:'goals',type:'sim',w:0.8,tag:'Goals',tc:'#791F1F',bc:'#FCEBEB',text:'How important is shared cultural or ethnic background?',sub:'Sets realistic expectations.',opts:[{t:'Not important',d:'Background plays no role',v:0},{t:'Mildly preferred',d:'Nice but not required',v:0.33},{t:'Somewhat important',d:'Shared ground matters',v:0.66},{t:'Very important',d:'A significant factor for me',v:1}]},
+  {id:'mgr1',dim:'genderrole',type:'sim',w:1.0,tag:'Gender Role',tc:'#3B6D11',bc:'#EAF3DE',text:'What model of relationship roles feels most natural to you?',sub:'Your actual wiring, not the socially acceptable answer.',opts:[{t:'Full equality',d:'No distinct roles at all',v:0},{t:'Mostly equal',d:'Equal but she brings emotional warmth',v:0.33},{t:'Complementary',d:'She leads home; I lead externally',v:0.66},{t:'Traditional',d:'She manages home and family; I provide',v:1}]},
+  {id:'mgr2',dim:'genderrole',type:'sim',w:0.9,tag:'Gender Role',tc:'#3B6D11',bc:'#EAF3DE',text:'How important is it that she respects and trusts your judgment?',sub:'Directional — a core masculine relational need.',opts:[{t:'Not important',d:'Equal say in all things',v:0},{t:'Somewhat',d:'Appreciated but not expected',v:0.33},{t:'Important',d:'I expect to lead in key decisions',v:0.66},{t:'Very important',d:'Male leadership is central to how I relate',v:1}]},
+  {id:'mgr3',dim:'genderrole',type:'sim',w:0.8,tag:'Gender Role',tc:'#3B6D11',bc:'#EAF3DE',text:'How do you feel about a woman who earns significantly more than you?',sub:'Practical measure of ego-independence.',opts:[{t:'Completely fine',d:'No issue whatsoever',v:0},{t:'Mostly fine',d:'Minor discomfort but nothing meaningful',v:0.33},{t:'Somewhat uncomfortable',d:'Would need to process it over time',v:0.66},{t:'Not comfortable',d:'Would undermine the dynamic for me',v:1}]},
+  {id:'mei1',dim:'emotional',type:'sim',w:0.9,tag:'Emotional',tc:'#27500A',bc:'#EAF3DE',text:'How aware are you of your own emotional states in real time?',sub:'Self-awareness is the foundation of emotional intelligence.',opts:[{t:'Rarely aware',d:'Notice I was upset only after the fact',v:0},{t:'Sometimes aware',d:'Catch it during, not always in the moment',v:0.33},{t:'Usually aware',d:'Can identify feelings as they happen',v:0.66},{t:'Consistently aware',d:'Track my emotional state in real time',v:1}]},
+  {id:'mei2',dim:'emotional',type:'sim',w:0.85,tag:'Emotional',tc:'#27500A',bc:'#EAF3DE',text:'When you hurt someone you love unintentionally, what happens?',sub:'Repair capacity — a critical predictor of relationship health.',opts:[{t:'I get defensive',d:'Instinct is to explain or justify myself',v:0},{t:'Apologize eventually',d:'Come around but it takes time',v:0.33},{t:'Apologize fairly quickly',d:'Acknowledge it without too much ego',v:0.66},{t:'Own it immediately',d:'Repair fast and without defensiveness',v:1}]},
+  {id:'mei3',dim:'emotional',type:'sim',w:0.8,tag:'Emotional',tc:'#27500A',bc:'#EAF3DE',text:'When her needs feel inconvenient or excessive, what do you do?',sub:'Empathy under pressure — the real test of availability.',opts:[{t:'I pull back',d:'Find it draining and create distance',v:0},{t:'Comply but resent it',d:'Show up but feel burdened',v:0.33},{t:'Try to understand',d:'Make effort to see her perspective',v:0.66},{t:'Lean in genuinely',d:'Her needs engage my care',v:1}]},
+  {id:'ms1',dim:'sexual',type:'sim',w:1.0,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',text:'How important is physical intimacy to your sense of connection?',sub:'Sexual need level — biggest source of silent resentment when mismatched.',opts:[{t:'Low importance',d:'Emotional closeness matters far more',v:0},{t:'Moderate',d:'Nice but not a primary driver',v:0.33},{t:'High importance',d:'A very significant part of connection for me',v:0.66},{t:'Essential',d:'Physical intimacy is core to how I bond',v:1}]},
+  {id:'ms2',dim:'sexual',type:'sim',w:0.95,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',text:'How frequently do you genuinely want physical intimacy in a relationship?',sub:'Frequency mismatch is a leading cause of long-term resentment.',opts:[{t:'Rarely',d:'A few times a month or less',v:0},{t:'Moderate',d:'Once or twice a week',v:0.33},{t:'High',d:'Several times a week',v:0.66},{t:'Very high',d:'Daily or near-daily',v:1}]},
+  {id:'ms3',dim:'sexual',type:'sim',w:0.85,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',text:'How do you relate to physical affection outside of sex?',sub:'Affection style is often more important than sex frequency.',opts:[{t:'Need little',d:'Not naturally tactile outside intimacy',v:0},{t:'Some is nice',d:'Enjoy it but do not need much',v:0.33},{t:'Need quite a bit',d:'Physical closeness is important to my wellbeing',v:0.66},{t:'Constant closeness',d:'Touch is how I feel loved',v:1}]},
+  {id:'ms4',dim:'sexual',type:'comp',w:0.8,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',text:'In physical intimacy, what role feels most natural to you?',sub:'Directional complementarity — opposites typically work best.',opts:[{t:'Strongly receptive',d:'Prefer to receive and respond',v:0},{t:'Mostly receptive',d:'Lean receptive with active moments',v:0.33},{t:'Mostly initiating',d:'Naturally lead and initiate more',v:0.66},{t:'Strongly initiating',d:'Most fulfilled leading the dynamic',v:1}]},
+  {id:'ms5',dim:'sexual',type:'sim',w:0.85,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',text:'How openly can you communicate about physical needs?',sub:'Sexual communication quality predicts satisfaction more than technique.',opts:[{t:'Very difficult',d:'Struggle to say what I want',v:0},{t:'Somewhat uncomfortable',d:'Can manage but not easy',v:0.33},{t:'Fairly open',d:'Can express needs with some vulnerability',v:0.66},{t:'Very open',d:'Communicate clearly and without shame',v:1}]},
+  {id:'ms6',dim:'sexual',type:'sim',w:0.75,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',text:'How important is exclusivity — emotional and physical?',sub:'Fidelity orientation.',opts:[{t:'Strict and absolute',d:'Complete exclusivity is non-negotiable',v:0},{t:'Physical only essential',d:'Physical exclusivity essential; emotional flexibility elsewhere',v:0.33},{t:'Flexible',d:'Nuanced views on exclusivity',v:0.66},{t:'Non-traditional',d:'Open to alternative relationship structures',v:1}]}
 ];
 
-const QF=[
-  {id:'fv1',dim:'values',type:'sim',w:1.0,tag:'Values',tc:'#3C3489',bc:'#EEEDFE',
-   text:'How do you feel about having children?',sub:'Hard constraint — be fully honest.',
-   opts:[{t:'Definitely no children',d:'Certain I do not want them',v:0},{t:'Probably not',d:'Leaning against',v:0.25},{t:'Open either way',d:'Depends on the relationship',v:0.5},{t:'Want children',d:'An important life goal',v:0.85},{t:'Children are essential',d:'A non-negotiable life goal',v:1}]},
-  {id:'fv2',dim:'values',type:'sim',w:0.9,tag:'Values',tc:'#3C3489',bc:'#EEEDFE',
-   text:'How central is religion or spirituality to your actual daily life?',sub:'Practice, not just belief.',
-   opts:[{t:'None',d:'No role whatsoever',v:0},{t:'Cultural only',d:'Heritage but not practice',v:0.25},{t:'Personal guide',d:'Shapes some values and choices',v:0.6},{t:'Active and central',d:'Structures my life and decisions',v:1}]},
-  {id:'fv3',dim:'values',type:'sim',w:0.8,tag:'Values',tc:'#3C3489',bc:'#EEEDFE',
-   text:'Where do you genuinely stand politically and socially?',sub:'Lived values, not party label.',
-   opts:[{t:'Strongly progressive',d:'Systemic change is urgent',v:0},{t:'Moderately progressive',d:'Lean liberal',v:0.3},{t:'Moderate',d:'Mixed or disengaged',v:0.5},{t:'Moderately conservative',d:'Lean toward tradition',v:0.75},{t:'Strongly conservative',d:'Traditional values are core',v:1}]},
-  {id:'fv4',dim:'values',type:'sim',w:0.85,tag:'Values',tc:'#3C3489',bc:'#EEEDFE',
-   text:'What matters most to you at the end of a life?',sub:'The deepest values question.',
-   opts:[{t:'Family and love',d:'The people I loved and who loved me',v:0},{t:'Faith and virtue',d:'Living according to my principles',v:0.33},{t:'Growth and contribution',d:'What I gave or created',v:0.66},{t:'Freedom and experience',d:'How fully I lived',v:1}]},
-  {id:'fp1',dim:'personality',type:'sim',w:0.85,tag:'Personality',tc:'#085041',bc:'#E1F5EE',
-   text:'When you are upset or in pain, what do you most need from a man?',sub:'Women typically need to feel heard before solutions arrive.',
-   opts:[{t:'Just to be heard',d:'Listen without fixing or advising',v:0},{t:'Emotional presence',d:'Be with me in it, then maybe talk',v:0.33},{t:'Both comfort and input',d:'Empathy first, then perspective',v:0.66},{t:'Practical help',d:'Solving the problem matters more than processing',v:1}]},
-  {id:'fp2',dim:'personality',type:'comp',w:0.8,tag:'Personality',tc:'#085041',bc:'#E1F5EE',
-   text:'How introverted or extroverted are you honestly?',sub:'Moderate opposites often complement; extremes clash.',
-   opts:[{t:'Deeply introverted',d:'Need significant solitude to function',v:0},{t:'Mild introvert',d:'Prefer quiet, recharge alone',v:0.33},{t:'Mild extrovert',d:'Enjoy social energy, tolerate solitude',v:0.66},{t:'Strongly extroverted',d:'Come alive around people',v:1}]},
-  {id:'fp3',dim:'personality',type:'sim',w:0.75,tag:'Personality',tc:'#085041',bc:'#E1F5EE',
-   text:'How do you manage emotional distress — anxiety, grief, rejection?',sub:'Regulation style asymmetry is a hidden source of friction.',
-   opts:[{t:'Internalize and ruminate',d:'Carry it privately and it lingers',v:0},{t:'Talk it through',d:'Processing out loud helps most',v:0.33},{t:'Distract and move on',d:'Activity and routine pull me through',v:0.66},{t:'Sit with it and resolve',d:'Work through feelings consciously',v:1}]},
-  {id:'fp4',dim:'personality',type:'sim',w:0.8,tag:'Personality',tc:'#085041',bc:'#E1F5EE',
-   text:'After a serious argument, what do you need?',sub:'Repair style mismatch is a top cause of escalating conflict.',
-   opts:[{t:'Talk immediately',d:'Unresolved tension is unbearable',v:0},{t:'Brief pause then reconnect',d:'Short break then settle it',v:0.33},{t:'Physical reassurance first',d:'A hug before words',v:0.66},{t:'Time alone to process',d:'Need solitude before re-engaging',v:1}]},
-  {id:'fl1',dim:'lifestyle',type:'sim',w:0.9,tag:'Lifestyle',tc:'#633806',bc:'#FAEEDA',
-   text:'How do you relate to financial security and saving?',sub:'Top predictor of long-term relational strain.',
-   opts:[{t:'Live freely now',d:'Experience and comfort now; saving secondary',v:0},{t:'Loosely responsible',d:'Save something, do not stress about it',v:0.33},{t:'Security focused',d:'Building financial stability matters',v:0.66},{t:'Strongly security-driven',d:'Financial safety is a core priority',v:1}]},
-  {id:'fl2',dim:'lifestyle',type:'sim',w:0.85,tag:'Lifestyle',tc:'#633806',bc:'#FAEEDA',
-   text:'Could you relocate for a relationship?',sub:'Hard constraint for many couples.',
-   opts:[{t:'Not willing',d:'Rooted and will not move',v:0},{t:'Within my country',d:'Another city or region, yes',v:0.33},{t:'Internationally open',d:'Could move abroad for the right person',v:0.66},{t:'Fully mobile',d:'Wherever life and love lead',v:1}]},
-  {id:'fl3',dim:'lifestyle',type:'sim',w:0.8,tag:'Lifestyle',tc:'#633806',bc:'#FAEEDA',
-   text:'How ambitious are you about your career — the real version?',sub:'Women are pressured to understate or overstate this.',
-   opts:[{t:'Family is primary',d:'Career is secondary to personal life',v:0},{t:'One part of life',d:'It matters but does not define me',v:0.33},{t:'Major priority',d:'Growth and impact matter a lot',v:0.66},{t:'Career is central',d:'My ambition is fundamental to who I am',v:1}]},
-  {id:'fr1',dim:'relational',type:'sim',w:0.95,tag:'Relational',tc:'#72243E',bc:'#FBEAF0',
-   text:'What makes you feel most loved and valued by a man?',sub:'Her actual love language, not the ideal version.',
-   opts:[{t:'Quality time',d:'His full, undivided presence',v:0},{t:'Words of affirmation',d:'Being told he loves and values me',v:0.25},{t:'Physical affection',d:'Touch, closeness, physical presence',v:0.5},{t:'Acts of care',d:'Him doing things that show he thinks of me',v:0.75},{t:'Security and provision',d:'Feeling safe, protected, and cared for',v:1}]},
-  {id:'fr2',dim:'relational',type:'comp',w:0.9,tag:'Relational',tc:'#72243E',bc:'#FBEAF0',
-   text:'When he becomes emotionally withdrawn, what happens in you?',sub:'Attachment under threat — female-side predictor of dynamic.',
-   opts:[{t:'I give space easily',d:'Trust it will pass, wait without worry',v:0},{t:'Notice but hold back',d:'Bothered but I resist pursuing',v:0.33},{t:'Reach out once',d:'Check in gently once then give space',v:0.66},{t:'Feel anxious and pursue',d:'Distance triggers real worry; need reassurance',v:1}]},
-  {id:'fr3',dim:'relational',type:'sim',w:0.8,tag:'Relational',tc:'#72243E',bc:'#FBEAF0',
-   text:'How much independence do you need inside a relationship?',sub:'Not about trust — about psychological restoration.',
-   opts:[{t:'Very intertwined',d:'Share most things closely',v:0},{t:'Mostly together',d:'Close with some personal space',v:0.33},{t:'Balanced',d:'Equal solo and together time',v:0.5},{t:'Primarily independent',d:'Need significant solo space',v:1}]},
-  {id:'fr4',dim:'relational',type:'sim',w:0.8,tag:'Relational',tc:'#72243E',bc:'#FBEAF0',
-   text:'How do you view financial responsibility in a committed relationship?',sub:'Provider expectations from her side — must match his.',
-   opts:[{t:'Full equality',d:'50/50 regardless of income',v:0},{t:'Proportional sharing',d:'Each contributes relative to income',v:0.33},{t:'He contributes more',d:'The man should carry the larger share',v:0.66},{t:'He provides fully',d:'I expect him to be the primary provider',v:1}]},
-  {id:'fg1',dim:'goals',type:'sim',w:1.0,tag:'Goals',tc:'#791F1F',bc:'#FCEBEB',
-   text:'When do you see yourself in a serious committed relationship?',sub:'Timeline hard constraint.',
-   opts:[{t:'Not now',d:'Not actively seeking commitment',v:0},{t:'1–3 years',d:'Open but not rushing',v:0.33},{t:'Within a year',d:'Actively looking for something serious',v:0.66},{t:'Ready now',d:'Ready for the right person immediately',v:1}]},
-  {id:'fg2',dim:'goals',type:'sim',w:0.85,tag:'Goals',tc:'#791F1F',bc:'#FCEBEB',
-   text:'What life structure do you want in a long-term relationship?',sub:'Daily architecture matters more than people think early on.',
-   opts:[{t:'Fully merged',d:'Shared home, finances, social circles',v:0},{t:'Mostly shared',d:'Together with some personal space',v:0.33},{t:'Parallel but close',d:'Together but distinct identities',v:0.66},{t:'Living apart',d:'Separate homes even while committed',v:1}]},
-  {id:'fg3',dim:'goals',type:'sim',w:0.8,tag:'Goals',tc:'#791F1F',bc:'#FCEBEB',
-   text:'How important is shared cultural or ethnic background?',sub:'Sets realistic downstream expectations.',
-   opts:[{t:'Not important',d:'Background plays no role',v:0},{t:'Mildly preferred',d:'Nice but not required',v:0.33},{t:'Somewhat important',d:'Shared ground matters',v:0.66},{t:'Very important',d:'A significant factor',v:1}]},
-  {id:'fgr1',dim:'genderrole',type:'sim',w:1.0,tag:'Gender role',tc:'#3B6D11',bc:'#EAF3DE',
-   text:'What relationship model feels most natural to you?',sub:'Your actual wiring — not the socially approved answer.',
-   opts:[{t:'Full equality',d:'No distinct roles at all',v:0},{t:'Mostly equal',d:'Equal but I bring emotional warmth and care',v:0.33},{t:'Complementary',d:'I lead home and family; he leads externally',v:0.66},{t:'Traditional',d:'I manage home and family; he provides',v:1}]},
-  {id:'fgr2',dim:'genderrole',type:'sim',w:0.9,tag:'Gender role',tc:'#3B6D11',bc:'#EAF3DE',
-   text:'How comfortable are you with a man taking the lead in major decisions?',sub:'Directional — measures her acceptance of male leadership.',
-   opts:[{t:'Not comfortable',d:'I want full equality in all decisions',v:0},{t:'Context-dependent',d:'Sometimes, depending on the topic',v:0.33},{t:'Generally comfortable',d:'Fine with him leading in most things',v:0.66},{t:'Strongly prefer it',d:'Male leadership feels natural and right to me',v:1}]},
-  {id:'fgr3',dim:'genderrole',type:'sim',w:0.8,tag:'Gender role',tc:'#3B6D11',bc:'#EAF3DE',
-   text:'How do you feel about earning significantly more than your partner?',sub:'Female-side measure of role flexibility and ego comfort.',
-   opts:[{t:'Completely fine',d:'No issue at all; I respect myself for it',v:0},{t:'Mostly fine',d:'Minor tension but nothing meaningful',v:0.33},{t:'Somewhat uncomfortable',d:'Would quietly affect the dynamic',v:0.66},{t:'Not comfortable',d:'Would undermine the relationship for me',v:1}]},
-  {id:'fei1',dim:'emotional',type:'sim',w:0.9,tag:'Emotional',tc:'#27500A',bc:'#EAF3DE',
-   text:'How aware are you of your own emotional states in real time?',sub:'Self-awareness is the foundation of emotional intelligence.',
-   opts:[{t:'Rarely aware',d:'I notice I was upset only after the fact',v:0},{t:'Sometimes aware',d:'I catch it during, not always in the moment',v:0.33},{t:'Usually aware',d:'Can identify feelings as they happen',v:0.66},{t:'Consistently aware',d:'I track my emotional state in real time',v:1}]},
-  {id:'fei2',dim:'emotional',type:'sim',w:0.85,tag:'Emotional',tc:'#27500A',bc:'#EAF3DE',
-   text:'When you unintentionally hurt him, what is your first response?',sub:'Repair capacity — critical predictor of long-term health.',
-   opts:[{t:'I get defensive',d:'My instinct is to explain or justify',v:0},{t:'Apologize eventually',d:'Come around but it takes time',v:0.33},{t:'Apologize fairly quickly',d:'Acknowledge it without much ego',v:0.66},{t:'Own it immediately',d:'Repair fast and without defensiveness',v:1}]},
-  {id:'fei3',dim:'emotional',type:'sim',w:0.8,tag:'Emotional',tc:'#27500A',bc:'#EAF3DE',
-   text:'When his needs feel inconvenient or excessive, what happens in you?',sub:'Empathy under pressure — the real test of availability.',
-   opts:[{t:'I pull back',d:'I find it draining and create distance',v:0},{t:'Comply but resent',d:'I show up but feel burdened',v:0.33},{t:'Try to understand',d:'Make effort to see his perspective',v:0.66},{t:'Lean in genuinely',d:'His needs engage my care',v:1}]},
-  {id:'fs1',dim:'sexual',type:'sim',w:1.0,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',
-   text:'How important is physical intimacy to your sense of connection?',sub:'Sexual need level — the biggest silent resentment when mismatched.',
-   opts:[{t:'Low importance',d:'Emotional closeness matters far more',v:0},{t:'Moderate',d:'Nice but not a primary driver',v:0.33},{t:'High importance',d:'A very significant part of connection',v:0.66},{t:'Essential',d:'Physical intimacy is core to how I bond',v:1}]},
-  {id:'fs2',dim:'sexual',type:'sim',w:0.95,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',
-   text:'How frequently do you genuinely want physical intimacy in a relationship?',sub:'Frequency mismatch is a leading cause of long-term resentment in both directions.',
-   opts:[{t:'Rarely',d:'A few times a month or less',v:0},{t:'Moderate',d:'Once or twice a week',v:0.33},{t:'High',d:'Several times a week',v:0.66},{t:'Very high',d:'Daily or near-daily feels right',v:1}]},
-  {id:'fs3',dim:'sexual',type:'sim',w:0.85,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',
-   text:'How do you relate to physical affection outside of sex?',sub:'Nonsexual touch needs often predict intimacy satisfaction better than frequency.',
-   opts:[{t:'Need little',d:'Not naturally tactile',v:0},{t:'Some is nice',d:'Enjoy it but do not need much',v:0.33},{t:'Need quite a bit',d:'Physical closeness is important to my wellbeing',v:0.66},{t:'Constant closeness',d:'Touch is how I feel loved',v:1}]},
-  {id:'fs4',dim:'sexual',type:'comp',w:0.8,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',
-   text:'In physical intimacy, what role feels most natural to you?',sub:'Directional complementarity — woman side.',
-   opts:[{t:'Strongly receptive',d:'I prefer to receive and respond',v:0},{t:'Mostly receptive',d:'Lean receptive with active moments',v:0.33},{t:'Mostly initiating',d:'I naturally lead and initiate',v:0.66},{t:'Strongly initiating',d:'I am most fulfilled leading',v:1}]},
-  {id:'fs5',dim:'sexual',type:'sim',w:0.85,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',
-   text:'How openly can you communicate about physical needs and preferences?',sub:'Sexual communication predicts satisfaction more than any other single factor.',
-   opts:[{t:'Very difficult',d:'Struggle to say what I want',v:0},{t:'Somewhat uncomfortable',d:'Can manage but not easy',v:0.33},{t:'Fairly open',d:'Can express needs with some vulnerability',v:0.66},{t:'Very open',d:'Communicate clearly and without shame',v:1}]},
-  {id:'fs6',dim:'sexual',type:'sim',w:0.75,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',
-   text:'How important is exclusivity — emotional and physical — to you?',sub:'Fidelity orientation.',
-   opts:[{t:'Strict and absolute',d:'Complete exclusivity is non-negotiable',v:0},{t:'Physical only essential',d:'Physical exclusivity essential; emotional flexibility elsewhere',v:0.33},{t:'Flexible',d:'Nuanced views on exclusivity',v:0.66},{t:'Non-traditional',d:'Open to alternative relationship structures',v:1}]}
+const QF = [
+  {id:'fv1',dim:'values',type:'sim',w:1.0,tag:'Values',tc:'#3C3489',bc:'#EEEDFE',text:'How do you feel about having children?',sub:'Hard constraint — be fully honest.',opts:[{t:'Definitely no children',d:'Certain I do not want them',v:0},{t:'Probably not',d:'Leaning against',v:0.25},{t:'Open either way',d:'Depends on the relationship',v:0.5},{t:'Want children',d:'An important life goal',v:0.85},{t:'Children are essential',d:'A non-negotiable life goal',v:1}]},
+  {id:'fv2',dim:'values',type:'sim',w:0.9,tag:'Values',tc:'#3C3489',bc:'#EEEDFE',text:'How central is religion or spirituality to your actual daily life?',sub:'Practice, not just belief.',opts:[{t:'None',d:'No role whatsoever',v:0},{t:'Cultural only',d:'Heritage but not active practice',v:0.25},{t:'Personal guide',d:'Shapes some values and choices',v:0.6},{t:'Active and central',d:'Structures my life and decisions',v:1}]},
+  {id:'fv3',dim:'values',type:'sim',w:0.8,tag:'Values',tc:'#3C3489',bc:'#EEEDFE',text:'Where do you genuinely stand politically and socially?',sub:'Lived values, not party label.',opts:[{t:'Strongly progressive',d:'Systemic change is urgent',v:0},{t:'Moderately progressive',d:'Lean liberal',v:0.3},{t:'Moderate',d:'Mixed or disengaged',v:0.5},{t:'Moderately conservative',d:'Lean toward tradition',v:0.75},{t:'Strongly conservative',d:'Traditional values are core',v:1}]},
+  {id:'fv4',dim:'values',type:'sim',w:0.85,tag:'Values',tc:'#3C3489',bc:'#EEEDFE',text:'What matters most to you at the end of a life?',sub:'The deepest values question.',opts:[{t:'Family and love',d:'The people I loved and who loved me',v:0},{t:'Faith and virtue',d:'Living according to my principles',v:0.33},{t:'Growth and contribution',d:'What I gave or created',v:0.66},{t:'Freedom and experience',d:'How fully I lived',v:1}]},
+  {id:'fp1',dim:'personality',type:'sim',w:0.85,tag:'Personality',tc:'#085041',bc:'#E1F5EE',text:'When you are upset, what do you most need from a man?',sub:'Women typically need to feel heard before solutions arrive.',opts:[{t:'Just to be heard',d:'Listen without fixing or advising',v:0},{t:'Emotional presence',d:'Be with me in it, then maybe talk',v:0.33},{t:'Both comfort and input',d:'Empathy first, then perspective',v:0.66},{t:'Practical help',d:'Solving the problem matters more than processing',v:1}]},
+  {id:'fp2',dim:'personality',type:'comp',w:0.8,tag:'Personality',tc:'#085041',bc:'#E1F5EE',text:'How introverted or extroverted are you honestly?',sub:'Moderate opposites often complement; extremes clash.',opts:[{t:'Deeply introverted',d:'Need significant solitude to function',v:0},{t:'Mild introvert',d:'Prefer quiet, recharge alone',v:0.33},{t:'Mild extrovert',d:'Enjoy social energy, tolerate solitude',v:0.66},{t:'Strongly extroverted',d:'Come alive around people',v:1}]},
+  {id:'fp3',dim:'personality',type:'sim',w:0.75,tag:'Personality',tc:'#085041',bc:'#E1F5EE',text:'How do you manage emotional distress — anxiety, grief, rejection?',sub:'Regulation style asymmetry is a hidden source of friction.',opts:[{t:'Internalize and ruminate',d:'Carry it privately and it lingers',v:0},{t:'Talk it through',d:'Processing out loud helps most',v:0.33},{t:'Distract and move on',d:'Activity and routine pull me through',v:0.66},{t:'Sit with it and resolve',d:'Work through feelings consciously',v:1}]},
+  {id:'fp4',dim:'personality',type:'sim',w:0.8,tag:'Personality',tc:'#085041',bc:'#E1F5EE',text:'After a serious argument, what do you need?',sub:'Repair style mismatch is a top cause of escalating conflict.',opts:[{t:'Talk immediately',d:'Unresolved tension is unbearable',v:0},{t:'Brief pause then reconnect',d:'Short break then settle it',v:0.33},{t:'Physical reassurance first',d:'A hug before words',v:0.66},{t:'Time alone to process',d:'Need solitude before re-engaging',v:1}]},
+  {id:'fl1',dim:'lifestyle',type:'sim',w:0.9,tag:'Lifestyle',tc:'#633806',bc:'#FAEEDA',text:'How do you relate to financial security and saving?',sub:'Top predictor of long-term relational strain.',opts:[{t:'Live freely now',d:'Experience and comfort now; saving secondary',v:0},{t:'Loosely responsible',d:'Save something, do not stress about it',v:0.33},{t:'Security focused',d:'Building financial stability matters',v:0.66},{t:'Strongly security-driven',d:'Financial safety is a core priority',v:1}]},
+  {id:'fl2',dim:'lifestyle',type:'sim',w:0.85,tag:'Lifestyle',tc:'#633806',bc:'#FAEEDA',text:'Could you relocate for a relationship?',sub:'Hard constraint for many couples.',opts:[{t:'Not willing',d:'Rooted and will not move',v:0},{t:'Within my country',d:'Another city or region, yes',v:0.33},{t:'Internationally open',d:'Could move abroad for the right person',v:0.66},{t:'Fully mobile',d:'Wherever life and love lead',v:1}]},
+  {id:'fl3',dim:'lifestyle',type:'sim',w:0.8,tag:'Lifestyle',tc:'#633806',bc:'#FAEEDA',text:'How ambitious are you about your career — honestly?',sub:'Women are pressured to understate or overstate this.',opts:[{t:'Family is primary',d:'Career is secondary to personal life',v:0},{t:'One part of life',d:'It matters but does not define me',v:0.33},{t:'Major priority',d:'Growth and impact matter a lot',v:0.66},{t:'Career is central',d:'My ambition is fundamental to who I am',v:1}]},
+  {id:'fr1',dim:'relational',type:'sim',w:0.95,tag:'Relational',tc:'#72243E',bc:'#FBEAF0',text:'What makes you feel most loved by a man?',sub:'Your actual love language, not the ideal version.',opts:[{t:'Quality time',d:'His full, undivided presence',v:0},{t:'Words of affirmation',d:'Being told he loves and values me',v:0.25},{t:'Physical affection',d:'Touch, closeness, physical presence',v:0.5},{t:'Acts of care',d:'Him doing things that show he thinks of me',v:0.75},{t:'Security and provision',d:'Feeling safe, protected, and cared for',v:1}]},
+  {id:'fr2',dim:'relational',type:'comp',w:0.9,tag:'Relational',tc:'#72243E',bc:'#FBEAF0',text:'When he becomes emotionally withdrawn, what happens in you?',sub:'Attachment under threat — female-side predictor.',opts:[{t:'Give space easily',d:'Trust it will pass, wait without worry',v:0},{t:'Notice but hold back',d:'Bothered but I resist pursuing',v:0.33},{t:'Reach out once',d:'Check in gently once then give space',v:0.66},{t:'Feel anxious and pursue',d:'Distance triggers worry; need reassurance',v:1}]},
+  {id:'fr3',dim:'relational',type:'sim',w:0.8,tag:'Relational',tc:'#72243E',bc:'#FBEAF0',text:'How much independence do you need inside a relationship?',sub:'Not about trust — about psychological restoration.',opts:[{t:'Very intertwined',d:'Share most things closely',v:0},{t:'Mostly together',d:'Close with some personal space',v:0.33},{t:'Balanced',d:'Equal solo and together time',v:0.5},{t:'Primarily independent',d:'Need significant solo space',v:1}]},
+  {id:'fr4',dim:'relational',type:'sim',w:0.8,tag:'Relational',tc:'#72243E',bc:'#FBEAF0',text:'How do you view financial responsibility in a committed relationship?',sub:'Provider expectations from her side — must align with his.',opts:[{t:'Full equality',d:'50/50 regardless of income',v:0},{t:'Proportional sharing',d:'Each contributes relative to income',v:0.33},{t:'He contributes more',d:'The man should carry the larger share',v:0.66},{t:'He provides fully',d:'I expect him to be the primary provider',v:1}]},
+  {id:'fg1',dim:'goals',type:'sim',w:1.0,tag:'Goals',tc:'#791F1F',bc:'#FCEBEB',text:'When do you see yourself in a serious committed relationship?',sub:'Timeline hard constraint.',opts:[{t:'Not now',d:'Not actively seeking commitment',v:0},{t:'1–3 years',d:'Open but not rushing',v:0.33},{t:'Within a year',d:'Actively looking for something serious',v:0.66},{t:'Ready now',d:'Ready for the right person immediately',v:1}]},
+  {id:'fg2',dim:'goals',type:'sim',w:0.85,tag:'Goals',tc:'#791F1F',bc:'#FCEBEB',text:'What life structure do you want in a long-term relationship?',sub:'Daily architecture matters more than people think.',opts:[{t:'Fully merged',d:'Shared home, finances, social circles',v:0},{t:'Mostly shared',d:'Together with some personal space',v:0.33},{t:'Parallel but close',d:'Together but distinct identities',v:0.66},{t:'Living apart',d:'Separate homes even while committed',v:1}]},
+  {id:'fg3',dim:'goals',type:'sim',w:0.8,tag:'Goals',tc:'#791F1F',bc:'#FCEBEB',text:'How important is shared cultural or ethnic background?',sub:'Sets realistic downstream expectations.',opts:[{t:'Not important',d:'Background plays no role',v:0},{t:'Mildly preferred',d:'Nice but not required',v:0.33},{t:'Somewhat important',d:'Shared ground matters',v:0.66},{t:'Very important',d:'A significant factor',v:1}]},
+  {id:'fgr1',dim:'genderrole',type:'sim',w:1.0,tag:'Gender Role',tc:'#3B6D11',bc:'#EAF3DE',text:'What relationship model feels most natural to you?',sub:'Your actual wiring, not the socially approved answer.',opts:[{t:'Full equality',d:'No distinct roles at all',v:0},{t:'Mostly equal',d:'Equal but I bring emotional warmth',v:0.33},{t:'Complementary',d:'I lead home; he leads externally',v:0.66},{t:'Traditional',d:'I manage home and family; he provides',v:1}]},
+  {id:'fgr2',dim:'genderrole',type:'sim',w:0.9,tag:'Gender Role',tc:'#3B6D11',bc:'#EAF3DE',text:'How comfortable are you with a man taking the lead in major decisions?',sub:'Directional — your acceptance of male leadership.',opts:[{t:'Not comfortable',d:'I want full equality in all decisions',v:0},{t:'Context-dependent',d:'Sometimes, depending on the topic',v:0.33},{t:'Generally comfortable',d:'Fine with him leading in most things',v:0.66},{t:'Strongly prefer it',d:'Male leadership feels natural and right',v:1}]},
+  {id:'fgr3',dim:'genderrole',type:'sim',w:0.8,tag:'Gender Role',tc:'#3B6D11',bc:'#EAF3DE',text:'How do you feel about earning significantly more than your partner?',sub:'Female-side measure of role flexibility.',opts:[{t:'Completely fine',d:'No issue at all',v:0},{t:'Mostly fine',d:'Minor tension but nothing meaningful',v:0.33},{t:'Somewhat uncomfortable',d:'Would quietly affect the dynamic',v:0.66},{t:'Not comfortable',d:'Would undermine the relationship',v:1}]},
+  {id:'fei1',dim:'emotional',type:'sim',w:0.9,tag:'Emotional',tc:'#27500A',bc:'#EAF3DE',text:'How aware are you of your own emotional states in real time?',sub:'Self-awareness is the foundation of emotional intelligence.',opts:[{t:'Rarely aware',d:'Notice I was upset only after the fact',v:0},{t:'Sometimes aware',d:'Catch it during, not always in the moment',v:0.33},{t:'Usually aware',d:'Can identify feelings as they happen',v:0.66},{t:'Consistently aware',d:'Track my emotional state in real time',v:1}]},
+  {id:'fei2',dim:'emotional',type:'sim',w:0.85,tag:'Emotional',tc:'#27500A',bc:'#EAF3DE',text:'When you unintentionally hurt him, what is your first response?',sub:'Repair capacity — critical predictor of long-term health.',opts:[{t:'I get defensive',d:'Instinct is to explain or justify',v:0},{t:'Apologize eventually',d:'Come around but it takes time',v:0.33},{t:'Apologize fairly quickly',d:'Acknowledge it without much ego',v:0.66},{t:'Own it immediately',d:'Repair fast and without defensiveness',v:1}]},
+  {id:'fei3',dim:'emotional',type:'sim',w:0.8,tag:'Emotional',tc:'#27500A',bc:'#EAF3DE',text:'When his needs feel inconvenient or excessive, what happens?',sub:'Empathy under pressure — the real test of availability.',opts:[{t:'I pull back',d:'Find it draining and create distance',v:0},{t:'Comply but resent',d:'Show up but feel burdened',v:0.33},{t:'Try to understand',d:'Make effort to see his perspective',v:0.66},{t:'Lean in genuinely',d:'His needs engage my care',v:1}]},
+  {id:'fs1',dim:'sexual',type:'sim',w:1.0,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',text:'How important is physical intimacy to your sense of connection?',sub:'Sexual need level — biggest silent resentment when mismatched.',opts:[{t:'Low importance',d:'Emotional closeness matters far more',v:0},{t:'Moderate',d:'Nice but not a primary driver',v:0.33},{t:'High importance',d:'A very significant part of connection',v:0.66},{t:'Essential',d:'Physical intimacy is core to how I bond',v:1}]},
+  {id:'fs2',dim:'sexual',type:'sim',w:0.95,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',text:'How frequently do you genuinely want physical intimacy?',sub:'Frequency mismatch is a leading cause of long-term resentment.',opts:[{t:'Rarely',d:'A few times a month or less',v:0},{t:'Moderate',d:'Once or twice a week',v:0.33},{t:'High',d:'Several times a week',v:0.66},{t:'Very high',d:'Daily or near-daily',v:1}]},
+  {id:'fs3',dim:'sexual',type:'sim',w:0.85,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',text:'How do you relate to physical affection outside of sex?',sub:'Nonsexual touch needs often predict satisfaction better than frequency.',opts:[{t:'Need little',d:'Not naturally tactile',v:0},{t:'Some is nice',d:'Enjoy it but do not need much',v:0.33},{t:'Need quite a bit',d:'Physical closeness is important to my wellbeing',v:0.66},{t:'Constant closeness',d:'Touch is how I feel loved',v:1}]},
+  {id:'fs4',dim:'sexual',type:'comp',w:0.8,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',text:'In physical intimacy, what role feels most natural to you?',sub:'Directional complementarity — woman side.',opts:[{t:'Strongly receptive',d:'Prefer to receive and respond',v:0},{t:'Mostly receptive',d:'Lean receptive with active moments',v:0.33},{t:'Mostly initiating',d:'Naturally lead and initiate',v:0.66},{t:'Strongly initiating',d:'Most fulfilled leading',v:1}]},
+  {id:'fs5',dim:'sexual',type:'sim',w:0.85,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',text:'How openly can you communicate about physical needs?',sub:'Sexual communication predicts satisfaction more than any other single factor.',opts:[{t:'Very difficult',d:'Struggle to say what I want',v:0},{t:'Somewhat uncomfortable',d:'Can manage but not easy',v:0.33},{t:'Fairly open',d:'Can express needs with some vulnerability',v:0.66},{t:'Very open',d:'Communicate clearly and without shame',v:1}]},
+  {id:'fs6',dim:'sexual',type:'sim',w:0.75,tag:'Sexual',tc:'#0C447C',bc:'#E6F1FB',text:'How important is exclusivity — emotional and physical?',sub:'Fidelity orientation.',opts:[{t:'Strict and absolute',d:'Complete exclusivity is non-negotiable',v:0},{t:'Physical only essential',d:'Physical exclusivity essential; emotional flexibility elsewhere',v:0.33},{t:'Flexible',d:'Nuanced views on exclusivity',v:0.66},{t:'Non-traditional',d:'Open to alternative relationship structures',v:1}]}
 ];
 
-const HARD=[
+const HARD = [
   {label:'Children incompatibility',check:(m,f)=>{const a=m.mv1,b=f.fv1;if(a==null||b==null)return false;return(a<=0.25&&b>=0.85)||(b<=0.25&&a>=0.85);}},
   {label:'Geographic mismatch',check:(m,f)=>{const a=m.ml2,b=f.fl2;if(a==null||b==null)return false;return(a===0&&b>=0.66)||(b===0&&a>=0.66);}},
-  {label:'Relationship timeline mismatch',check:(m,f)=>{const a=m.mg1,b=f.fg1;if(a==null||b==null)return false;return Math.abs(a-b)>=0.66;}},
+  {label:'Timeline mismatch',check:(m,f)=>{const a=m.mg1,b=f.fg1;if(a==null||b==null)return false;return Math.abs(a-b)>=0.66;}},
   {label:'Fidelity orientation conflict',check:(m,f)=>{const a=m.ms6,b=f.fs6;if(a==null||b==null)return false;return(a===0&&b>=0.66)||(b===0&&a>=0.66);}}
 ];
 
-const DIMS={
-  values:{label:'Core values',color:'#534AB7',w:0.18},
-  personality:{label:'Personality',color:'#0F6E56',w:0.13},
-  lifestyle:{label:'Lifestyle',color:'#854F0B',w:0.12},
-  relational:{label:'Relational style',color:'#D4537E',w:0.15},
-  goals:{label:'Life goals',color:'#A32D2D',w:0.1},
-  genderrole:{label:'Gender role fit',color:'#3B6D11',w:0.12},
-  emotional:{label:'Emotional intelligence',color:'#639922',w:0.1},
-  sexual:{label:'Sexual compatibility',color:'#185FA5',w:0.1}
+const DIMS = {
+  values:     {label:'Core values',          color:'#534AB7', w:0.18},
+  personality:{label:'Personality',          color:'#0F6E56', w:0.13},
+  lifestyle:  {label:'Lifestyle',            color:'#854F0B', w:0.12},
+  relational: {label:'Relational style',     color:'#D4537E', w:0.15},
+  goals:      {label:'Life goals',           color:'#A32D2D', w:0.10},
+  genderrole: {label:'Gender role fit',      color:'#3B6D11', w:0.12},
+  emotional:  {label:'Emotional intelligence',color:'#639922',w:0.10},
+  sexual:     {label:'Sexual compatibility', color:'#185FA5', w:0.10}
 };
 
-let mA={},fA={},mName='M',fName='F',mAge=0,fAge=0,mJob='',fJob='',mSec='',fSec='',mEdu=0,fEdu=0;
-let cM=0,cF=0;
+// ─── State ────────────────────────────────────────────────────────────────────
+let mA = {}, fA = {};
+let mProfile = {name:'',age:0,job:'',sec:'',edu:0};
+let fProfile = {name:'',age:0,job:'',sec:'',edu:0};
+let cM = 0, cF = 0;
+let fileHandle = null;
+const FILE_NAME = 'polyfdor.txt';
 
-function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
-
-function saveM(){
-  mName=document.getElementById('m-name').value.trim()||'The Man';
-  mAge=parseInt(document.getElementById('m-age').value)||0;
-  mJob=document.getElementById('m-job').value.trim()||'';
-  mSec=document.getElementById('m-sec').value||'';
-  mEdu=parseFloat(document.getElementById('m-edu').value)||0;
-  document.getElementById('avm-q').textContent=mName[0].toUpperCase();
-  document.getElementById('m-qhdr').textContent=mName;
-  cM=0;renderQ('m',0);show('s-q-m');
-}
-function saveF(){
-  fName=document.getElementById('f-name').value.trim()||'The Woman';
-  fAge=parseInt(document.getElementById('f-age').value)||0;
-  fJob=document.getElementById('f-job').value.trim()||'';
-  fSec=document.getElementById('f-sec').value||'';
-  fEdu=parseFloat(document.getElementById('f-edu').value)||0;
-  document.getElementById('avf-q').textContent=fName[0].toUpperCase();
-  document.getElementById('f-qhdr').textContent=fName;
-  cF=0;renderQ('f',0);show('s-q-f');
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 }
 
-function getQs(w){return w==='m'?QM:QF;}
-function getAs(w){return w==='m'?mA:fA;}
-function sc(w){return w==='m'?'sm':'sf';}
+function sigmoid(x) { return 1 / (1 + Math.exp(-x)); }
 
-function renderQ(who,idx){
-  const qs=getQs(who),as=getAs(who),q=qs[idx],tot=qs.length;
-  document.getElementById('pf'+who).style.width=Math.round((idx/tot)*100)+'%';
-  document.getElementById('st'+who).textContent=(idx+1)+' / '+tot;
-  document.getElementById('bp'+who).disabled=idx===0;
-  document.getElementById('bn'+who).disabled=as[q.id]==null;
-  const s=sc(who);
-  document.getElementById('qc'+who).innerHTML=`<div class="card">
-    <span class="stag" style="background:${q.bc};color:${q.tc}">${q.tag}</span>
-    <div class="ql">Question ${idx+1}</div>
-    <div class="qt">${q.text}</div>
-    <div class="qs">${q.sub}</div>
-    <div class="opts">${q.opts.map(o=>`<div class="opt ${as[q.id]===o.v?s:''}" onclick="sel('${who}','${q.id}',${o.v},this)"><div class="radio"></div><div><div class="ot">${o.t}</div><div class="od">${o.d}</div></div></div>`).join('')}</div>
-  </div>`;
+// ─── File System API ──────────────────────────────────────────────────────────
+function isFileApiSupported() {
+  return 'showSaveFilePicker' in window || 'showOpenFilePicker' in window;
 }
 
-function sel(who,qid,val,el){
-  if(who==='m')mA[qid]=val;else fA[qid]=val;
-  const s=sc(who);
-  el.closest('.opts').querySelectorAll('.opt').forEach(o=>{o.classList.remove('sm');o.classList.remove('sf');});
-  el.classList.add(s);
-  document.getElementById('bn'+who).disabled=false;
-  const idx=who==='m'?cM:cF,qs=getQs(who);
-  if(idx<qs.length-1)setTimeout(()=>nextQ(who),260);
+function serializeManData() {
+  const data = {
+    version: 1,
+    complete: true,
+    profile: mProfile,
+    answers: mA,
+    savedAt: new Date().toISOString()
+  };
+  return JSON.stringify(data, null, 2);
 }
 
-function nextQ(who){
-  const as=getAs(who),qs=getQs(who),idx=who==='m'?cM:cF;
-  if(as[qs[idx].id]==null)return;
-  if(idx<qs.length-1){if(who==='m')cM++;else cF++;renderQ(who,who==='m'?cM:cF);}
-  else{if(who==='m')show('s-profile-f');else compute();}
-}
-function prevQ(who){
-  const idx=who==='m'?cM:cF;
-  if(idx>0){if(who==='m')cM--;else cF--;renderQ(who,who==='m'?cM:cF);}
-}
-
-function sigmoid(x){return 1/(1+Math.exp(-x));}
-
-function crossScore(mq,fq){
-  const mv=mA[mq],fv=fA[fq];
-  if(mv==null||fv==null)return null;
-  const q=QM.find(x=>x.id===mq);
-  if(!q)return null;
-  let r=q.type==='sim'?1-Math.abs(mv-fv):Math.max(0,Math.min(1,1-Math.abs((mv-0.5)+(fv-0.5))));
-  return{r,w:q.w,dim:q.dim};
+function parseManData(text) {
+  try {
+    const data = JSON.parse(text);
+    if (!data.complete || !data.answers || !data.profile) return null;
+    const answerCount = Object.keys(data.answers).length;
+    if (answerCount < QM.length) return null;
+    return data;
+  } catch (e) { return null; }
 }
 
-function compute(){
-  const pairs=[
+async function saveToFile(content) {
+  if (!isFileApiSupported()) {
+    // Fallback: download
+    const blob = new Blob([content], {type: 'text/plain'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = FILE_NAME;
+    a.click();
+    document.getElementById('save-status').textContent = 'File downloaded as polyfdor.txt — place it in the same folder as this HTML file.';
+    document.getElementById('save-status').className = 'notice notice-warn';
+    return false;
+  }
+  try {
+    if (!fileHandle) {
+      fileHandle = await window.showSaveFilePicker({
+        suggestedName: FILE_NAME,
+        types: [{description: 'Text file', accept: {'text/plain': ['.txt']}}]
+      });
+    }
+    const writable = await fileHandle.createWritable();
+    await writable.write(content);
+    await writable.close();
+    document.getElementById('save-status').textContent = 'Saved to polyfdor.txt successfully. The woman can now open this page and load the file.';
+    document.getElementById('save-status').className = 'notice notice-success';
+    return true;
+  } catch (e) {
+    document.getElementById('save-status').textContent = 'Could not save automatically. Please save the file manually.';
+    document.getElementById('save-status').className = 'notice notice-warn';
+    return false;
+  }
+}
+
+async function loadExistingFile() {
+  if (!isFileApiSupported()) {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.txt';
+    input.onchange = async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const text = await file.text();
+      handleLoadedFileText(text);
+    };
+    input.click();
+    return;
+  }
+  try {
+    const [handle] = await window.showOpenFilePicker({
+      types: [{description: 'polyfdor.txt', accept: {'text/plain': ['.txt']}}]
+    });
+    fileHandle = handle;
+    const file = await handle.getFile();
+    const text = await file.text();
+    handleLoadedFileText(text);
+  } catch (e) {
+    if (e.name !== 'AbortError') {
+      alert('Could not read file. Make sure you select polyfdor.txt.');
+    }
+  }
+}
+
+function handleLoadedFileText(text) {
+  const data = parseManData(text);
+  if (!data) {
+    document.getElementById('intro-file-notice').innerHTML =
+      '<div class="notice notice-warn">The file was found but appears incomplete or corrupted. The man must complete the survey first.</div>';
+    return;
+  }
+  mA = data.answers;
+  mProfile = data.profile;
+  document.getElementById('file-banner').style.display = 'block';
+  document.getElementById('intro-file-notice').innerHTML =
+    `<div class="notice notice-success">File loaded. ${data.profile.name || 'The man'}'s answers are ready (saved ${new Date(data.savedAt).toLocaleDateString()}). The woman can begin her session.</div>`;
+  document.getElementById('btn-man-start').style.display = 'none';
+  document.getElementById('btn-woman-start').style.display = 'block';
+  document.getElementById('btn-load-file').textContent = 'Reload polyfdor.txt';
+}
+
+// ─── Start man ────────────────────────────────────────────────────────────────
+function startMan() {
+  show('s-profile-m');
+}
+
+function saveProfileM() {
+  mProfile.name = document.getElementById('m-name').value.trim() || 'The Man';
+  mProfile.age  = parseInt(document.getElementById('m-age').value) || 0;
+  mProfile.job  = document.getElementById('m-job').value.trim() || '';
+  mProfile.sec  = document.getElementById('m-sec').value || '';
+  mProfile.edu  = parseFloat(document.getElementById('m-edu').value) || 0;
+  document.getElementById('avm-q').textContent = mProfile.name[0].toUpperCase();
+  document.getElementById('m-qhdr').textContent = mProfile.name;
+  cM = 0; renderQ('m', 0); show('s-q-m');
+}
+
+// ─── Start woman ──────────────────────────────────────────────────────────────
+function startWoman() {
+  show('s-profile-f');
+}
+
+function saveProfileF() {
+  fProfile.name = document.getElementById('f-name').value.trim() || 'The Woman';
+  fProfile.age  = parseInt(document.getElementById('f-age').value) || 0;
+  fProfile.job  = document.getElementById('f-job').value.trim() || '';
+  fProfile.sec  = document.getElementById('f-sec').value || '';
+  fProfile.edu  = parseFloat(document.getElementById('f-edu').value) || 0;
+  document.getElementById('avf-q').textContent = fProfile.name[0].toUpperCase();
+  document.getElementById('f-qhdr').textContent = fProfile.name;
+  cF = 0; renderQ('f', 0); show('s-q-f');
+}
+
+// ─── Questions ────────────────────────────────────────────────────────────────
+function getQs(who) { return who === 'm' ? QM : QF; }
+function getAs(who) { return who === 'm' ? mA : fA; }
+function selClass(who) { return who === 'm' ? 'sel-m' : 'sel-f'; }
+
+function renderQ(who, idx) {
+  const qs = getQs(who), as = getAs(who), q = qs[idx], tot = qs.length;
+  document.getElementById('pf' + who).style.width = Math.round((idx / tot) * 100) + '%';
+  document.getElementById('st' + who).textContent = (idx + 1) + ' / ' + tot;
+  document.getElementById('bp' + who).disabled = idx === 0;
+  document.getElementById('bn' + who).disabled = as[q.id] == null;
+  const sc = selClass(who);
+  document.getElementById('qc' + who).innerHTML = `
+    <div class="card">
+      <span class="q-tag" style="background:${q.bc};color:${q.tc}">${q.tag}</span>
+      <div class="q-num">Question ${idx + 1}</div>
+      <div class="q-text">${q.text}</div>
+      <div class="q-sub">${q.sub}</div>
+      <div class="opts">${q.opts.map(o => `
+        <div class="opt ${as[q.id] === o.v ? sc : ''}" onclick="selectOpt('${who}','${q.id}',${o.v},this)">
+          <div class="radio"></div>
+          <div><div class="opt-title">${o.t}</div><div class="opt-desc">${o.d}</div></div>
+        </div>`).join('')}
+      </div>
+    </div>`;
+}
+
+function selectOpt(who, qid, val, el) {
+  if (who === 'm') mA[qid] = val; else fA[qid] = val;
+  const sc = selClass(who);
+  el.closest('.opts').querySelectorAll('.opt').forEach(o => {
+    o.classList.remove('sel-m'); o.classList.remove('sel-f');
+  });
+  el.classList.add(sc);
+  document.getElementById('bn' + who).disabled = false;
+  const idx = who === 'm' ? cM : cF;
+  if (idx < getQs(who).length - 1) setTimeout(() => nextQ(who), 260);
+}
+
+function nextQ(who) {
+  const as = getAs(who), qs = getQs(who), idx = who === 'm' ? cM : cF;
+  if (as[qs[idx].id] == null) return;
+  if (idx < qs.length - 1) {
+    if (who === 'm') cM++; else cF++;
+    renderQ(who, who === 'm' ? cM : cF);
+  } else {
+    if (who === 'm') finishMan();
+    else compute();
+  }
+}
+
+function prevQ(who) {
+  const idx = who === 'm' ? cM : cF;
+  if (idx > 0) { if (who === 'm') cM--; else cF--; renderQ(who, who === 'm' ? cM : cF); }
+}
+
+async function finishMan() {
+  show('s-saving');
+  await saveToFile(serializeManData());
+}
+
+// ─── Compute ──────────────────────────────────────────────────────────────────
+function compute() {
+  const pairs = [
     ['mv1','fv1'],['mv2','fv2'],['mv3','fv3'],['mv4','fv4'],
     ['mp1','fp1'],['mp2','fp2'],['mp3','fp3'],['mp4','fp4'],
     ['ml1','fl1'],['ml2','fl2'],['ml3','fl3'],
@@ -500,157 +600,207 @@ function compute(){
     ['ms1','fs1'],['ms2','fs2'],['ms3','fs3'],['ms4','fs4'],['ms5','fs5'],['ms6','fs6']
   ];
 
-  let ds={};Object.keys(DIMS).forEach(d=>{ds[d]={s:0,w:0};});
-  pairs.forEach(([mq,fq])=>{
-    const r=crossScore(mq,fq);
-    if(r)ds[r.dim].s+=r.r*r.w,ds[r.dim].w+=r.w;
+  let ds = {}; Object.keys(DIMS).forEach(d => { ds[d] = {s:0, w:0}; });
+
+  pairs.forEach(([mq, fq]) => {
+    const mv = mA[mq], fv = fA[fq];
+    if (mv == null || fv == null) return;
+    const q = QM.find(x => x.id === mq); if (!q) return;
+    let r = q.type === 'sim' ? 1 - Math.abs(mv - fv) : Math.max(0, Math.min(1, 1 - Math.abs((mv - 0.5) + (fv - 0.5))));
+    ds[q.dim].s += r * q.w; ds[q.dim].w += q.w;
   });
 
-  let df={};Object.keys(DIMS).forEach(d=>{df[d]=ds[d].w>0?sigmoid((ds[d].s/ds[d].w)*6-3):0.5;});
+  let df = {};
+  Object.keys(DIMS).forEach(d => { df[d] = ds[d].w > 0 ? sigmoid((ds[d].s / ds[d].w) * 6 - 3) : 0.5; });
 
-  // Education proximity bonus
-  let eduMod=1;
-  if(mEdu>0||fEdu>0){const gap=Math.abs(mEdu-fEdu);eduMod=gap<=0.33?1.04:gap>=0.67?0.93:1;}
-
-  // Age modifier
-  let ageMod=1;
-  if(mAge>0&&fAge>0){
-    const gap=mAge-fAge;
-    if(gap<-3)ageMod=0.8;
-    else if(gap<0)ageMod=0.9;
-    else if(gap<=6)ageMod=1.0;
-    else if(gap<=12)ageMod=0.9;
-    else if(gap<=18)ageMod=0.78;
-    else ageMod=0.62;
-    if(fAge>=33&&fA.fv1>=0.85&&mA.mg1<=0.33)ageMod*=0.8;
+  const mAge = mProfile.age, fAge = fProfile.age;
+  let ageMod = 1;
+  if (mAge > 0 && fAge > 0) {
+    const gap = mAge - fAge;
+    if (gap < -3) ageMod = 0.8;
+    else if (gap < 0) ageMod = 0.9;
+    else if (gap <= 6) ageMod = 1.0;
+    else if (gap <= 12) ageMod = 0.9;
+    else if (gap <= 18) ageMod = 0.78;
+    else ageMod = 0.62;
+    if (fAge >= 33 && fA.fv1 >= 0.85 && mA.mg1 <= 0.33) ageMod *= 0.8;
   }
 
-  // Career sector bonus
-  const compat={stem:['stem','business','law'],business:['business','stem','law','other'],creative:['creative','care','other'],care:['care','creative','other','trade'],trade:['trade','care','other'],law:['law','business','stem'],other:['other','creative','care','business','trade']};
-  let carMod=1;
-  if(mSec&&fSec)carMod=compat[mSec]&&compat[mSec].includes(fSec)?1.04:0.97;
+  const compat = {stem:['stem','business','law'],business:['business','stem','law','other'],creative:['creative','care','other'],care:['care','creative','other','trade'],trade:['trade','care','other'],law:['law','business','stem'],other:['other','creative','care','business','trade']};
+  let carMod = 1;
+  if (mProfile.sec && fProfile.sec) carMod = (compat[mProfile.sec] && compat[mProfile.sec].includes(fProfile.sec)) ? 1.04 : 0.97;
 
-  // Sexual frequency hard alignment bonus/penalty
-  const msf=mA.ms2,fsf=fA.fs2;
-  let sexFreqMod=1;
-  if(msf!=null&&fsf!=null){const d=Math.abs(msf-fsf);if(d>=0.66)sexFreqMod=0.82;else if(d<=0.15)sexFreqMod=1.1;}
+  let eduMod = 1;
+  if (mProfile.edu > 0 || fProfile.edu > 0) { const g = Math.abs(mProfile.edu - fProfile.edu); eduMod = g <= 0.33 ? 1.04 : g >= 0.67 ? 0.93 : 1; }
 
-  // Role alignment — critical for man/woman
-  const mrole=mA.mgr1,frole=fA.fgr1;
-  let roleMod=1;
-  if(mrole!=null&&frole!=null){const d=Math.abs(mrole-frole);if(d<=0.15)roleMod=1.12;else if(d>=0.66)roleMod=0.72;}
+  const msf = mA.ms2, fsf = fA.fs2;
+  let sexFreqMod = 1;
+  if (msf != null && fsf != null) { const d = Math.abs(msf - fsf); if (d >= 0.66) sexFreqMod = 0.82; else if (d <= 0.15) sexFreqMod = 1.1; }
 
-  // Provider alignment
-  const mprov=mA.mr4,fprov=fA.fr4;
-  let provMod=1;
-  if(mprov!=null&&fprov!=null){const d=Math.abs(mprov-fprov);if(d<=0.2)provMod=1.07;else if(d>=0.5)provMod=0.82;}
+  let roleMod = 1;
+  const mr = mA.mgr1, fr = fA.fgr1;
+  if (mr != null && fr != null) { const d = Math.abs(mr - fr); if (d <= 0.15) roleMod = 1.12; else if (d >= 0.66) roleMod = 0.72; }
 
-  let overall=Object.keys(DIMS).reduce((a,d)=>a+df[d]*DIMS[d].w,0);
-  overall*=ageMod*eduMod*carMod*sexFreqMod*roleMod*provMod;
+  let provMod = 1;
+  const mp = mA.mr4, fp = fA.fr4;
+  if (mp != null && fp != null) { const d = Math.abs(mp - fp); if (d <= 0.2) provMod = 1.07; else if (d >= 0.5) provMod = 0.82; }
 
-  const flags=HARD.filter(c=>c.check(mA,fA));
-  if(flags.length>0)overall*=Math.pow(0.4,flags.length);
-  overall=Math.min(1,Math.max(0,overall));
+  let overall = Object.keys(DIMS).reduce((a, d) => a + df[d] * DIMS[d].w, 0);
+  overall *= ageMod * eduMod * carMod * sexFreqMod * roleMod * provMod;
 
-  renderResult(df,overall,flags,{ageMod,eduMod,carMod,sexFreqMod,roleMod,provMod});
+  const flags = HARD.filter(c => c.check(mA, fA));
+  if (flags.length > 0) overall *= Math.pow(0.4, flags.length);
+  overall = Math.min(1, Math.max(0, overall));
+
+  renderResult(df, overall, flags, {ageMod, eduMod, carMod, sexFreqMod, roleMod, provMod});
 }
 
-function renderResult(df,overall,flags,mods){
-  const pct=n=>Math.round(n*100);
-  const op=pct(overall);
-  const col=op>=70?'#1D9E75':op>=50?'#BA7517':'#E24B4A';
-  const circ=2*Math.PI*38,dash=(overall*circ).toFixed(1);
-  const lbl=op>=80?'Exceptional compatibility':op>=65?'Strong compatibility':op>=50?'Good foundation':op>=35?'Notable friction':op>=20?'Significant mismatch':'Low compatibility';
+function renderResult(df, overall, flags, mods) {
+  const pct = n => Math.round(n * 100);
+  const op = pct(overall);
+  const col = op >= 70 ? '#1D9E75' : op >= 50 ? '#BA7517' : '#E24B4A';
+  const circ = 2 * Math.PI * 38, dash = (overall * circ).toFixed(1);
+  const lbl = op >= 80 ? 'Exceptional compatibility' : op >= 65 ? 'Strong compatibility' : op >= 50 ? 'Good foundation' : op >= 35 ? 'Notable friction' : op >= 20 ? 'Significant mismatch' : 'Low compatibility';
 
-  const dimRows=Object.keys(DIMS).map(d=>`
-    <div class="dr">
-      <div class="dl">${DIMS[d].label}</div>
-      <div class="dbg"><div class="dfi" style="width:${pct(df[d])}%;background:${DIMS[d].color}"></div></div>
-      <div class="dsc">${pct(df[d])}%</div>
+  const mN = mProfile.name, fN = fProfile.name;
+
+  const dimRows = Object.keys(DIMS).map(d => `
+    <div class="dim-row">
+      <div class="dim-label">${DIMS[d].label}</div>
+      <div class="dim-bg"><div class="dim-fill" style="width:${pct(df[d])}%;background:${DIMS[d].color}"></div></div>
+      <div class="dim-score">${pct(df[d])}%</div>
     </div>`).join('');
 
-  const modRows=[];
-  if(mAge>0&&fAge>0){const g=mAge-fAge;modRows.push({t:`Age gap: ${Math.abs(g)} years (${g>=0?'he is older':'she is older'})`,d:mods.ageMod>=0.98?'Within optimal range':'Applied as modifier to overall score',neg:mods.ageMod<0.88});}
-  if(Math.abs(mEdu-fEdu)>0.34)modRows.push({t:'Education gap',d:'Noticeable difference in education level',neg:true});
-  if(mSec&&fSec)modRows.push({t:`Careers: ${mJob||mSec} + ${fJob||fSec}`,d:mods.carMod>1?'Sector pairing works well':'Mild sector mismatch',neg:mods.carMod<1});
-  if(mods.sexFreqMod<1)modRows.push({t:'Sexual frequency mismatch',d:'Significant difference in desired intimacy frequency',neg:true});
-  if(mods.sexFreqMod>1)modRows.push({t:'Sexual frequency aligned',d:'Both want similar frequency of intimacy',neg:false});
-  if(mods.roleMod>1.05)modRows.push({t:'Gender role alignment',d:'Shared model of roles — major friction reducer',neg:false});
-  if(mods.roleMod<0.85)modRows.push({t:'Gender role conflict',d:'Divergent role expectations — high friction area',neg:true});
-  if(mods.provMod<0.9)modRows.push({t:'Provider expectation gap',d:'Different views on financial responsibility',neg:true});
+  const modRows = [];
+  if (mProfile.age > 0 && fProfile.age > 0) {
+    const g = mProfile.age - fProfile.age;
+    modRows.push({t:`Age gap: ${Math.abs(g)} yr (${g >= 0 ? 'he is older' : 'she is older'})`, d: mods.ageMod >= 0.95 ? 'Within optimal range' : 'Applied as modifier', neg: mods.ageMod < 0.88});
+  }
+  if (Math.abs(mProfile.edu - fProfile.edu) > 0.34) modRows.push({t:'Education gap', d:'Noticeable difference in education levels', neg: true});
+  if (mProfile.sec && fProfile.sec) modRows.push({t:`Careers: ${mProfile.job||mProfile.sec} + ${fProfile.job||fProfile.sec}`, d: mods.carMod > 1 ? 'Compatible career sectors' : 'Mild sector mismatch', neg: mods.carMod < 1});
+  if (mods.sexFreqMod < 1) modRows.push({t:'Sexual frequency mismatch', d:'Significant difference in desired intimacy frequency', neg: true});
+  if (mods.sexFreqMod > 1) modRows.push({t:'Sexual frequency aligned', d:'Both want similar frequency of intimacy', neg: false});
+  if (mods.roleMod > 1.05) modRows.push({t:'Gender role alignment', d:'Shared relationship model — major friction reducer', neg: false});
+  if (mods.roleMod < 0.85) modRows.push({t:'Gender role conflict', d:'Divergent role expectations — high friction area', neg: true});
+  if (mods.provMod < 0.9) modRows.push({t:'Provider expectation gap', d:'Different views on financial responsibility in the relationship', neg: true});
+  if (mods.provMod > 1.04) modRows.push({t:'Provider alignment', d:'Matched expectations about financial roles', neg: false});
 
-  const flagsHtml=flags.length?`<div class="card"><h3 style="color:var(--color-text-danger)">Hard constraints</h3>${flags.map(f=>`<div class="flag"><div class="fdot"></div><div><div style="font-size:13px;font-weight:500;color:var(--color-text-danger)">${f.label}</div><div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px">Fundamental incompatibility — substantially collapses overall score.</div></div></div>`).join('')}</div>`:'';
+  const flagsHtml = flags.length ? `
+    <div class="card">
+      <h3 style="color:var(--red)">Hard constraints detected</h3>
+      ${flags.map(f => `<div class="flag"><div class="flag-dot"></div><div>
+        <div style="font-size:13px;font-weight:600;color:var(--red)">${f.label}</div>
+        <div style="font-size:12px;color:var(--txt2);margin-top:2px">Fundamental incompatibility — substantially collapses the overall score regardless of other dimensions.</div>
+      </div></div>`).join('')}
+    </div>` : '';
 
-  const modHtml=modRows.length?`<div class="card"><h3>Score modifiers</h3>${modRows.map(m=>`<div class="ii"><div class="it" style="color:${m.neg?'var(--color-text-danger)':'var(--color-text-success)'}">${m.t}</div><div class="id">${m.d}</div></div>`).join('')}</div>`:'';
+  const modHtml = modRows.length ? `
+    <div class="card">
+      <h3>Score modifiers</h3>
+      ${modRows.map(m => `<div class="mod-item">
+        <div class="mod-title" style="color:${m.neg ? 'var(--red)' : 'var(--green)'}">${m.t}</div>
+        <div class="mod-desc">${m.d}</div>
+      </div>`).join('')}
+    </div>` : '';
 
-  const insights=buildInsights(df);
-  const insHtml=insights.map(i=>`<div class="ii"><div class="it">${i.t}</div><div class="id">${i.d}</div></div>`).join('');
+  const insights = buildInsights(df, mN, fN);
+  const insHtml = insights.map(i => `<div class="insight"><div class="insight-title">${i.t}</div><div class="insight-desc">${i.d}</div></div>`).join('');
 
-  document.getElementById('rout').innerHTML=`
+  document.getElementById('rout').innerHTML = `
     <div style="text-align:center;padding:1.5rem 0 1rem">
-      <div class="sring"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="none" stroke="var(--color-border-tertiary)" stroke-width="6"/><circle cx="50" cy="50" r="38" fill="none" stroke="${col}" stroke-width="6" stroke-dasharray="${dash} ${circ.toFixed(1)}" stroke-dashoffset="${(circ/4).toFixed(1)}" stroke-linecap="round"/></svg><div class="snum">${op}%</div></div>
+      <div class="score-ring">
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="38" fill="none" stroke="var(--border)" stroke-width="6"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="${col}" stroke-width="6"
+            stroke-dasharray="${dash} ${circ.toFixed(1)}"
+            stroke-dashoffset="${(circ / 4).toFixed(1)}" stroke-linecap="round"/>
+        </svg>
+        <div class="score-num">${op}%</div>
+      </div>
       <h2 style="margin-bottom:4px">${lbl}</h2>
-      <p style="font-size:13px;color:var(--color-text-tertiary)">${mName} &amp; ${fName}</p>
+      <p style="font-size:13px;color:var(--txt3)">${mN} &amp; ${fN}</p>
     </div>
-    <div class="pgrid">
-      <div class="pc"><div class="pn" style="color:#185FA5">${mName}</div><div class="pr">Age: <span class="pv">${mAge||'—'}</span></div><div class="pr">Job: <span class="pv">${mJob||'—'}</span></div><div class="pr">Education: <span class="pv">${['High school','Vocational','Bachelor','Master','Doctorate'][Math.round((mEdu||0)*4)]||'—'}</span></div></div>
-      <div class="pc"><div class="pn" style="color:#993556">${fName}</div><div class="pr">Age: <span class="pv">${fAge||'—'}</span></div><div class="pr">Job: <span class="pv">${fJob||'—'}</span></div><div class="pr">Education: <span class="pv">${['High school','Vocational','Bachelor','Master','Doctorate'][Math.round((fEdu||0)*4)]||'—'}</span></div></div>
+
+    <div class="profile-grid">
+      <div class="profile-card">
+        <div class="profile-name" style="color:var(--blue)">${mN}</div>
+        <div class="profile-row">Age: <span class="profile-val">${mProfile.age || '—'}</span></div>
+        <div class="profile-row">Job: <span class="profile-val">${mProfile.job || '—'}</span></div>
+        <div class="profile-row">Education: <span class="profile-val">${['High school','Vocational','Bachelor','Master','Doctorate'][Math.round((mProfile.edu||0)*4)]||'—'}</span></div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-name" style="color:var(--pink-dark)">${fN}</div>
+        <div class="profile-row">Age: <span class="profile-val">${fProfile.age || '—'}</span></div>
+        <div class="profile-row">Job: <span class="profile-val">${fProfile.job || '—'}</span></div>
+        <div class="profile-row">Education: <span class="profile-val">${['High school','Vocational','Bachelor','Master','Doctorate'][Math.round((fProfile.edu||0)*4)]||'—'}</span></div>
+      </div>
     </div>
+
     <div class="card"><h3>8 dimensions</h3>${dimRows}</div>
-    ${flagsHtml}${modHtml}
+    ${flagsHtml}
+    ${modHtml}
     <div class="card"><h3>Psychological insights</h3>${insHtml}</div>
-    <div style="display:flex;justify-content:center;gap:12px;margin-top:1.5rem;flex-wrap:wrap">
-      <button class="btn pm" onclick="sendPrompt('Give a deep psychological interpretation of these compatibility results: ${mName} (man, ${mAge}, ${mJob}) and ${fName} (woman, ${fAge}, ${fJob}), overall score ${Math.round(overall*100)}%. Analyze each dimension, flag risks, and give specific relationship advice for this man-woman pairing.')">Deep interpretation ↗</button>
+
+    <div class="two-btn">
+      <button class="btn" onclick="window.print()">Print report</button>
       <button class="btn" onclick="location.reload()">Start over</button>
-    </div>`;
+    </div>
+    <p style="text-align:center;font-size:11px;color:var(--txt3);margin-top:1rem">polyfdor.txt can be deleted after both sessions are complete.</p>`;
+
   show('s-result');
 }
 
-function buildInsights(df){
-  const ins=[];
-  const mrole=mA.mgr1,frole=fA.fgr1;
-  if(mrole!=null&&frole!=null&&Math.abs(mrole-frole)>=0.5)
-    ins.push({t:'Gender role model mismatch',d:`${mName} holds a ${mrole>=0.5?'traditional/complementary':'progressive/egalitarian'} model while ${fName} holds a ${frole>=0.5?'traditional/complementary':'progressive/egalitarian'} one. This shapes every daily interaction — who initiates, who leads, who yields. Misalignment here creates a low-grade friction that compounds over years.`});
+function buildInsights(df, mN, fN) {
+  const ins = [];
+  const mr = mA.mgr1, fr = fA.fgr1;
+  if (mr != null && fr != null && Math.abs(mr - fr) >= 0.5)
+    ins.push({t:'Gender role model mismatch', d:`${mN} holds a ${mr >= 0.5 ? 'traditional/complementary' : 'progressive/egalitarian'} model while ${fN} holds a ${fr >= 0.5 ? 'traditional/complementary' : 'progressive/egalitarian'} one. This shapes every daily interaction — who initiates, who leads, who yields. Misalignment here creates low-grade friction that compounds over years.`});
 
-  const matt=mA.mr2,fatt=fA.fr2;
-  if(matt!=null&&fatt!=null&&((matt>=0.66&&fatt<=0.33)||(fatt>=0.66&&matt<=0.33)))
-    ins.push({t:'Anxious-avoidant attachment dynamic',d:`One partner pursues when distance appears; the other withdraws. In heterosexual couples this often manifests as female-anxious / male-avoidant. Without explicit naming and new behavioral contracts, this creates a painful escalating cycle that can feel impossible to break.`});
+  const matt = mA.mr2, fatt = fA.fr2;
+  if (matt != null && fatt != null && ((matt >= 0.66 && fatt <= 0.33) || (fatt >= 0.66 && matt <= 0.33)))
+    ins.push({t:'Anxious-avoidant attachment dynamic', d:`One partner pursues when distance appears; the other withdraws. In heterosexual couples this often manifests as female-anxious / male-avoidant. Without naming this and creating new behavioral contracts, the cycle escalates until it feels impossible to break.`});
 
-  const mfreq=mA.ms2,ffreq=fA.fs2;
-  if(mfreq!=null&&ffreq!=null&&Math.abs(mfreq-ffreq)>=0.5){
-    const higher=mfreq>ffreq?mName:fName;
-    ins.push({t:'Sexual frequency mismatch',d:`${higher} has significantly higher intimacy needs. Research shows frequency mismatch is the leading cause of silent resentment in long-term relationships — not infidelity or communication failure. The lower-drive partner often feels pressured; the higher-drive partner feels rejected. Both experiences are real and compound over time without explicit negotiation.`});
+  const msf = mA.ms2, fsf = fA.fs2;
+  if (msf != null && fsf != null && Math.abs(msf - fsf) >= 0.5) {
+    const higher = msf > fsf ? mN : fN;
+    ins.push({t:'Sexual frequency mismatch', d:`${higher} has significantly higher intimacy needs. Research consistently shows frequency mismatch is the leading cause of silent resentment in long-term relationships. The lower-drive partner feels pressured; the higher-drive partner feels rejected. Both are real and compound without explicit negotiation.`});
   }
 
-  const mrole2=mA.mgr2,frole2=fA.fgr2;
-  if(mrole2!=null&&frole2!=null&&Math.abs(mrole2-frole2)>=0.5)
-    ins.push({t:'Leadership dynamic tension',d:`${mName} wants ${mrole2>=0.5?'significant male authority in decisions':'equal shared decisions'} while ${fName} is ${frole2>=0.5?'comfortable with male leadership':'not comfortable deferring to male judgment'}. This will surface in every major life decision — where to live, financial choices, parenting approach.`});
+  const mfix = mA.mp1, fneed = fA.fp1;
+  if (mfix != null && fneed != null && mfix <= 0.25 && fneed <= 0.25)
+    ins.push({t:'Fix-it vs needs-to-be-heard tension', d:`${mN} instinctively moves to solve problems when ${fN} is upset. ${fN} primarily needs to feel heard before any solution arrives. This is the most commonly reported communication friction between men and women — and the most fixable once explicitly named.`});
 
-  const mfix=mA.mp1,fneed=fA.fp1;
-  if(mfix!=null&&fneed!=null&&mfix<=0.25&&fneed<=0.25)
-    ins.push({t:'Fix-it vs needs-to-be-heard tension',d:`${mName} instinctively tries to solve problems when ${fName} is upset. ${fName} primarily needs to feel heard before any solution arrives. This is the most commonly reported communication friction between men and women — and the most fixable once it is explicitly named.`});
+  const mprov = mA.mr4, fprov = fA.fr4;
+  if (mprov != null && fprov != null && Math.abs(mprov - fprov) >= 0.5)
+    ins.push({t:'Provider expectation mismatch', d:`${mN} and ${fN} have different views on financial responsibility in the relationship. Financial roles are tied to identity and respect in heterosexual relationships. Misalignment here breeds quiet resentment on both sides.`});
 
-  const mprov=mA.mr4,fprov=fA.fr4;
-  if(mprov!=null&&fprov!=null&&Math.abs(mprov-fprov)>=0.5)
-    ins.push({t:'Provider expectation mismatch',d:`${mName} expects ${mprov<=0.33?'full equality financially':mprov>=0.66?'to be the primary provider':'proportional sharing'} while ${fName} expects ${fprov<=0.33?'full equality':fprov>=0.66?'him to provide predominantly':'proportional sharing'}. Financial roles are tied to identity, respect, and security in heterosexual relationships. Misalignment here tends to breed quiet resentment on both sides.`});
+  const msex = mA.ms5, fsex = fA.fs5;
+  if (msex != null && fsex != null && Math.abs(msex - fsex) >= 0.5)
+    ins.push({t:'Sexual communication asymmetry', d:`One person communicates openly about physical needs; the other struggles to. Sexual satisfaction is predicted more by communication quality than frequency or technique. Unexpressed needs accumulate into invisible disappointment.`});
 
-  const msex=mA.ms5,fsex=fA.fs5;
-  if(msex!=null&&fsex!=null&&Math.abs(msex-fsex)>=0.5)
-    ins.push({t:'Sexual communication asymmetry',d:`One person communicates openly about physical needs; the other struggles to. Sexual satisfaction is predicted more by communication quality than frequency or technique. The partner who cannot express needs will accumulate unexpressed disappointment; the one who cannot receive honest feedback will miss signals.`});
+  const mrepair = mA.mei2, frepair = fA.fei2;
+  if (mrepair != null && frepair != null && (mrepair <= 0.25 || frepair <= 0.25))
+    ins.push({t:'Repair capacity gap', d:`At least one partner tends toward defensiveness when they cause harm. Relationship repair speed is one of the strongest predictors of long-term health. Slow or absent repair traps both people in escalating cycles.`});
 
-  const mrepair=mA.mei2,frepair=fA.fei2;
-  if(mrepair!=null&&frepair!=null&&(mrepair<=0.25||frepair<=0.25))
-    ins.push({t:'Repair capacity gap',d:`At least one partner has a tendency toward defensiveness when they cause harm. Relationship repair speed is one of the strongest predictors of long-term health. Partners who cannot say "I was wrong" quickly trap both people in cycles of escalation.`});
+  if (mProfile.age > 0 && fProfile.age > 0 && fProfile.age >= 32 && fA.fv1 >= 0.85 && mA.mg1 <= 0.33)
+    ins.push({t:'Biological timeline urgency', d:`${fN} is ${fProfile.age} and has expressed a strong desire for children. Female fertility has a real and asymmetric timeline. ${mN}'s timeline does not yet show the same urgency. This needs explicit conversation now, not later.`});
 
-  if(mAge>0&&fAge>0&&fAge>=32&&fA.fv1>=0.85&&mA.mg1<=0.33)
-    ins.push({t:'Biological timeline urgency',d:`${fName} is ${fAge} and has expressed a strong desire for children. Female fertility has a real and asymmetric timeline. ${mName}'s timeline does not yet show the same urgency. This is not about pressure — it is about making sure both people are making this decision with full information.`});
+  if (df.sexual >= 0.78 && df.values >= 0.72)
+    ins.push({t:'Strong dual foundation', d:`Both sexual compatibility and core values score high — a rare and meaningful combination. Couples with both deep values alignment and satisfying physical intimacy show the strongest long-term stability in relationship research.`});
 
-  if(df.sexual>=0.78&&df.values>=0.72)
-    ins.push({t:'Strong dual foundation',d:`Both sexual compatibility and core values score high — a rare and meaningful combination. Research consistently shows that couples who share both deep values alignment and satisfying physical intimacy have the strongest long-term stability. Most couples have one or the other.`});
+  if (ins.length === 0)
+    ins.push({t:'Broadly compatible across dimensions', d:`No major friction points were detected. The core ingredients appear present across all 8 dimensions. Sustained compatibility is less about finding the right person and more about both people continuing to choose each other with full knowledge.`});
 
-  if(ins.length===0)
-    ins.push({t:'Broadly compatible across dimensions',d:`No major friction points were detected. The core ingredients appear present across values, personality, relational style, sexual needs, and gender role expectations. Sustained compatibility is less about finding the right person and more about both people continuing to choose each other with full knowledge.`});
-
-  return ins.slice(0,6);
+  return ins.slice(0, 6);
 }
+
+// ─── On page load — check for banner state ───────────────────────────────────
+window.addEventListener('load', () => {
+  if (!isFileApiSupported()) {
+    document.getElementById('intro-file-notice').innerHTML =
+      '<div class="notice notice-warn">Your browser does not support the File System API. The file will be downloaded instead of saved directly. You will need to re-select it manually.</div>';
+  }
+});
 </script>
+</body>
+</html>

@@ -96,6 +96,22 @@ p{color:var(--txt2);font-size:14px;line-height:1.6}
 .uz-lbl{font-size:13px;font-weight:600;color:var(--txt);margin-bottom:2px}
 .uz-sub{font-size:11px;color:var(--txt3)}
 .ugrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem}
+/* Tabs */
+.tabs{display:flex;gap:0;border-bottom:0.5px solid var(--border);margin-bottom:1.25rem}
+.tab{padding:9px 18px;font-size:13px;font-weight:600;color:var(--txt3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-0.5px;transition:color .15s,border-color .15s;user-select:none}
+.tab:hover{color:var(--txt2)}
+.tab.active{color:var(--txt);border-bottom-color:var(--purple)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+/* Radar chart */
+.radar-container{display:flex;justify-content:center;padding:.5rem 0 1rem}
+/* Vector plot tooltip */
+.vp-tooltip{position:absolute;background:var(--bg);border:0.5px solid var(--border2);border-radius:var(--rs);padding:6px 10px;font-size:12px;color:var(--txt);pointer-events:none;opacity:0;transition:opacity .15s;white-space:nowrap;z-index:10}
+.vp-wrap{position:relative;width:100%}
+/* Plot legend */
+.plot-legend{display:flex;gap:20px;justify-content:center;margin-top:.75rem;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--txt2)}
+.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.legend-line{width:20px;height:2px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -500,7 +516,7 @@ function renderResult(df,overall,flags,mods){
   const ins=buildInsights(df,mN,fN);
   const insHtml=ins.map(i=>'<div class="ii"><div class="it">'+i.t+'</div><div class="id">'+i.d+'</div></div>').join('');
 
-  document.getElementById('rout').innerHTML=`
+  const header=`
     <div style="text-align:center;padding:1.5rem 0 1rem">
       <div class="sring"><svg viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="38" fill="none" stroke="var(--border)" stroke-width="6"/>
@@ -512,16 +528,281 @@ function renderResult(df,overall,flags,mods){
     <div class="pgrid">
       <div class="pc"><div class="pn" style="color:var(--blue)">${mN}</div><div class="pr">Age: <span class="pv">${mP.age||'—'}</span></div><div class="pr">Job: <span class="pv">${mP.job||'—'}</span></div><div class="pr">Education: <span class="pv">${eduLabel(mP.edu)}</span></div></div>
       <div class="pc"><div class="pn" style="color:var(--pink-d)">${fN}</div><div class="pr">Age: <span class="pv">${fP.age||'—'}</span></div><div class="pr">Job: <span class="pv">${fP.job||'—'}</span></div><div class="pr">Education: <span class="pv">${eduLabel(fP.edu)}</span></div></div>
+    </div>`;
+
+  document.getElementById('rout').innerHTML=`
+    ${header}
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('report')">Report</div>
+      <div class="tab" onclick="switchTab('radar')">Radar chart</div>
+      <div class="tab" onclick="switchTab('vector')">Vector space</div>
     </div>
-    <div class="card"><h3>8 dimensions</h3>${dimRows}</div>
-    ${flagsHtml}${modHtml}
-    <div class="card"><h3>Psychological insights</h3>${insHtml}</div>
-    <div class="two-btn">
+    <div class="tab-panel active" id="tp-report">
+      <div class="card"><h3>8 dimensions</h3>${dimRows}</div>
+      ${flagsHtml}${modHtml}
+      <div class="card"><h3>Psychological insights</h3>${insHtml}</div>
+    </div>
+    <div class="tab-panel" id="tp-radar">
+      <div class="card">
+        <h3>Dimension radar</h3>
+        <p style="font-size:12px;margin-bottom:1rem">Each axis represents one of the 8 compatibility dimensions. The filled polygon shows how far along each axis each person scores. Overlap = alignment.</p>
+        <div class="radar-container" id="radar-container"></div>
+        <div class="plot-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#534AB7"></div>${mN} (P)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#D4537E"></div>${fN} (N)</div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-panel" id="tp-vector">
+      <div class="card">
+        <h3>Vector space projection</h3>
+        <p style="font-size:12px;margin-bottom:1rem">P and N plotted as vectors in a 2D projection of the 8-dimensional feature space. Each dimension contributes a component. Arrows show dimension directions; distance between points reflects overall divergence.</p>
+        <div class="vp-wrap"><div id="vp-tooltip" class="vp-tooltip"></div><div id="vp-container"></div></div>
+        <div class="plot-legend" style="margin-top:.75rem">
+          <div class="legend-item"><div class="legend-dot" style="background:#534AB7"></div>${mN} (P)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#D4537E"></div>${fN} (N)</div>
+          <div class="legend-item"><div class="legend-line" style="background:rgba(0,0,0,0.25)"></div>Dimension axis</div>
+        </div>
+        <p style="font-size:11px;color:var(--txt3);margin-top:.75rem">Projection method: manual 2D basis from dimension scores. Horizontal axis = values/goals/lifestyle aggregate. Vertical axis = personality/emotional/relational aggregate.</p>
+      </div>
+    </div>
+    <div class="two-btn" style="margin-top:1.25rem">
       <button class="btn" onclick="window.print()">Print report</button>
       <button class="btn" onclick="show('s-intro')">Back to home</button>
     </div>
     <p style="text-align:center;font-size:11px;color:var(--txt3);margin-top:1rem">man.txt and woman.txt can be deleted after this report is reviewed.</p>`;
+
   show('s-result');
+  // render charts after DOM is ready
+  setTimeout(()=>{renderRadar(df,mN,fN);renderVectorPlot(df,mN,fN);},50);
+}
+
+function switchTab(name){
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    const names=['report','radar','vector'];
+    t.classList.toggle('active',names[i]===name);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tp-'+name).classList.add('active');
+}
+
+// ─── Radar Chart ─────────────────────────────────────────────────────────────
+function renderRadar(df,mN,fN){
+  const dims=Object.keys(DIMS);
+  const N=dims.length;
+  const cx=200,cy=200,R=150,labelR=175;
+  const angles=dims.map((_,i)=>(-Math.PI/2)+(2*Math.PI*i/N));
+
+  // per-person raw scores: man uses weighted avg per dim from answers
+  // use df (compatibility score 0-1) as proxy for dimension alignment
+  // individual scores: man's average answer per dim, woman's average answer per dim
+  function dimScore(who,dim){
+    const qs=(who==='m'?QM:QF).filter(q=>q.dim===dim);
+    const as=who==='m'?mA:fA;
+    if(!qs.length)return 0.5;
+    let s=0,w=0;
+    qs.forEach(q=>{const v=as[q.id];if(v!=null){s+=v*q.w;w+=q.w;}});
+    return w>0?s/w:0.5;
+  }
+
+  const mScores=dims.map(d=>dimScore('m',d));
+  const fScores=dims.map(d=>dimScore('f',d));
+
+  function poly(scores,r){
+    return scores.map((s,i)=>{
+      const a=angles[i],rv=r*s;
+      return [(cx+rv*Math.cos(a)).toFixed(2),(cy+rv*Math.sin(a)).toFixed(2)];
+    });
+  }
+
+  const grid=[0.25,0.5,0.75,1.0];
+  const gridCircles=grid.map(g=>{
+    const pts=dims.map((_,i)=>{const a=angles[i];return `${(cx+R*g*Math.cos(a)).toFixed(1)},${(cy+R*g*Math.sin(a)).toFixed(1)}`;});
+    return `<polygon points="${pts.join(' ')}" fill="none" stroke="rgba(128,128,128,0.2)" stroke-width="0.5"/>`;
+  }).join('');
+
+  const spokes=dims.map((_,i)=>{
+    const a=angles[i];
+    return `<line x1="${cx}" y1="${cy}" x2="${(cx+R*Math.cos(a)).toFixed(1)}" y2="${(cy+R*Math.sin(a)).toFixed(1)}" stroke="rgba(128,128,128,0.25)" stroke-width="0.5"/>`;
+  }).join('');
+
+  const mPts=poly(mScores,R);
+  const fPts=poly(fScores,R);
+  const mPoly=mPts.map(p=>p.join(',')).join(' ');
+  const fPoly=fPts.map(p=>p.join(',')).join(' ');
+
+  const labels=dims.map((d,i)=>{
+    const a=angles[i];
+    const lx=(cx+labelR*Math.cos(a)).toFixed(1);
+    const ly=(cy+labelR*Math.sin(a)).toFixed(1);
+    const anchor=Math.cos(a)>0.1?'start':Math.cos(a)<-0.1?'end':'middle';
+    const lines=DIMS[d].label.split(' ');
+    if(lines.length===1){
+      return `<text x="${lx}" y="${ly}" text-anchor="${anchor}" dominant-baseline="central" font-size="10" fill="var(--txt2)" font-family="-apple-system,sans-serif">${DIMS[d].label}</text>`;
+    }
+    const dy0=lines.length===2?'-0.6em':'0em';
+    return `<text x="${lx}" y="${ly}" text-anchor="${anchor}" font-size="10" fill="var(--txt2)" font-family="-apple-system,sans-serif">
+      ${lines.map((l,li)=>`<tspan x="${lx}" dy="${li===0?dy0:'1.3em'}">${l}</tspan>`).join('')}
+    </text>`;
+  }).join('');
+
+  // grid value labels
+  const gridLabels=grid.map(g=>`<text x="${(cx+2).toFixed(1)}" y="${(cy-R*g-2).toFixed(1)}" font-size="8" fill="var(--txt3)" font-family="-apple-system,sans-serif">${Math.round(g*100)}%</text>`).join('');
+
+  // dots on vertices
+  const mDots=mPts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="#534AB7"/>`).join('');
+  const fDots=fPts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="#D4537E"/>`).join('');
+
+  const svg=`<svg viewBox="0 0 400 400" width="100%" xmlns="http://www.w3.org/2000/svg">
+    ${gridCircles}${spokes}
+    <polygon points="${mPoly}" fill="rgba(83,74,183,0.12)" stroke="#534AB7" stroke-width="1.5" stroke-linejoin="round"/>
+    <polygon points="${fPoly}" fill="rgba(212,83,126,0.12)" stroke="#D4537E" stroke-width="1.5" stroke-linejoin="round"/>
+    ${mDots}${fDots}${labels}${gridLabels}
+  </svg>`;
+  document.getElementById('radar-container').innerHTML=svg;
+}
+
+// ─── Vector Space Plot ────────────────────────────────────────────────────────
+function renderVectorPlot(df,mN,fN){
+  const dims=Object.keys(DIMS);
+
+  function dimScore(who,dim){
+    const qs=(who==='m'?QM:QF).filter(q=>q.dim===dim);
+    const as=who==='m'?mA:fA;
+    if(!qs.length)return 0.5;
+    let s=0,w=0;
+    qs.forEach(q=>{const v=as[q.id];if(v!=null){s+=v*q.w;w+=q.w;}});
+    return w>0?s/w:0.5;
+  }
+
+  // Build 8D vectors for each person (centered at 0.5)
+  const mVec=dims.map(d=>dimScore('m',d)-0.5);
+  const fVec=dims.map(d=>dimScore('f',d)-0.5);
+
+  // Project to 2D using fixed basis:
+  // X axis = values(0) + goals(4) + lifestyle(2) - relational(3)  (external/structural axis)
+  // Y axis = personality(1) + emotional(6) + relational(3) - sexual(7)  (emotional depth axis)
+  // We use the 8 dim indices: values=0,personality=1,lifestyle=2,relational=3,goals=4,genderrole=5,emotional=6,sexual=7
+  const dimIdx={values:0,personality:1,lifestyle:2,relational:3,goals:4,genderrole:5,emotional:6,sexual:7};
+
+  function project(vec){
+    const x= vec[dimIdx.values]*0.4 + vec[dimIdx.goals]*0.35 + vec[dimIdx.lifestyle]*0.35 - vec[dimIdx.genderrole]*0.2 + vec[dimIdx.sexual]*0.2;
+    const y= vec[dimIdx.personality]*0.4 + vec[dimIdx.emotional]*0.4 + vec[dimIdx.relational]*0.35 - vec[dimIdx.lifestyle]*0.2 + vec[dimIdx.genderrole]*0.2;
+    return [x,y];
+  }
+
+  const [mx,my]=project(mVec);
+  const [fx,fy]=project(fVec);
+
+  // SVG canvas: 400x360, plot area center at (200,180), scale factor
+  const W=400,H=360,cx=200,cy=180,scale=220;
+
+  // Clamp to canvas
+  const clamp=(v,lo,hi)=>Math.max(lo,Math.min(hi,v));
+  const toSvg=(x,y)=>[clamp(cx+x*scale,30,W-30),clamp(cy-y*scale,30,H-30)];
+
+  const [msx,msy]=toSvg(mx,my);
+  const [fsx,fsy]=toSvg(fx,fy);
+
+  // Distance vector (line between the two points)
+  const dist=Math.sqrt((mx-fx)**2+(my-fy)**2).toFixed(3);
+  const midX=((msx+fsx)/2).toFixed(1);
+  const midY=((msy+fsy)/2).toFixed(1);
+
+  // Dimension arrows from center — showing which direction each dim pulls
+  const dimBases={
+    values:[0.4,0.0],personality:[0.0,0.4],lifestyle:[0.3,-0.2],
+    relational:[-0.15,0.35],goals:[0.35,0.0],genderrole:[-0.2,0.2],
+    emotional:[0.0,0.4],sexual:[0.2,-0.15]
+  };
+
+  const arrowLen=60;
+  const arrows=dims.map(d=>{
+    const [bx,by]=dimBases[d]||[0,0];
+    const len=Math.sqrt(bx*bx+by*by)||1;
+    const nx=bx/len*arrowLen,ny=by/len*arrowLen;
+    const x2=(cx+nx).toFixed(1),y2=(cy-ny).toFixed(1);
+    // arrowhead
+    const angle=Math.atan2(-ny,nx);
+    const ah=6;
+    const ax1=(parseFloat(x2)-ah*Math.cos(angle-0.4)).toFixed(1);
+    const ay1=(parseFloat(y2)-ah*Math.sin(angle-0.4)).toFixed(1);
+    const ax2=(parseFloat(x2)-ah*Math.cos(angle+0.4)).toFixed(1);
+    const ay2=(parseFloat(y2)-ah*Math.sin(angle+0.4)).toFixed(1);
+    // label pos
+    const lx=(cx+nx*1.28).toFixed(1);
+    const ly=(cy-ny*1.28).toFixed(1);
+    const shortLabel=DIMS[d].label.split(' ')[0];
+    return `<g opacity="0.35">
+      <line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="${DIMS[d].color}" stroke-width="1.2"/>
+      <polyline points="${ax1},${ay1} ${x2},${y2} ${ax2},${ay2}" fill="none" stroke="${DIMS[d].color}" stroke-width="1.2"/>
+      <text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="central" font-size="9" fill="${DIMS[d].color}" font-family="-apple-system,sans-serif">${shortLabel}</text>
+    </g>`;
+  }).join('');
+
+  // Axes
+  const axes=`
+    <line x1="20" y1="${cy}" x2="${W-20}" y2="${cy}" stroke="rgba(128,128,128,0.2)" stroke-width="0.5" stroke-dasharray="4 3"/>
+    <line x1="${cx}" y1="20" x2="${cx}" y2="${H-20}" stroke="rgba(128,128,128,0.2)" stroke-width="0.5" stroke-dasharray="4 3"/>
+    <text x="${W-22}" y="${cy-6}" font-size="9" fill="var(--txt3)" text-anchor="end" font-family="-apple-system,sans-serif">Structural →</text>
+    <text x="${cx+4}" y="26" font-size="9" fill="var(--txt3)" font-family="-apple-system,sans-serif">Emotional ↑</text>`;
+
+  // Connection line with distance label
+  const connLine=`
+    <line x1="${msx.toFixed(1)}" y1="${msy.toFixed(1)}" x2="${fsx.toFixed(1)}" y2="${fsy.toFixed(1)}" stroke="rgba(128,128,128,0.4)" stroke-width="1" stroke-dasharray="5 3"/>
+    <text x="${midX}" y="${(parseFloat(midY)-8).toFixed(1)}" text-anchor="middle" font-size="9" fill="var(--txt3)" font-family="-apple-system,sans-serif">d=${dist}</text>`;
+
+  // Person dots + labels
+  const mDot=`<g>
+    <circle cx="${msx.toFixed(1)}" cy="${msy.toFixed(1)}" r="18" fill="rgba(83,74,183,0.1)" stroke="#534AB7" stroke-width="1"/>
+    <circle cx="${msx.toFixed(1)}" cy="${msy.toFixed(1)}" r="6" fill="#534AB7"/>
+    <text x="${msx.toFixed(1)}" y="${(msy+26).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="600" fill="#534AB7" font-family="-apple-system,sans-serif">${mN}</text>
+    <text x="${msx.toFixed(1)}" y="${(msy+38).toFixed(1)}" text-anchor="middle" font-size="9" fill="var(--txt3)" font-family="-apple-system,sans-serif">P vector</text>
+  </g>`;
+
+  const fDot=`<g>
+    <circle cx="${fsx.toFixed(1)}" cy="${fsy.toFixed(1)}" r="18" fill="rgba(212,83,126,0.1)" stroke="#D4537E" stroke-width="1"/>
+    <circle cx="${fsx.toFixed(1)}" cy="${fsy.toFixed(1)}" r="6" fill="#D4537E"/>
+    <text x="${fsx.toFixed(1)}" y="${(fsy+26).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="600" fill="#D4537E" font-family="-apple-system,sans-serif">${fN}</text>
+    <text x="${fsx.toFixed(1)}" y="${(fsy+38).toFixed(1)}" text-anchor="middle" font-size="9" fill="var(--txt3)" font-family="-apple-system,sans-serif">N vector</text>
+  </g>`;
+
+  // Origin dot
+  const origin=`<circle cx="${cx}" cy="${cy}" r="3" fill="var(--txt3)" opacity="0.4"/>`;
+
+  // Score annotations per dim on hover dots — dimension component bars below the plot
+  const dimBars=dims.map(d=>{
+    const ms=dimScore('m',d),fs=dimScore('f',d);
+    const diff=Math.abs(ms-fs);
+    const barCol=diff<0.2?'#1D9E75':diff<0.4?'#BA7517':'#E24B4A';
+    return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+      <div style="width:90px;font-size:11px;color:var(--txt3);flex-shrink:0">${DIMS[d].label}</div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:3px">
+        <div style="display:flex;align-items:center;gap:4px">
+          <div style="width:10px;font-size:9px;color:#534AB7;flex-shrink:0">P</div>
+          <div style="flex:1;height:4px;background:var(--border);border-radius:2px"><div style="width:${Math.round(ms*100)}%;height:100%;background:#534AB7;border-radius:2px"></div></div>
+          <div style="width:28px;font-size:10px;color:var(--txt2);text-align:right">${Math.round(ms*100)}%</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:4px">
+          <div style="width:10px;font-size:9px;color:#D4537E;flex-shrink:0">N</div>
+          <div style="flex:1;height:4px;background:var(--border);border-radius:2px"><div style="width:${Math.round(fs*100)}%;height:100%;background:#D4537E;border-radius:2px"></div></div>
+          <div style="width:28px;font-size:10px;color:var(--txt2);text-align:right">${Math.round(fs*100)}%</div>
+        </div>
+      </div>
+      <div style="width:10px;height:10px;border-radius:50%;background:${barCol};flex-shrink:0"></div>
+    </div>`;
+  }).join('');
+
+  const svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" xmlns="http://www.w3.org/2000/svg">
+    ${axes}${arrows}${connLine}${origin}${mDot}${fDot}
+  </svg>`;
+
+  document.getElementById('vp-container').innerHTML=svg+`
+    <div style="margin-top:1.25rem;padding-top:1rem;border-top:0.5px solid var(--border)">
+      <p style="font-size:12px;font-weight:600;color:var(--txt);margin-bottom:.75rem">Per-dimension component scores</p>
+      ${dimBars}
+      <p style="font-size:11px;color:var(--txt3);margin-top:.5rem">Green dot = aligned (&lt;20% diff) · Amber = moderate · Red = divergent</p>
+    </div>`;
 }
 
 function buildInsights(df,mN,fN){
